@@ -202,6 +202,13 @@
         .accordion-body.open { max-height: 2000px; padding: 16px 20px; }
         .accordion-header.open i { transform: rotate(180deg); }
 
+        .note-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+        .note-actions button { padding: 6px 16px; border-radius: 30px; border: 1px solid var(--border); background: transparent; cursor: pointer; font-size: 13px; transition: 0.2s; }
+        .note-actions button:hover { background: var(--primary-light); border-color: var(--primary); }
+        .note-actions button i { margin-right: 6px; }
+        .note-actions .btn-share { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .note-actions .btn-share:hover { background: var(--primary-dark); }
+
         @media (max-width: 600px) {
             .header-actions button span { display: none; }
             .tab-btn { font-size: 12px; padding: 6px 12px; }
@@ -276,372 +283,65 @@
                 <div class="card"><h2><i class="fas fa-trophy"></i> Thành tích</h2><div id="achievementList"><span class="achievement unlocked">🏅</span><span class="achievement unlocked">📖</span><span class="achievement">🔥</span></div></div>
             </div>
 
-            <!-- ===== ĐTĐ ===== -->
+            <!-- ===== ĐTĐ (giữ nguyên nội dung đã có) ===== -->
             <div id="tab-dm" class="tab-content">
-                <div class="card"><div class="flex-between"><h2>🍬 ĐÁI THÁO ĐƯỜNG</h2><button class="bookmark-btn" data-bookmark="dm"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-dm" style="width:0%"></div></div><div class="note">ĐTĐ là bệnh chuyển hóa đặc trưng bởi tăng đường huyết mạn tính, do khiếm khuyết tiết insulin, hoạt tính insulin hoặc cả hai.</div></div>
-
-                <!-- Bài 1: Tầm soát (giữ nguyên) -->
-                <div class="card"><h3>🔍 Các trường hợp cần tầm soát</h3>
-                    <ul><li><strong>Triệu chứng "4 nhiều":</strong> tiểu nhiều, uống nhiều, ăn nhiều, sụt cân không rõ nguyên nhân</li>
-                        <li><strong>Biểu hiện nghi ngờ biến chứng:</strong> nhiễm trùng da lâu lành, NT tiết niệu/viêm âm đạo tái diễn, viêm quanh chân răng, lao phổi</li>
-                        <li><strong>BMI ≥ 23 kg/m² + ít nhất 1 YTNC:</strong> ít vận động, gia đình có người ĐTĐ, THA, RLLP, vòng bụng to (nam ≥90cm, nữ ≥80cm), PCOS, HbA1c ≥5.7%, tiền sử IFG/IGT, dấu hiệu đề kháng insulin (gai đen), tiền sử bệnh tim mạch</li>
-                        <li><strong>Phụ nữ từng ĐTĐ thai kỳ:</strong> tầm soát mỗi 3 năm</li>
-                        <li><strong>Không có yếu tố nguy cơ:</strong> bắt đầu tầm soát ở tuổi ≥45, mỗi 3 năm</li>
-                    </ul>
-                    <div class="note-important">⚠️ <strong>OGTT:</strong> ăn 150-200g carbohydrate/ngày trong 3 ngày, tránh corticoid, thiazid, cà phê. Uống 75g glucose, đo ĐH sau 2h.</div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-brain"></i> Mẹo nhớ tầm soát</div><p><strong>“4 nhiều”</strong> = Tiểu nhiều (Polyuria), Uống nhiều (Polydipsia), Ăn nhiều (Polyphagia), Sụt cân (Weight loss). <br><strong>“BMI ≥23”</strong> + 1 YTNC: nhớ <strong>“Bụng to – Da đen – Gia đình”</strong>.</p></div>
-                    <div class="mini-quiz" data-mq="dm1"><div class="mq-question"><i class="fas fa-check-circle"></i> BN nam 50t, BMI 25, vòng bụng 92cm, tiền sử gia đình ĐTĐ. Cần tầm soát không?</div><div class="mq-options"><label><input type="radio" name="mq_dm1" value="0"> Cần, vì BMI≥23 và có YTNC</label><label><input type="radio" name="mq_dm1" value="1"> Không cần</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm1',0)">Kiểm tra</button><div class="mq-result" id="mq_dm1_result"></div></div>
-                </div>
-
-                <!-- Bài 2: Chẩn đoán (giữ nguyên) -->
-                <div class="card"><h3>📊 Tiêu chuẩn chẩn đoán (ADA 2020)</h3>
-                    <div class="table-wrap"><table class="study-table"><tr><th>Xét nghiệm</th><th>Ngưỡng</th></tr><tr><td>FPG</td><td>≥126 mg/dL (7.0) – đói ≥8h</td></tr><tr><td>OGTT 2h</td><td>≥200 mg/dL (11.1)</td></tr><tr><td>HbA1c</td><td>≥6.5% (48 mmol/mol)</td></tr><tr><td>ĐH bất kỳ</td><td>≥200 mg/dL + triệu chứng</td></tr></table></div>
-                    <div class="note">⚠️ Nếu không triệu chứng, cần 2 kết quả bất thường.</div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“126 – 200 – 6.5”</strong>: FPG ≥126, OGTT ≥200, HbA1c ≥6.5%. <br><em>“Một hai sáu – hai không không – sáu phẩy năm”</em>.</p></div>
-                    <div class="mini-quiz" data-mq="dm2"><div class="mq-question"><i class="fas fa-check-circle"></i> FPG 132, HbA1c 6.7%, không triệu chứng. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_dm2" value="0"> ĐTĐ (cần xác nhận lại)</label><label><input type="radio" name="mq_dm2" value="1"> Tiền ĐTĐ</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm2',0)">Kiểm tra</button><div class="mq-result" id="mq_dm2_result"></div></div>
-                </div>
-
-                <!-- Bài 3: Phân loại (giữ nguyên) -->
-                <div class="card"><h3>🧬 Phân loại và cơ chế</h3>
-                    <ul><li><strong>Type 1:</strong> phá hủy tế bào β → thiếu insulin tuyệt đối</li><li><strong>Type 2:</strong> đề kháng insulin + mất dần tiết insulin</li><li><strong>Thai kỳ:</strong> chẩn đoán lần đầu trong tam cá nguyệt thứ 2 hoặc 3</li><li><strong>Các dạng đặc biệt:</strong> MODY, bệnh tụy, do thuốc, bệnh nội tiết</li></ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“1 – Tự miễn, 2 – Đề kháng, Thai kỳ – Tam cá 2/3”</strong></p></div>
-                    <div class="mini-quiz" data-mq="dm3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN 25t, gầy, kháng thể kháng tế bào đảo tụy (+). Type nào?</div><div class="mq-options"><label><input type="radio" name="mq_dm3" value="0"> Type 1</label><label><input type="radio" name="mq_dm3" value="1"> Type 2</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm3',0)">Kiểm tra</button><div class="mq-result" id="mq_dm3_result"></div></div>
-                </div>
-
-                <!-- Bài 4: HbA1c (giữ nguyên) -->
-                <div class="card"><h3>🧪 HbA1c và nhiễu</h3>
-                    <p><strong>HbA1c phản ánh đường huyết trung bình 2-3 tháng.</strong></p>
-                    <div class="note-important">⚠️ <strong>Yếu tố ảnh hưởng:</strong> mất máu/tán huyết → <strong>giảm</strong> giả tạo; suy thận (carbamoyl hóa) → <strong>tăng</strong> giả tạo; bệnh huyết sắc tố → nhiễu.</div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Tán huyết → giảm, Suy thận → tăng”</strong></p></div>
-                    <div class="mini-quiz" data-mq="dm4"><div class="mq-question"><i class="fas fa-check-circle"></i> BN thiếu máu tán huyết, HbA1c 5.8%. Kết luận?</div><div class="mq-options"><label><input type="radio" name="mq_dm4" value="0"> Giảm giả tạo, cần xét nghiệm khác</label><label><input type="radio" name="mq_dm4" value="1"> Bình thường</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm4',0)">Kiểm tra</button><div class="mq-result" id="mq_dm4_result"></div></div>
-                </div>
-
-                <!-- Bài 5: Mục tiêu (giữ nguyên) -->
-                <div class="card"><h3>🎯 Mục tiêu điều trị</h3>
-                    <div class="grid-3"><div><strong>ĐH đói:</strong> 80–130</div><div><strong>ĐH sau ăn:</strong> <180</div><div><strong>HbA1c:</strong> <7%</div><div><strong>HA:</strong> <140/90 (<130/80 nếu có thận)</div><div><strong>LDL:</strong> <100 (<70 nếu có BC tim mạch)</div><div><strong>TG:</strong> <150; <strong>HDL:</strong> nam >40, nữ >50</div></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“7 – 130 – 180 – 100”</strong></p></div>
-                    <div class="mini-quiz" data-mq="dm5"><div class="mq-question"><i class="fas fa-check-circle"></i> BN ĐTĐ có bệnh mạch vành, LDL mục tiêu?</div><div class="mq-options"><label><input type="radio" name="mq_dm5" value="0"> <100</label><label><input type="radio" name="mq_dm5" value="1"> <70</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm5',1)">Kiểm tra</button><div class="mq-result" id="mq_dm5_result"></div></div>
-                </div>
-
-                <!-- Bài 6: Biến chứng (giữ nguyên) -->
-                <div class="card"><h3>⚠️ Biến chứng mạn</h3>
-                    <div class="grid-2"><div class="note"><h4>🩸 Vi mạch</h4><ul><li>Thận: ACR <30 bth, 30–300 vi albumin, >300 đại</li><li>Võng mạc: không tăng sinh → tăng sinh (tân mạch)</li><li>Thần kinh ngoại biên: tê, đau rát, mất cảm giác</li></ul></div><div class="note" style="border-left-color:#c0392b;"><h4>🫀 Mạch lớn</h4><ul><li>Bệnh mạch vành, tai biến mạch não, bệnh động mạch ngoại biên</li></ul></div></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Vi mạch: thận – võng mạc – TK”, “Mạch lớn: vành – não – chân”</strong></p></div>
-                </div>
-
-                <!-- Bài 7: Hạ đường huyết (mới, chi tiết) -->
-                <div class="card" id="dm-bai7"><h3>🩸 Hạ đường huyết (Hypoglycemia)</h3>
-                    <ul><li><strong>Định nghĩa:</strong> Đường huyết < 70 mg/dL kèm triệu chứng.</li>
-                        <li><strong>Tam chứng Whipple:</strong> (1) Triệu chứng hạ ĐH (vã mồ hôi, lạnh run, hồi hộp, lơ mơ), (2) Mức đường huyết < 70 mg/dL, (3) Hết triệu chứng khi bù đường.</li>
-                        <li><strong>Phân độ:</strong> Mức 1: 54–70 mg/dL; Mức 2: < 54 mg/dL; Mức 3 (nặng): cần người khác trợ giúp, bất kể ĐH.</li>
-                        <li><strong>Xử trí cấp cứu:</strong> <br>– Nhẹ/Trung bình (BN tỉnh, nuốt được): <strong>Quy tắc 15-15</strong> – 15g đường hấp thu nhanh (3 muỗng cà phê đường pha nước, 1/2 lon nước ngọt, mật ong), đo lại sau 15 phút. <br>– Nặng (lơ mơ, không nuốt được): <strong>Glucose 30%</strong> 50ml bolus tĩnh mạch (hoặc 10% 150ml), hoặc tiêm bắp 1mg Glucagon. Sau tỉnh, duy trì TTM Glucose 10% và cho ăn nhẹ.</li>
-                        <li><strong>Nguyên nhân thường gặp ở BN ĐTĐ:</strong> Bỏ bữa/ăn kém, quá liều Sulfonylurea (SU gây hạ ĐH dai dẳng đến 72h), suy thận mạn (insulin chậm thải trừ), suy thượng thận (thiếu corticoid).</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Whipple 3 dấu”</strong> – Triệu chứng + ĐH thấp + Hết khi bù.<br><strong>“15-15”</strong> – 15g đường, 15 phút sau đo lại.</p></div>
-                    <div class="mini-quiz" data-mq="dm7"><div class="mq-question"><i class="fas fa-check-circle"></i> BN tiêm insulin, đổ mồ hôi, run, ĐH 50. Xử trí đúng?</div><div class="mq-options"><label><input type="radio" name="mq_dm7" value="0"> 15g đường uống, đo lại sau 15 phút</label><label><input type="radio" name="mq_dm7" value="1"> Tiêm insulin</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm7',0)">Kiểm tra</button><div class="mq-result" id="mq_dm7_result"></div></div>
-                </div>
-
-                <!-- Bài 8: Bệnh thận ĐTĐ (mới, chi tiết) -->
-                <div class="card" id="dm-bai8"><h3>🧠 Bệnh thận ĐTĐ (DKD)</h3>
-                    <ul><li><strong>Tiêu chuẩn chẩn đoán:</strong> Tiểu albumin liên tục (ACR > 30 mg/g) ít nhất 2 lần trong 3-6 tháng, không kèm tiểu máu, giảm eGFR, thường kèm bệnh võng mạc ĐTĐ. <br>Lưu ý: <strong>Dương tính giả</strong> nếu suy tim, UTI, tiểu máu.</li>
-                        <li><strong>Soi đáy mắt:</strong> Bệnh võng mạc ĐTĐ giai đoạn tăng sinh (động mạch co nhỏ, xuất tiết dạng bông, vi mạch lựu).</li>
-                        <li><strong>Mục tiêu xuất viện:</strong> ĐH đói 90-140 mg/dL, ĐH sau ăn < 200 mg/dL, HbA1c < 8% (với người già, bệnh lâu năm). Huyết áp < 140/90 mmHg. LDL < 100 mg/dL.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“ACR >30 x 2 lần”</strong> – Chẩn đoán bệnh thận ĐTĐ.</p></div>
-                    <div class="mini-quiz" data-mq="dm8"><div class="mq-question"><i class="fas fa-check-circle"></i> ACR bao nhiêu để chẩn đoán bệnh thận ĐTĐ?</div><div class="mq-options"><label><input type="radio" name="mq_dm8" value="0"> >30 mg/g</label><label><input type="radio" name="mq_dm8" value="1"> >300 mg/g</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm8',0)">Kiểm tra</button><div class="mq-result" id="mq_dm8_result"></div></div>
-                </div>
-
-                <!-- Checklist tổng hợp ĐTĐ -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – ĐTĐ (toàn bộ)</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Đã thuộc hội chứng "4 nhiều" và cơ chế?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nắm được BMI ≥23 và các YTNC?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Thuộc 4 tiêu chuẩn chẩn đoán ADA 2020 (126, 200, 6.5)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt Type 1, Type 2, thai kỳ?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Kể được 3 yếu tố nhiễu HbA1c (tán huyết, suy thận, Hb bất thường)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Biện luận được cá thể hóa HbA1c?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Trình bày võng mạc không tăng sinh và tăng sinh?</span></label>
-                        <label><input type="checkbox"> <span class="item-text"><strong>Hạ ĐH:</strong> Tam chứng Whipple, phân độ, xử trí 15-15 và glucose IV?</span></label>
-                        <label><input type="checkbox"> <span class="item-text"><strong>Bệnh thận:</strong> ACR >30, dương tính giả (UTI, suy tim)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Mục tiêu xuất viện: ĐH đói 90-140, HA <140/90, LDL <100?</span></label>
-                        <label><input type="checkbox"> <span class="item-text"><strong>Cảnh báo:</strong> Học SGLT-2i và GLP-1 RA.</span></label>
-                    </div>
-                </div>
+                <div class="card"><div class="flex-between"><h2>🍬 ĐÁI THÁO ĐƯỜNG</h2><button class="bookmark-btn" data-bookmark="dm"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-dm" style="width:0%"></div></div><div class="note">ĐTĐ là bệnh chuyển hóa đặc trưng bởi tăng đường huyết mạn tính.</div></div>
+                <div class="card"><h3>🔍 Tầm soát</h3><ul><li><strong>4 nhiều:</strong> tiểu, uống, ăn nhiều, sụt cân</li><li>BMI≥23 + YTNC: ít vận động, gia đình, THA, RLLP, vòng bụng to (nam≥90, nữ≥80), PCOS, HbA1c≥5.7%, IFG/IGT, gai đen, tiền sử tim mạch</li><li>Phụ nữ ĐTĐ thai kỳ: tầm soát mỗi 3 năm</li><li>Không YTNC: tầm soát từ ≥45 tuổi, mỗi 3 năm</li></ul><div class="note-important">OGTT: 150-200g carb/ngày 3 ngày, uống 75g glucose, đo ĐH sau 2h.</div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-brain"></i> Mẹo</div><p><strong>“4 nhiều + BMI≥23 + YTNC”</strong></p></div><div class="mini-quiz" data-mq="dm1"><div class="mq-question"><i class="fas fa-check-circle"></i> BN nam 50, BMI 25, vòng bụng 92, tiền sử gia đình ĐTĐ. Cần tầm soát không?</div><div class="mq-options"><label><input type="radio" name="mq_dm1" value="0"> Cần</label><label><input type="radio" name="mq_dm1" value="1"> Không</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm1',0)">Kiểm tra</button><div class="mq-result" id="mq_dm1_result"></div></div></div>
+                <div class="card"><h3>📊 Chẩn đoán (ADA 2020)</h3><div class="table-wrap"><table class="study-table"><tr><th>Xét nghiệm</th><th>Ngưỡng</th></tr><tr><td>FPG</td><td>≥126 mg/dL</td></tr><tr><td>OGTT 2h</td><td>≥200 mg/dL</td></tr><tr><td>HbA1c</td><td>≥6.5%</td></tr><tr><td>ĐH bất kỳ</td><td>≥200 + triệu chứng</td></tr></table></div><div class="note">⚠️ Không triệu chứng: cần 2 kết quả bất thường.</div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“126 – 200 – 6.5”</strong></p></div><div class="mini-quiz" data-mq="dm2"><div class="mq-question"><i class="fas fa-check-circle"></i> FPG 132, HbA1c 6.7%, không triệu chứng. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_dm2" value="0"> ĐTĐ (cần xác nhận)</label><label><input type="radio" name="mq_dm2" value="1"> Tiền ĐTĐ</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm2',0)">Kiểm tra</button><div class="mq-result" id="mq_dm2_result"></div></div></div>
+                <div class="card"><h3>🧬 Phân loại</h3><ul><li>Type 1: phá hủy β → thiếu insulin tuyệt đối</li><li>Type 2: đề kháng + mất tiết insulin</li><li>Thai kỳ: tam cá 2/3</li><li>Đặc biệt: MODY, bệnh tụy, thuốc, nội tiết</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“1 – tự miễn, 2 – đề kháng”</strong></p></div><div class="mini-quiz" data-mq="dm3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN 25t, gầy, kháng thể kháng tế bào đảo tụy (+). Type nào?</div><div class="mq-options"><label><input type="radio" name="mq_dm3" value="0"> Type 1</label><label><input type="radio" name="mq_dm3" value="1"> Type 2</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm3',0)">Kiểm tra</button><div class="mq-result" id="mq_dm3_result"></div></div></div>
+                <div class="card"><h3>🧪 HbA1c</h3><p>Phản ánh ĐH trung bình 2-3 tháng.</p><div class="note-important">⚠️ Nhiễu: tán huyết → giảm, suy thận → tăng, Hb bất thường → nhiễu.</div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Tán huyết ↓, Suy thận ↑”</strong></p></div><div class="mini-quiz" data-mq="dm4"><div class="mq-question"><i class="fas fa-check-circle"></i> BN thiếu máu tán huyết, HbA1c 5.8%. Kết luận?</div><div class="mq-options"><label><input type="radio" name="mq_dm4" value="0"> Giảm giả tạo</label><label><input type="radio" name="mq_dm4" value="1"> Bình thường</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm4',0)">Kiểm tra</button><div class="mq-result" id="mq_dm4_result"></div></div></div>
+                <div class="card"><h3>🎯 Mục tiêu</h3><div class="grid-3"><div>ĐH đói 80–130</div><div>ĐH sau ăn <180</div><div>HbA1c <7%</div><div>HA <140/90 (<130/80 nếu có thận)</div><div>LDL <100 (<70 nếu có BC tim mạch)</div><div>TG <150; HDL nam>40, nữ>50</div></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“7 – 130 – 180 – 100”</strong></p></div><div class="mini-quiz" data-mq="dm5"><div class="mq-question"><i class="fas fa-check-circle"></i> LDL mục tiêu khi có bệnh mạch vành?</div><div class="mq-options"><label><input type="radio" name="mq_dm5" value="0"> <100</label><label><input type="radio" name="mq_dm5" value="1"> <70</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm5',1)">Kiểm tra</button><div class="mq-result" id="mq_dm5_result"></div></div></div>
+                <div class="card"><h3>⚠️ Biến chứng</h3><div class="grid-2"><div class="note"><h4>🩸 Vi mạch</h4><ul><li>Thận: ACR <30 bth, 30-300 vi albumin, >300 đại</li><li>Võng mạc: không tăng sinh → tăng sinh (tân mạch)</li><li>Thần kinh: tê, đau rát, mất cảm giác</li></ul></div><div class="note" style="border-left-color:#c0392b;"><h4>🫀 Mạch lớn</h4><ul><li>Mạch vành, tai biến não, bệnh động mạch ngoại biên</li></ul></div></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Vi mạch: thận – võng mạc – TK”</strong><br><strong>“Mạch lớn: vành – não – chân”</strong></p></div></div>
+                <div class="card"><h3>🩸 Hạ đường huyết</h3><ul><li>Tam chứng Whipple: triệu chứng + ĐH <70 + hết khi bù</li><li>Phân độ: 1 (54-70), 2 (<54), 3 (cần trợ giúp)</li><li>Xử trí: Quy tắc 15-15 (15g đường, đo lại sau 15'). Nặng: Glucose 30% 50ml IV hoặc Glucagon 1mg IM.</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Whipple 3 dấu”</strong><br><strong>“15-15”</strong></p></div><div class="mini-quiz" data-mq="dm7"><div class="mq-question"><i class="fas fa-check-circle"></i> BN tiêm insulin, đổ mồ hôi, run, ĐH 50. Xử trí?</div><div class="mq-options"><label><input type="radio" name="mq_dm7" value="0"> 15g đường uống</label><label><input type="radio" name="mq_dm7" value="1"> Tiêm insulin</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm7',0)">Kiểm tra</button><div class="mq-result" id="mq_dm7_result"></div></div></div>
+                <div class="card"><h3>🧠 Bệnh thận ĐTĐ</h3><ul><li>ACR >30 x 2 lần trong 3-6 tháng, không tiểu máu, giảm eGFR, kèm võng mạc ĐTĐ</li><li>Soi đáy mắt: vi mạch lựu, xuất tiết bông</li><li>Mục tiêu xuất viện: ĐH đói 90-140, ĐH sau ăn <200, HbA1c <8% (người già), HA <140/90, LDL <100</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“ACR >30 x 2”</strong></p></div><div class="mini-quiz" data-mq="dm8"><div class="mq-question"><i class="fas fa-check-circle"></i> ACR bao nhiêu để chẩn đoán bệnh thận ĐTĐ?</div><div class="mq-options"><label><input type="radio" name="mq_dm8" value="0"> >30</label><label><input type="radio" name="mq_dm8" value="1"> >300</label></div><button class="mq-btn" onclick="checkMiniQuiz('dm8',0)">Kiểm tra</button><div class="mq-result" id="mq_dm8_result"></div></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – ĐTĐ</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">4 nhiều, BMI≥23 + YTNC</span></label><label><input type="checkbox"> <span class="item-text">4 tiêu chuẩn chẩn đoán (126, 200, 6.5)</span></label><label><input type="checkbox"> <span class="item-text">Phân biệt Type 1, 2, thai kỳ</span></label><label><input type="checkbox"> <span class="item-text">Nhiễu HbA1c (tán huyết, suy thận)</span></label><label><input type="checkbox"> <span class="item-text">Mục tiêu 7-130-180-100</span></label><label><input type="checkbox"> <span class="item-text">Vi mạch: thận-võng mạc-TK; mạch lớn: vành-não-chân</span></label><label><input type="checkbox"> <span class="item-text">Tam chứng Whipple, 15-15, Glucose IV</span></label><label><input type="checkbox"> <span class="item-text">Bệnh thận: ACR >30, dương tính giả (UTI, suy tim)</span></label></div></div>
             </div>
 
-            <!-- ===== BÀN CHÂN ĐTĐ (mở rộng chi tiết) ===== -->
+            <!-- ===== BÀN CHÂN (giữ nguyên) ===== -->
             <div id="tab-foot" class="tab-content">
-                <div class="card"><div class="flex-between"><h2>🦶 BÀN CHÂN ĐTĐ</h2><button class="bookmark-btn" data-bookmark="foot"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-foot" style="width:0%"></div></div><div class="note">Loét bàn chân ĐTĐ là hệ quả của (1) Mạch máu giảm tưới máu + (2) Thần kinh (cảm giác, vận động, tự chủ) + (3) Suy giảm miễn dịch.</div></div>
-
-                <!-- Cơ chế bệnh sinh chi tiết -->
-                <div class="card"><h3>🧬 Cơ chế bệnh sinh</h3>
-                    <ul><li><strong>Thần kinh cảm giác:</strong> Mất cảm giác bảo vệ do phá hủy myelin → đạp đinh/nóng không biết.</li>
-                        <li><strong>Thần kinh vận động:</strong> Teo cơ nội tại → mất cân bằng lực → gân co rút tạo <strong>ngón chân hình búa (Hammer toe)</strong> / ngón vuốt → chỏm xương bàn bị đẩy lồi → tăng sinh sừng (chai/callus) → hoại tử vô khuẩn → <strong>loét lỗ đáo</strong>.</li>
-                        <li><strong>Thần kinh tự chủ:</strong> Hỏng tuyến mồ hôi → da khô, nứt nẻ → ngõ vào cho vi khuẩn.</li>
-                        <li><strong>Bệnh động mạch chi dưới (PAD):</strong> Đối xứng, lan tỏa, hẹp nhiều đoạn, đặc biệt tập trung mạch nhỏ dưới gối. Kèm vôi hóa Mönckeberg. Thiếu máu khiến vết thương không lành.</li>
-                        <li><strong>Bóng nước tự phát (Bullosis diabeticorum):</strong> Bóng nước căng, không đau, trên da lành do thoái hóa collagen/đứt sợi neo, cực kỳ dễ vỡ và bội nhiễm.</li>
-                        <li><strong>Bàn chân Charcot:</strong> Mất trương lực giao cảm → tăng máu đến xương → hủy cốt bào hoạt động mạnh → loãng xương, sập vòm bàn chân (rocker-bottom foot).</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ cơ chế</div><p><strong>“3 loại thần kinh: Tự chủ – Vận động – Cảm giác”</strong> + <strong>“Mạch máu (PAD)”</strong> + <strong>“Nhiễm trùng”</strong> → <em>“Thần kinh – Mạch – Trùng”</em>.</p></div>
-                    <div class="mini-quiz" data-mq="foot1"><div class="mq-question"><i class="fas fa-check-circle"></i> Yếu tố nào KHÔNG phải là cơ chế gây loét bàn chân ĐTĐ?</div><div class="mq-options"><label><input type="radio" name="mq_foot1" value="0"> Bệnh thần kinh ngoại biên</label><label><input type="radio" name="mq_foot1" value="1"> Bệnh mạch máu ngoại biên</label><label><input type="radio" name="mq_foot1" value="2"> Tăng huyết áp</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot1',2)">Kiểm tra</button><div class="mq-result" id="mq_foot1_result"></div></div>
-                </div>
-
-                <!-- Khám thần kinh cảm giác -->
-                <div class="card"><h3>🔍 Khám thần kinh cảm giác</h3>
-                    <div class="grid-2"><div><h4>① Monofilament 5.07 (10g)</h4><ul><li>Khám 10 điểm chuẩn (hoặc rút gọn 3 điểm: ngón 1,3,5).</li><li>Ấn vuông góc 90°, gập cước thành chữ C, giữ 1-2s. BN nhắm mắt.</li><li><strong>Tiêu chuẩn:</strong> Trả lời sai 2/3 lần → mất cảm giác áp lực bảo vệ.</li><li>Không kéo lê cước, cài "lần đánh lừa".</li></ul><h4>② Âm thoa 128 Hz</h4><ul><li>Đặt tại lồi xương ngón cái. (Không dùng loại 256/512Hz).</li><li>Sai 2/3 lần là mất.</li></ul></div><div><h4>③ Ipswich Touch Test</h4><ul><li>Chạm nhẹ đầu ngón 1,3,5 hai bàn chân.</li><li>Mất ≥ 2/6 điểm là bệnh lý.</li></ul><h4>④ Nghiệm pháp Buerger</h4><ul><li>Nâng chân 45° >20s thấy trắng bệch → thả thõng 90° hồng lại chậm >20s (reactive hyperemia) → thiếu máu nặng.</li></ul></div></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Monofilament: sai 2/3 → mất”</strong> <br><strong>“Ipswich: ≥2/6 → nguy cơ”</strong></p></div>
-                    <div class="mini-quiz" data-mq="foot2"><div class="mq-question"><i class="fas fa-check-circle"></i> Monofilament 10g, BN sai 2/3 lần tại một điểm. Kết luận?</div><div class="mq-options"><label><input type="radio" name="mq_foot2" value="0"> Mất cảm giác tại điểm đó</label><label><input type="radio" name="mq_foot2" value="1"> Còn cảm giác</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot2',0)">Kiểm tra</button><div class="mq-result" id="mq_foot2_result"></div></div>
-                </div>
-
-                <!-- Khám mạch máu + ABI -->
-                <div class="card"><h3>🩸 Khám mạch máu chi dưới & ABI</h3>
-                    <div class="grid-2"><div><h4>Triệu chứng cơ năng</h4><ul><li><strong>Đau cách hồi:</strong> đau co rút cơ bắp chân khi đi bộ, giảm khi nghỉ.</li><li><strong>Đau lúc nghỉ:</strong> đau ngọn chi, lan bàn chân, đau tăng khi nhiễm trùng.</li></ul></div><div><h4>Khám thực thể</h4><ul><li>Nhìn: da tái, lạnh, rụng lông, móng khô.</li><li>Bắt mạch: mu chân, chày sau, khoeo.</li><li>Nghiệm pháp nâng chân (Buerger).</li></ul></div></div>
-                    <h4>📏 Chỉ số ABI</h4>
-                    <div class="table-wrap"><table class="study-table"><tr><th>ABI</th><th>Ý nghĩa</th></tr><tr><td>>1.30</td><td>Xơ cứng mạch (cần TBI)</td></tr><tr><td>0.90–1.30</td><td>Bình thường</td></tr><tr><td>0.70–0.89</td><td>Hẹp nhẹ</td></tr><tr><td>0.41–0.69</td><td>Hẹp trung bình</td></tr><tr><td>≤0.40</td><td>Hẹp nặng</td></tr></table></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ ABI</div><p><strong>“>1.3 = cứng, 0.9–1.3 = tốt, 0.7–0.89 = nhẹ, 0.41–0.69 = trung, ≤0.40 = nặng”</strong></p></div>
-                    <div class="mini-quiz" data-mq="foot3"><div class="mq-question"><i class="fas fa-check-circle"></i> ABI = 0.65, mức độ hẹp nào?</div><div class="mq-options"><label><input type="radio" name="mq_foot3" value="0"> Nhẹ</label><label><input type="radio" name="mq_foot3" value="1"> Trung bình</label><label><input type="radio" name="mq_foot3" value="2"> Nặng</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot3',1)">Kiểm tra</button><div class="mq-result" id="mq_foot3_result"></div></div>
-                </div>
-
-                <!-- Đo đạc và phân độ vết loét -->
-                <div class="card"><h3>📏 Đo đạc và phân độ vết loét</h3>
-                    <ul><li><strong>Quy tắc vàng:</strong> Chỉ đo kích thước (Dài x Rộng x Sâu) <strong>sau khi đã cắt lọc</strong> hoại tử và nạo gọt vết chai.</li>
-                        <li><strong>Nghiệm pháp Probe-to-bone:</strong> Dùng que thăm dò vô khuẩn chọc thẳng góc. Chạm bề mặt cứng, nhám như cát → <strong>viêm tủy xương</strong> → kháng sinh kéo dài 6 tuần tĩnh mạch.</li>
-                        <li><strong>Phân độ nhiễm trùng IDSA/IWGDF:</strong> <br>– Nhẹ: Nông, quầng đỏ 0.5–2 cm, không triệu chứng toàn thân.<br>– Trung bình: Sâu (cơ/gân/xương) HOẶC quầng đỏ > 2 cm, không triệu chứng toàn thân.<br>– Nặng: Nhiễm trùng bất kỳ + <strong>SIRS</strong> (Sốt/hạ thân nhiệt, mạch >90, nhịp thở >20, BC >12k hoặc <4k).</li>
-                        <li><strong>Phân độ Wagner (độ sâu):</strong> <br>0: Da nguyên vẹn, nguy cơ cao.<br>1: Loét nông (chỉ qua da).<br>2: Loét sâu tới gân, cơ (chưa viêm xương, chưa áp xe).<br>3: Viêm tủy xương, áp xe sâu.<br>4: Hoại thư khu trú (1 ngón, gót).<br>5: Hoại thư lan rộng toàn bàn.</li>
-                        <li><strong>Tiêu chuẩn nhập viện bắt buộc:</strong> IDSA nặng (SIRS), IDSA trung bình + yếu tố phức tạp (neo đơn, PAD nặng), không tuân thủ ngoại trú, hoặc dùng kháng sinh uống 1-2 tuần không cải thiện.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ phân độ</div><p><strong>“Wagner: 0-1-2-3-4-5”</strong> – chưa loét → nông → sâu → viêm xương → hoại tử cục bộ → toàn bộ.<br><strong>“IDSA: nhẹ (quầng <2cm), trung bình (sâu hoặc quầng >2cm), nặng (có SIRS)”</strong></p></div>
-                    <div class="mini-quiz" data-mq="foot4"><div class="mq-question"><i class="fas fa-check-circle"></i> Vết loét sâu đến xương, quầng đỏ 3cm, sốt 38.5°C. Phân độ IDSA?</div><div class="mq-options"><label><input type="radio" name="mq_foot4" value="0"> Nhẹ</label><label><input type="radio" name="mq_foot4" value="1"> Trung bình</label><label><input type="radio" name="mq_foot4" value="2"> Nặng</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot4',2)">Kiểm tra</button><div class="mq-result" id="mq_foot4_result"></div></div>
-                </div>
-
-                <!-- Checklist bàn chân -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – BÀN CHÂN ĐTĐ</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Giải thích được cơ chế TK (cảm giác, vận động, tự chủ) gây loét?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nắm được kỹ thuật Monofilament 10g và tiêu chuẩn mất cảm giác (sai 2/3)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Biết Ipswich Touch Test (≥2/6 điểm)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Biện luận ABI: >1.3 (cứng), 0.9–1.3 (tốt), 0.7–0.89 (nhẹ), 0.41–0.69 (trung), ≤0.40 (nặng)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt loét mạch máu (đau, lạnh) và thần kinh (không đau, chai)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nắm được quy tắc đo vết loét (sau cắt lọc) và Probe-to-bone (viêm xương)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân độ IDSA (nhẹ, trung bình, nặng) và Wagner 0-5?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Tiêu chuẩn nhập viện bắt buộc (SIRS, PAD nặng, KS không đáp ứng)?</span></label>
-                    </div>
-                </div>
+                <div class="card"><div class="flex-between"><h2>🦶 BÀN CHÂN ĐTĐ</h2><button class="bookmark-btn" data-bookmark="foot"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-foot" style="width:0%"></div></div><div class="note">Loét bàn chân = (1) Mạch máu + (2) Thần kinh + (3) Nhiễm trùng.</div></div>
+                <div class="card"><h3>🧬 Cơ chế</h3><ul><li>Thần kinh cảm giác: mất cảm giác bảo vệ</li><li>Thần kinh vận động: teo cơ → ngón búa, lỗ đáo</li><li>Thần kinh tự chủ: da khô, nứt nẻ</li><li>PAD: hẹp nhiều đoạn, dưới gối, vôi hóa Mönckeberg</li><li>Bóng nước tự phát (Bullosis diabeticorum)</li><li>Bàn chân Charcot: sập vòm, rocker-bottom</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Thần kinh – Mạch – Trùng”</strong></p></div><div class="mini-quiz" data-mq="foot1"><div class="mq-question"><i class="fas fa-check-circle"></i> Yếu tố nào KHÔNG phải là cơ chế loét?</div><div class="mq-options"><label><input type="radio" name="mq_foot1" value="0"> Thần kinh</label><label><input type="radio" name="mq_foot1" value="1"> Mạch máu</label><label><input type="radio" name="mq_foot1" value="2"> Tăng huyết áp</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot1',2)">Kiểm tra</button><div class="mq-result" id="mq_foot1_result"></div></div></div>
+                <div class="card"><h3>🔍 Khám thần kinh</h3><div class="grid-2"><div><h4>Monofilament 10g</h4><ul><li>Ấn 90°, gập chữ C, BN nhắm mắt</li><li>Sai 2/3 → mất cảm giác</li></ul><h4>Âm thoa 128 Hz</h4><ul><li>Đặt lồi xương ngón cái, sai 2/3 → mất</li></ul></div><div><h4>Ipswich Touch Test</h4><ul><li>Chạm nhẹ ngón 1,3,5 hai bàn chân</li><li>Mất ≥2/6 → bệnh lý</li></ul><h4>Nghiệm pháp Buerger</h4><ul><li>Nâng chân 45° >20s trắng bệch, thả xuống hồng chậm → thiếu máu</li></ul></div></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Monofilament: sai 2/3”</strong><br><strong>“Ipswich: ≥2/6”</strong></p></div><div class="mini-quiz" data-mq="foot2"><div class="mq-question"><i class="fas fa-check-circle"></i> Monofilament sai 2/3 lần tại một điểm. Kết luận?</div><div class="mq-options"><label><input type="radio" name="mq_foot2" value="0"> Mất cảm giác</label><label><input type="radio" name="mq_foot2" value="1"> Còn cảm giác</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot2',0)">Kiểm tra</button><div class="mq-result" id="mq_foot2_result"></div></div></div>
+                <div class="card"><h3>🩸 Khám mạch & ABI</h3><div class="grid-2"><div><h4>Triệu chứng</h4><ul><li>Đau cách hồi (bắp chân)</li><li>Đau lúc nghỉ (ngọn chi)</li></ul></div><div><h4>Thực thể</h4><ul><li>Da tái, lạnh, rụng lông, móng khô</li><li>Bắt mạch mu chân, chày sau</li></ul></div></div><div class="table-wrap"><table class="study-table"><tr><th>ABI</th><th>Ý nghĩa</th></tr><tr><td>>1.30</td><td>Xơ cứng (cần TBI)</td></tr><tr><td>0.90-1.30</td><td>Bình thường</td></tr><tr><td>0.70-0.89</td><td>Hẹp nhẹ</td></tr><tr><td>0.41-0.69</td><td>Hẹp trung bình</td></tr><tr><td>≤0.40</td><td>Hẹp nặng</td></tr></table></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“>1.3 cứng, 0.9-1.3 tốt, 0.7-0.89 nhẹ, 0.41-0.69 trung, ≤0.40 nặng”</strong></p></div><div class="mini-quiz" data-mq="foot3"><div class="mq-question"><i class="fas fa-check-circle"></i> ABI = 0.65, mức độ hẹp nào?</div><div class="mq-options"><label><input type="radio" name="mq_foot3" value="0"> Nhẹ</label><label><input type="radio" name="mq_foot3" value="1"> Trung bình</label><label><input type="radio" name="mq_foot3" value="2"> Nặng</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot3',1)">Kiểm tra</button><div class="mq-result" id="mq_foot3_result"></div></div></div>
+                <div class="card"><h3>📏 Đo đạc & phân độ</h3><ul><li>Quy tắc vàng: đo kích thước SAU khi cắt lọc</li><li>Probe-to-bone: chạm cứng nhám → viêm xương → KS tĩnh mạch 6 tuần</li><li>IDSA: nhẹ (quầng 0.5-2cm), trung bình (sâu hoặc quầng >2cm), nặng (có SIRS)</li><li>Wagner: 0 (nguy cơ) → 1 (nông) → 2 (sâu đến gân) → 3 (viêm xương) → 4 (hoại tử cục bộ) → 5 (toàn bộ)</li><li>Nhập viện bắt buộc: IDSA nặng (SIRS), trung bình + PAD nặng, không đáp ứng KS</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Wagner 0-1-2-3-4-5”</strong><br><strong>“IDSA: nhẹ, trung, nặng (SIRS)”</strong></p></div><div class="mini-quiz" data-mq="foot4"><div class="mq-question"><i class="fas fa-check-circle"></i> Vết loét sâu đến xương, quầng 3cm, sốt 38.5. Phân độ IDSA?</div><div class="mq-options"><label><input type="radio" name="mq_foot4" value="0"> Nhẹ</label><label><input type="radio" name="mq_foot4" value="1"> Trung bình</label><label><input type="radio" name="mq_foot4" value="2"> Nặng</label></div><button class="mq-btn" onclick="checkMiniQuiz('foot4',2)">Kiểm tra</button><div class="mq-result" id="mq_foot4_result"></div></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – BÀN CHÂN</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">Cơ chế TK (cảm giác, vận động, tự chủ)</span></label><label><input type="checkbox"> <span class="item-text">Monofilament (sai 2/3), Ipswich (≥2/6)</span></label><label><input type="checkbox"> <span class="item-text">ABI các mức</span></label><label><input type="checkbox"> <span class="item-text">Phân biệt loét mạch (đau, lạnh) và TK (không đau, chai)</span></label><label><input type="checkbox"> <span class="item-text">Probe-to-bone (viêm xương)</span></label><label><input type="checkbox"> <span class="item-text">IDSA nhẹ/trung/nặng, Wagner 0-5</span></label><label><input type="checkbox"> <span class="item-text">Tiêu chuẩn nhập viện</span></label></div></div>
             </div>
 
-            <!-- ===== TUYẾN GIÁP (mở rộng) ===== -->
+            <!-- ===== TUYẾN GIÁP (giữ nguyên) ===== -->
             <div id="tab-thyroid" class="tab-content">
-                <div class="card"><div class="flex-between"><h2>🦋 TUYẾN GIÁP</h2><button class="bookmark-btn" data-bookmark="thyroid"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-thyroid" style="width:0%"></div></div><div class="note">Bệnh lý tuyến giáp gồm hai trạng thái: Nhiễm độc giáp (dư thừa) và Suy giáp (thiếu hụt).</div></div>
-
-                <!-- Tiếp cận sụt cân và khám cường giáp -->
-                <div class="card"><h3>📉 Tiếp cận bệnh nhân sụt cân & Cường giáp</h3>
-                    <ul><li><strong>Sụt cân có ý nghĩa:</strong> Giảm >5% cân nặng trong 6-12 tháng, không cố ý.</li>
-                        <li><strong>5 nhóm nguyên nhân:</strong> Ung thư, Tiêu hóa, Tâm lý, Nhiễm trùng, Nội tiết (ĐTĐ, cường giáp).</li>
-                        <li><strong>Triệu chứng cường giáp điển hình:</strong> Mệt mỏi, hồi hộp, khó thở, sụt cân dù ăn ngon, đổ mồ hôi, khó ngủ, cáu gắt, rối loạn kinh nguyệt.</li>
-                        <li><strong>Khám lâm sàng:</strong> Nhịp tim nhanh (>110), BMI thấp. Tuyến giáp to lan tỏa, mềm, có âm thổi tâm thu. Hai tay ấm, ẩm, run. <strong>Dấu ghế đẩu (+)</strong> (yếu cơ gốc chi). <strong>Móng tay Plummer</strong> (móng phát triển nhanh, bong tróc terminal onycholysis).</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Sụt cân >5% + ăn ngon + mạch nhanh + run”</strong> → nghĩ cường giáp.</p></div>
-                    <div class="mini-quiz" data-mq="thy1"><div class="mq-question"><i class="fas fa-check-circle"></i> BN sụt cân, ăn ngon, mạch 110, run tay. Nghĩ đến?</div><div class="mq-options"><label><input type="radio" name="mq_thy1" value="0"> Cường giáp</label><label><input type="radio" name="mq_thy1" value="1"> Suy giáp</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy1',0)">Kiểm tra</button><div class="mq-result" id="mq_thy1_result"></div></div>
-                </div>
-
-                <!-- Biểu hiện mắt Basedow -->
-                <div class="card"><h3>👁️ Biểu hiện mắt trong cường giáp và Basedow</h3>
-                    <ul><li><strong>Hội chứng nhiễm độc giáp:</strong> Cường giao cảm → co kéo cơ nâng mi trên → <strong>Dấu Dalrymple</strong> (co rút mi trên), <strong>Dấu Lid lag</strong> (mi trên chậm khi nhìn xuống). Các dấu hiệu này hết khi điều trị ổn định.</li>
-                        <li><strong>Lồi mắt (Exophthalmos)</strong> và nhắm mắt không kín (Dấu Stellwag) là đặc hiệu của Basedow, do kháng thể tự miễn tấn công tế bào cơ và mỡ hậu nhãn cầu.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Dalrymple + Lid lag = do cường giao cảm, hết khi điều trị. Lồi mắt + Stellwag = Basedow”</strong></p></div>
-                    <div class="mini-quiz" data-mq="thy2"><div class="mq-question"><i class="fas fa-check-circle"></i> Dấu hiệu nào đặc hiệu cho Basedow?</div><div class="mq-options"><label><input type="radio" name="mq_thy2" value="0"> Dalrymple</label><label><input type="radio" name="mq_thy2" value="1"> Lồi mắt</label><label><input type="radio" name="mq_thy2" value="2"> Lid lag</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy2',1)">Kiểm tra</button><div class="mq-result" id="mq_thy2_result"></div></div>
-                </div>
-
-                <!-- Nguyên nhân và cận lâm sàng -->
-                <div class="card"><h3>🔬 Nguyên nhân và cận lâm sàng cường giáp</h3>
-                    <ul><li><strong>Nguyên nhân:</strong> Basedow, bướu đa nhân độc, đơn nhân độc, viêm giáp, quá tải iod (Amiodarone, chất cản quang), cường giáp do thuốc (Levothyroxine), thai trứng, u tuyến yên tiết TSH.</li>
-                        <li><strong>Xét nghiệm đầu tay:</strong> TSH giảm sâu (<0.05), FT4, FT3 tăng.</li>
-                        <li><strong>Chẩn đoán nguyên nhân:</strong> Siêu âm Doppler (tuyến to, phản âm kém, tăng sinh mạch). <strong>TRAb</strong> (đặc hiệu Basedow). Xạ hình tuyến giáp, đo độ tập trung Iod.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“TSH↓ + FT4↑ = cường giáp. TRAb (+) = Basedow”</strong></p></div>
-                    <div class="mini-quiz" data-mq="thy3"><div class="mq-question"><i class="fas fa-check-circle"></i> Kháng thể đặc hiệu của Basedow?</div><div class="mq-options"><label><input type="radio" name="mq_thy3" value="0"> TPOAb</label><label><input type="radio" name="mq_thy3" value="1"> TRAb</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy3',1)">Kiểm tra</button><div class="mq-result" id="mq_thy3_result"></div></div>
-                </div>
-
-                <!-- Biến chứng và điều trị Basedow -->
-                <div class="card"><h3>💊 Biến chứng và điều trị Basedow</h3>
-                    <div class="table-wrap"><table class="study-table"><tr><th>Phương pháp</th><th>Ưu điểm & Chỉ định</th><th>Nhược điểm & CCĐ</th></tr>
-                        <tr><td><strong>Nội khoa</strong> (PTU, Thyrozol)</td><td>Cường lần đầu, nhẹ. Trẻ em, có thai, cho con bú. Ổn định trước mổ.</td><td>Tái phát 30-50%. TD: ngứa, đau khớp, tuyệt lạp bạch cầu (0.1-0.5%), viêm gan.</td></tr>
-                        <tr><td><strong>I-131</strong></td><td>Nội khoa thất bại, >50 tuổi, tái phát sau mổ, suy tim nặng.</td><td>Lồi mắt nặng hơn, suy giáp, bão giáp. CCĐ: có thai, cho con bú, lồi mắt nặng, nghi ác tính.</td></tr>
-                        <tr><td><strong>Phẫu thuật</strong></td><td>Bướu quá to, chèn ép, nghi ung thư, tái phát, mong có thai sớm.</td><td>Chảy máu, liệt TK quặt ngược (khàn tiếng), suy cận giáp (hạ Canxi), suy giáp.</td></tr>
-                    </table></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Nội khoa – tái phát, I-131 – lồi mắt nặng hơn, PT – tai biến TK quặt ngược”</strong></p></div>
-                    <div class="mini-quiz" data-mq="thy4"><div class="mq-question"><i class="fas fa-check-circle"></i> Basedow 28t, lồi mắt nặng, muốn có thai sớm. Lựa chọn tốt nhất?</div><div class="mq-options"><label><input type="radio" name="mq_thy4" value="0"> I-131</label><label><input type="radio" name="mq_thy4" value="1"> Phẫu thuật</label><label><input type="radio" name="mq_thy4" value="2"> Methimazole</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy4',1)">Kiểm tra</button><div class="mq-result" id="mq_thy4_result"></div></div>
-                </div>
-
-                <!-- NOSPECS -->
-                <div class="card"><h3>👁️ NOSPECS</h3>
-                    <div class="table-wrap"><table class="study-table"><tr><th>Độ</th><th>Chữ</th><th>Ý nghĩa</th><th>Dấu hiệu</th></tr><tr><td>0</td><td>N</td><td>No signs</td><td>Không triệu chứng</td></tr><tr><td>1</td><td>O</td><td>Only signs</td><td>Dalrymple, Stellwag, Von Graefe, Joffroy</td></tr><tr><td>2</td><td>S</td><td>Soft tissues</td><td>Phù mi, cộm mắt, chảy nước mắt</td></tr><tr><td>3</td><td>P</td><td>Proptosis</td><td>Lồi mắt >3mm</td></tr><tr><td>4</td><td>E</td><td>Extraocular m.</td><td>Liệt cơ vận nhãn, Mobius, song thị</td></tr><tr><td>5</td><td>C</td><td>Corneal</td><td>Viêm/loét giác mạc</td></tr><tr><td>6</td><td>S</td><td>Sight loss</td><td>Mù do chèn ép TK thị</td></tr></table></div>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ NOSPECS</div><p><strong>“Nhớ Ôn Sở Phòng Em Chăm Sóc”</strong> (N-O-S-P-E-C-S)</p></div>
-                </div>
-
-                <!-- Checklist tuyến giáp -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – TUYẾN GIÁP</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt cường giáp (nóng, gầy, nhanh, run) và suy giáp (lạnh, phù, chậm)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nắm được 5 nhóm nguyên nhân sụt cân (UT, TH, TL, NK, NT)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Khám cường giáp: mạch nhanh, dấu ghế đẩu, móng Plummer?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt dấu hiệu mắt do cường giao cảm (Dalrymple, Lid lag) và lồi mắt Basedow?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nguyên nhân cường giáp và cận LS: TSH↓, FT4↑, TRAb (+) cho Basedow?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Ưu/nhược điểm 3 phương pháp điều trị Basedow (nội khoa, I-131, PT)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Thuộc NOSPECS: N-O-S-P-E-C-S và ý nghĩa từng độ?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Chống chỉ định I-131 (có thai, cho con bú, lồi mắt nặng)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Tai biến phẫu thuật: chảy máu, TK quặt ngược, suy cận giáp?</span></label>
-                    </div>
-                </div>
+                <div class="card"><div class="flex-between"><h2>🦋 TUYẾN GIÁP</h2><button class="bookmark-btn" data-bookmark="thyroid"><i class="fas fa-bookmark"></i></button></div><div class="progress-bar"><div class="fill" id="progress-thyroid" style="width:0%"></div></div><div class="note">Nhiễm độc giáp và Suy giáp.</div></div>
+                <div class="card"><h3>📉 Tiếp cận sụt cân & cường giáp</h3><ul><li>Sụt cân >5% trong 6-12 tháng</li><li>5 nhóm nguyên nhân: UT, TH, TL, NK, NT (nội tiết)</li><li>Triệu chứng cường giáp: mệt, hồi hộp, sụt cân dù ăn ngon, đổ mồ hôi, cáu gắt</li><li>Khám: mạch nhanh, BMI thấp, tuyến giáp to lan tỏa, âm thổi, run tay, dấu ghế đẩu (+), móng Plummer</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Sụt cân + ăn ngon + mạch nhanh + run”</strong></p></div><div class="mini-quiz" data-mq="thy1"><div class="mq-question"><i class="fas fa-check-circle"></i> Sụt cân, ăn ngon, mạch 110, run tay. Nghĩ đến?</div><div class="mq-options"><label><input type="radio" name="mq_thy1" value="0"> Cường giáp</label><label><input type="radio" name="mq_thy1" value="1"> Suy giáp</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy1',0)">Kiểm tra</button><div class="mq-result" id="mq_thy1_result"></div></div></div>
+                <div class="card"><h3>👁️ Mắt Basedow</h3><ul><li>Dalrymple, Lid lag (cường giao cảm, hết khi điều trị)</li><li>Lồi mắt (Exophthalmos), Stellwag (nhắm không kín) là đặc hiệu Basedow</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Dalrymple + Lid lag = do cường giao cảm”</strong><br><strong>“Lồi mắt + Stellwag = Basedow”</strong></p></div><div class="mini-quiz" data-mq="thy2"><div class="mq-question"><i class="fas fa-check-circle"></i> Dấu hiệu nào đặc hiệu Basedow?</div><div class="mq-options"><label><input type="radio" name="mq_thy2" value="0"> Dalrymple</label><label><input type="radio" name="mq_thy2" value="1"> Lồi mắt</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy2',1)">Kiểm tra</button><div class="mq-result" id="mq_thy2_result"></div></div></div>
+                <div class="card"><h3>🔬 Nguyên nhân & CLS</h3><ul><li>Nguyên nhân: Basedow, nhân độc, viêm giáp, iod, thuốc, thai trứng, u tuyến yên</li><li>Xét nghiệm đầu tay: TSH↓, FT4↑, FT3↑</li><li>TRAb (+) → Basedow</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“TSH↓ + FT4↑ = cường giáp”</strong><br><strong>“TRAb (+) = Basedow”</strong></p></div><div class="mini-quiz" data-mq="thy3"><div class="mq-question"><i class="fas fa-check-circle"></i> Kháng thể đặc hiệu Basedow?</div><div class="mq-options"><label><input type="radio" name="mq_thy3" value="0"> TPOAb</label><label><input type="radio" name="mq_thy3" value="1"> TRAb</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy3',1)">Kiểm tra</button><div class="mq-result" id="mq_thy3_result"></div></div></div>
+                <div class="card"><h3>💊 Điều trị Basedow</h3><div class="table-wrap"><table class="study-table"><tr><th>Phương pháp</th><th>Ưu điểm</th><th>Nhược điểm</th></tr><tr><td>Nội khoa (PTU, Thyrozol)</td><td>Cường lần đầu, nhẹ, có thai</td><td>Tái phát 30-50%, TD: ngứa, tuyệt lạp bạch cầu, viêm gan</td></tr><tr><td>I-131</td><td>Thất bại nội khoa, >50 tuổi</td><td>Lồi mắt nặng hơn, suy giáp, CCĐ: thai, cho con bú</td></tr><tr><td>Phẫu thuật</td><td>Bướu to, chèn ép, nghi ung thư</td><td>Chảy máu, TK quặt ngược, suy cận giáp</td></tr></table></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Nội khoa – tái phát, I-131 – lồi mắt nặng, PT – TK quặt ngược”</strong></p></div><div class="mini-quiz" data-mq="thy4"><div class="mq-question"><i class="fas fa-check-circle"></i> Basedow 28t, lồi mắt nặng, muốn có thai sớm. Lựa chọn?</div><div class="mq-options"><label><input type="radio" name="mq_thy4" value="0"> I-131</label><label><input type="radio" name="mq_thy4" value="1"> Phẫu thuật</label><label><input type="radio" name="mq_thy4" value="2"> Methimazole</label></div><button class="mq-btn" onclick="checkMiniQuiz('thy4',1)">Kiểm tra</button><div class="mq-result" id="mq_thy4_result"></div></div></div>
+                <div class="card"><h3>👁️ NOSPECS</h3><div class="table-wrap"><table class="study-table"><tr><th>Độ</th><th>Chữ</th><th>Ý nghĩa</th><th>Dấu hiệu</th></tr><tr><td>0</td><td>N</td><td>No</td><td>Không</td></tr><tr><td>1</td><td>O</td><td>Only signs</td><td>Dalrymple, Stellwag, Von Graefe, Joffroy</td></tr><tr><td>2</td><td>S</td><td>Soft tissues</td><td>Phù mi, cộm mắt</td></tr><tr><td>3</td><td>P</td><td>Proptosis</td><td>Lồi mắt >3mm</td></tr><tr><td>4</td><td>E</td><td>Extraocular m.</td><td>Liệt cơ, song thị</td></tr><tr><td>5</td><td>C</td><td>Corneal</td><td>Viêm/loét giác mạc</td></tr><tr><td>6</td><td>S</td><td>Sight loss</td><td>Mù do chèn ép TK thị</td></tr></table></div><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Nhớ Ôn Sở Phòng Em Chăm Sóc”</strong></p></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – TUYẾN GIÁP</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">Cường (nóng, gầy, nhanh) vs Suy (lạnh, phù, chậm)</span></label><label><input type="checkbox"> <span class="item-text">5 nhóm nguyên nhân sụt cân</span></label><label><input type="checkbox"> <span class="item-text">Khám cường giáp: mạch nhanh, dấu ghế đẩu, móng Plummer</span></label><label><input type="checkbox"> <span class="item-text">Dalrymple/Lid lag (cường giao cảm) vs lồi mắt Basedow</span></label><label><input type="checkbox"> <span class="item-text">TSH↓, FT4↑, TRAb(+)</span></label><label><input type="checkbox"> <span class="item-text">3 phương pháp điều trị Basedow</span></label><label><input type="checkbox"> <span class="item-text">NOSPECS: N-O-S-P-E-C-S</span></label><label><input type="checkbox"> <span class="item-text">CCĐ I-131, tai biến PT</span></label></div></div>
             </div>
 
-            <!-- ===== DƯỢC LÝ ĐTĐ (mở rộng) ===== -->
+            <!-- ===== DƯỢC LÝ ĐTĐ ===== -->
             <div id="tab-drugs" class="tab-content">
-                <div class="card"><h2><i class="fas fa-pills"></i> DƯỢC LÝ ĐIỀU TRỊ ĐTĐ TÍP 2</h2><div class="note">8 cơ chế gây tăng đường huyết (Ominous Octet) và 7 nhóm thuốc.</div></div>
-
-                <!-- Ominous Octet -->
-                <div class="card"><h3>🔺 Bát giác suy giảm (DeFronzo)</h3>
-                    <ol><li><strong>Cơ:</strong> Kháng insulin → giảm thu nhận glucose.</li><li><strong>Gan:</strong> Tăng tân tạo glucose (đặc biệt ban đêm).</li><li><strong>Mô mỡ:</strong> Tăng ly giải mỡ → acid béo tự do.</li><li><strong>Tụy β:</strong> Giảm tiết insulin (do kiệt sức, glucotoxicity, lipotoxicity).</li><li><strong>Tụy α:</strong> Tăng tiết glucagon bất thường.</li><li><strong>Ruột non:</strong> Giảm hiệu ứng incretin.</li><li><strong>Thận:</strong> Tăng tái hấp thu glucose (SGLT-2).</li><li><strong>Não:</strong> Rối loạn tín hiệu no → tăng thèm ăn, béo phì.</li></ol>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Cơ – Gan – Mỡ – β – α – Ruột – Thận – Não”</strong></p></div>
-                    <div class="mini-quiz" data-mq="drug1"><div class="mq-question"><i class="fas fa-check-circle"></i> Cơ chế nào KHÔNG thuộc Ominous Octet?</div><div class="mq-options"><label><input type="radio" name="mq_drug1" value="0"> Kháng insulin tại cơ</label><label><input type="radio" name="mq_drug1" value="1"> Tăng tiết insulin</label><label><input type="radio" name="mq_drug1" value="2"> Tăng tân tạo glucose gan</label></div><button class="mq-btn" onclick="checkMiniQuiz('drug1',1)">Kiểm tra</button><div class="mq-result" id="mq_drug1_result"></div></div>
-                </div>
-
-                <!-- Bảng 7 nhóm thuốc chi tiết -->
-                <div class="card"><h3>💊 7 nhóm thuốc</h3>
-                    <div class="table-wrap"><table class="study-table"><tr><th>Nhóm</th><th>Cơ chế</th><th>Ưu điểm</th><th>TD phụ / CCĐ / Lưu ý</th></tr>
-                        <tr><td><strong>Metformin</strong></td><td>Hoạt hóa AMPK tại gan → ức chế tân tạo đường</td><td>Thuốc ĐẦU TAY, an toàn, không hạ ĐH, giảm cân nhẹ</td><td><strong>Toan lactic</strong>. CCĐ eGFR <30 (30-45 giảm liều). Ngưng 48h trước/sau chụp cản quang. Dùng lâu gây thiếu B12.</td></tr>
-                        <tr><td><strong>Sulfonylurea (SU)</strong> (Gliclazide, Glimepiride)</td><td>Đóng K-ATP tại tế bào β → giải phóng insulin VÔ ĐIỀU KIỆN</td><td>Hạ ĐH mạnh</td><td><strong>Hạ đường huyết</strong> (nhất là người già, bỏ ăn), tăng cân. CCĐ: không phối hợp với Glinide. Uống trước ăn 30p.</td></tr>
-                        <tr><td><strong>Glinide</strong> (Repaglinide)</td><td>Giống SU, "Fast on – Fast off", cắt đỉnh ĐH sau ăn</td><td>An toàn suy thận (thải qua gan mật 94%)</td><td>Quy tắc: <strong>không ăn thì không uống</strong>.</td></tr>
-                        <tr><td><strong>TZD</strong> (Pioglitazone)</td><td>PPAR-γ → giải quyết đề kháng insulin ở mô mỡ/cơ</td><td>Cải thiện lipid</td><td>Phù, tăng cân. <strong>CCĐ tuyệt đối: suy tim NYHA III-IV</strong>. Gãy xương (phụ nữ mãn kinh), ung thư bàng quang.</td></tr>
-                        <tr><td><strong>Acarbose</strong></td><td>Ức chế alpha-glucosidase riềm bàn chải ruột → chậm hấp thu đường phức</td><td>Hạ ĐH sau ăn</td><td>Đầy bụng, sình hơi, tiêu chảy. <strong>Khi hạ ĐH phải uống glucose tinh khiết, TUYỆT ĐỐI KHÔNG uống sucrose</strong>. Uống ngay với miếng cơm đầu tiên.</td></tr>
-                        <tr><td><strong>DPP-4i</strong> (Gliptin)</td><td>Ức chế DPP-4 → bảo tồn GLP-1 nội sinh → tăng insulin, giảm glucagon (phụ thuộc glucose)</td><td>Không tăng cân, không hạ ĐH</td><td>Viêm mũi họng, đau khớp, viêm tụy. <strong>Linagliptin là duy nhất không chỉnh liều suy thận</strong>. Saxagliptin/Alogliptin gây suy tim.</td></tr>
-                        <tr><td><strong>SGLT-2i</strong> (Gliflozin)</td><td>Ức chế SGLT-2 ống lượn gần → thải glucose qua nước tiểu</td><td><strong>Giảm cân, hạ HA, giảm tử vong tim mạch, bảo vệ thận</strong></td><td>Nhiễm nấm sinh dục. <strong>Toan ceton thể bình đường (Euglycemic DKA)</strong>. Mất nước, tụt HA. <em>Cập nhật eGFR:</em> cho phép dùng đến eGFR 20 ml/phút.</td></tr>
-                        <tr><td><strong>GLP-1 RA</strong> (tiêm)</td><td>Đồng vận GLP-1 nồng độ siêu sinh lý. Giảm HbA1c mạnh, <strong>giảm cân cực tốt</strong> (chán ăn, chậm tháo rỗng dạ dày). Bảo vệ tim mạch.</td><td>Buồn nôn (tăng liều từ từ). <strong>CCĐ tuyệt đối: tiền sử gia đình ung thư tủy tuyến giáp hoặc MEN-2</strong>. Nguy cơ viêm tụy, sỏi mật. Cản trở hấp thu thuốc uống.</td></tr>
-                    </table></div>
-                    <div class="note-important">⚠️ <strong>Cấm phối hợp:</strong> SU + Glinide (nguy cơ hạ ĐH); DPP-4i + GLP-1 RA.</div>
-                    <div class="mini-quiz" data-mq="drug2"><div class="mq-question"><i class="fas fa-check-circle"></i> Thuốc nào không cần chỉnh liều suy thận?</div><div class="mq-options"><label><input type="radio" name="mq_drug2" value="0"> Metformin</label><label><input type="radio" name="mq_drug2" value="1"> Linagliptin</label><label><input type="radio" name="mq_drug2" value="2"> Empagliflozin</label></div><button class="mq-btn" onclick="checkMiniQuiz('drug2',1)">Kiểm tra</button><div class="mq-result" id="mq_drug2_result"></div></div>
-                </div>
-
-                <!-- Checklist thuốc ĐTĐ -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – DƯỢC LÝ ĐTĐ</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Nắm được 8 cơ chế của Ominous Octet?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Biết Metformin: cơ chế, CCĐ (eGFR<30, toan lactic), ngưng trước cản quang?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">SU: cơ chế (giải phóng insulin vô điều kiện), hạ ĐH, tăng cân, không phối hợp Glinide?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Glinide: an toàn suy thận, “không ăn không uống”?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">TZD: PPAR-γ, CCĐ suy tim NYHA III-IV, gãy xương?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Acarbose: ức chế alpha-glucosidase, cấm sucrose khi hạ ĐH?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">DPP-4i: Linagliptin duy nhất không chỉnh liều suy thận?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">SGLT-2i: lợi ích tim thận, nguy cơ nhiễm nấm, toan ceton thể bình đường?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">GLP-1 RA: giảm cân, CCĐ MEN-2/ung thư tủy giáp, buồn nôn?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Cấm phối hợp SU+Glinide, DPP-4i+GLP-1 RA?</span></label>
-                    </div>
-                </div>
+                <div class="card"><h2><i class="fas fa-pills"></i> DƯỢC LÝ ĐTĐ</h2><div class="note">Ominous Octet: 8 cơ chế.</div></div>
+                <div class="card"><h3>🔺 Bát giác suy giảm</h3><ol><li>Cơ: kháng insulin</li><li>Gan: tăng tân tạo glucose</li><li>Mô mỡ: tăng ly giải mỡ</li><li>Tụy β: giảm tiết insulin</li><li>Tụy α: tăng glucagon</li><li>Ruột: giảm incretin</li><li>Thận: tăng SGLT-2</li><li>Não: rối loạn tín hiệu no</li></ol><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Cơ – Gan – Mỡ – β – α – Ruột – Thận – Não”</strong></p></div></div>
+                <div class="card"><h3>💊 7 nhóm thuốc</h3><div class="table-wrap"><table class="study-table"><tr><th>Nhóm</th><th>Cơ chế</th><th>Ưu điểm</th><th>TD phụ / CCĐ</th></tr><tr><td><strong>Metformin</strong></td><td>Ức chế tân tạo đường gan</td><td>Đầu tay, không hạ ĐH</td><td>Toan lactic, eGFR<30</td></tr><tr><td><strong>SU</strong></td><td>Đóng K-ATP → giải phóng insulin</td><td>Hạ ĐH mạnh</td><td>Hạ ĐH, tăng cân</td></tr><tr><td><strong>Glinide</strong></td><td>Giống SU, nhanh</td><td>An toàn suy thận</td><td>Không ăn không uống</td></tr><tr><td><strong>TZD</strong></td><td>PPAR-γ</td><td>Cải thiện lipid</td><td>CCĐ suy tim NYHA III-IV</td></tr><tr><td><strong>Acarbose</strong></td><td>Ức chế alpha-glucosidase</td><td>Hạ ĐH sau ăn</td><td>Cấm sucrose khi hạ ĐH</td></tr><tr><td><strong>DPP-4i</strong></td><td>Bảo tồn GLP-1</td><td>Không tăng cân</td><td>Linagliptin không chỉnh liều suy thận</td></tr><tr><td><strong>SGLT-2i</strong></td><td>Ức chế tái hấp thu glucose thận</td><td>Bảo vệ tim thận</td><td>Nhiễm nấm, toan ceton</td></tr><tr><td><strong>GLP-1 RA</strong></td><td>Đồng vận GLP-1</td><td>Giảm cân mạnh</td><td>CCĐ MEN-2/ung thư tủy giáp</td></tr></table></div><div class="note-important">⚠️ Cấm SU+Glinide, DPP-4i+GLP-1 RA</div><div class="mini-quiz" data-mq="drug2"><div class="mq-question"><i class="fas fa-check-circle"></i> Thuốc nào không chỉnh liều suy thận?</div><div class="mq-options"><label><input type="radio" name="mq_drug2" value="0"> Metformin</label><label><input type="radio" name="mq_drug2" value="1"> Linagliptin</label></div><button class="mq-btn" onclick="checkMiniQuiz('drug2',1)">Kiểm tra</button><div class="mq-result" id="mq_drug2_result"></div></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – THUỐC ĐTĐ</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">8 cơ chế Ominous Octet</span></label><label><input type="checkbox"> <span class="item-text">7 nhóm thuốc: cơ chế, ưu/nhược</span></label><label><input type="checkbox"> <span class="item-text">CCĐ Metformin (eGFR<30)</span></label><label><input type="checkbox"> <span class="item-text">Linagliptin đặc biệt</span></label><label><input type="checkbox"> <span class="item-text">Cấm SU+Glinide, DPP-4i+GLP-1</span></label><label><input type="checkbox"> <span class="item-text">SGLT-2i bảo vệ tim thận</span></label><label><input type="checkbox"> <span class="item-text">GLP-1 CCĐ MEN-2</span></label></div></div>
             </div>
 
-            <!-- ===== INSULIN (mở rộng) ===== -->
+            <!-- ===== INSULIN ===== -->
             <div id="tab-insulin" class="tab-content">
-                <div class="card"><h2><i class="fas fa-syringe"></i> INSULIN – CÁC LOẠI VÀ KỸ THUẬT</h2><div class="note">Phân loại insulin, dược động học, kỹ thuật tiêm, sai sót chết người, Somogyi và Bình minh.</div></div>
-
-                <!-- Phân loại insulin -->
-                <div class="card"><h3>📦 Phân loại insulin</h3>
-                    <ul><li><strong>Regular (Actrapid):</strong> Hexamer, chậm (đỉnh 2-4h), tiêm trước ăn 30 phút.</li>
-                        <li><strong>NPH (Insulatard):</strong> Chứa protamine, đục, kéo dài 10-16h nhưng <strong>có đỉnh giả lúc 6-12h</strong> → dễ hạ ĐH ban đêm. <strong>Phải lắc/lăn 10 lần trước tiêm.</strong></li>
-                        <li><strong>Analog siêu nhanh (Aspart, Lispro):</strong> Đổi cấu trúc acid amin, tách cụm ngay. Tiêm trước ăn 5 phút hoặc ngay sát ăn.</li>
-                        <li><strong>Analog nền (Glargine, Detemir, Degludec):</strong> Gắn acid béo (Detemir) gắn chặt Albumin nhả từ từ, hoặc tủa đa-hexamer (Degludec). Kéo dài >24h, <strong>không có đỉnh</strong>, rất an toàn ban đêm. Dung dịch trong suốt, không cần lắc.</li>
-                        <li><strong>Premix (hỗn hợp/trộn):</strong> <br>– Truyền thống (NovoMix, Mixtard): hỗn dịch đục do có protamine, tiêm 2 lần/ngày, <strong>phải lắc</strong>.<br>– Ryzodeg (Degludec/Aspart 70/30): analog đồng phân tử (co-formulation), trong suốt, <strong>không cần lắc</strong>, cực kỳ linh hoạt.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Regular 30p, NPH đục + đỉnh, analog nhanh 5p, nền không đỉnh, Ryzodeg trong suốt”</strong></p></div>
-                    <div class="mini-quiz" data-mq="ins1"><div class="mq-question"><i class="fas fa-check-circle"></i> Insulin nào tiêm trước ăn 30 phút?</div><div class="mq-options"><label><input type="radio" name="mq_ins1" value="0"> Aspart</label><label><input type="radio" name="mq_ins1" value="1"> Regular</label><label><input type="radio" name="mq_ins1" value="2"> Glargine</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins1',1)">Kiểm tra</button><div class="mq-result" id="mq_ins1_result"></div></div>
-                </div>
-
-                <!-- Kỹ thuật tiêm và sai sót -->
-                <div class="card"><h3>⚠️ Kỹ thuật tiêm và sai sót chết người</h3>
-                    <ul><li><strong>Đợi cồn khô:</strong> Đâm kim khi ướt sẽ lôi cồn vào mô gây bỏng rát và biến tính protein insulin.</li>
-                        <li><strong>Thử 2 đơn vị bọt khí:</strong> Khí nén chiếm thể tích → thiếu liều, đồng thời thông kim.</li>
-                        <li><strong>Góc đâm kim:</strong> Kim 4-5mm đâm thẳng 90° vào mô mỡ (không cần véo da). Kim dài 12.7mm (ống 1ml) <strong>phải véo da và nghiêng kim</strong> để tránh đâm vào cơ (vào cơ hấp thu ồ ạt gây hạ ĐH sốc).</li>
-                        <li><strong>Giữ kim 10 giây:</strong> Để insulin khuếch tán khỏi 'kho chứa' dưới da, rút sớm thuốc trào ngược → thiếu liều.</li>
-                        <li><strong>Luân phiên vị trí (cách nhau 1 ngón tay):</strong> Tránh loạn dưỡng mỡ (Lipohypertrophy). Vùng mỡ phì đại bị xơ cứng, tiêm không đau nhưng insulin không hấp thu → ĐH tăng vọt.</li>
-                        <li><strong>Sai sót U40 vs U100:</strong> <br>– Ống U40 (0.025ml/vạch) hút lọ U100 (100 đơn vị/ml) → <strong>QUÁ LIỀU GẤP 2.5 LẦN → TỬ VONG do hạ ĐH.</strong><br>– Ống U100 hút lọ U40 → THIẾU LIỀU NGHIÊM TRỌNG. <br>Công thức chữa cháy: Số đơn vị U40 cần tiêm x 2.5 = số vạch rút trên ống U100.</li>
-                        <li><strong>Bảo quản:</strong> Chưa mở: ngăn mát 2-8°C. Đã mở: dưới 30°C, 4 tuần. <strong>CẤM NGĂN ĐÁ</strong> (tinh thể đá cắt nát cấu trúc protein, phá hỏng thuốc).</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Chờ khô, thử 2 đơn vị, giữ 10 giây, luân phiên”</strong><br><strong>“U40 hút U100 = chết”</strong></p></div>
-                    <div class="mini-quiz" data-mq="ins2"><div class="mq-question"><i class="fas fa-check-circle"></i> Sai sót nào gây tử vong do hạ ĐH?</div><div class="mq-options"><label><input type="radio" name="mq_ins2" value="0"> Không đợi cồn khô</label><label><input type="radio" name="mq_ins2" value="1"> Ống U40 hút lọ U100</label><label><input type="radio" name="mq_ins2" value="2"> Không luân phiên vị trí</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins2',1)">Kiểm tra</button><div class="mq-result" id="mq_ins2_result"></div></div>
-                </div>
-
-                <!-- Somogyi vs Bình minh -->
-                <div class="card"><h3>🌅 Somogyi vs Bình minh</h3>
-                    <ul><li><strong>Hiệu ứng Somogyi:</strong> Quá liều insulin NPH buổi tối → đạt đỉnh lúc 2h sáng gây <strong>hạ đường huyết</strong> → cơ thể tiết Glucagon, Cortisol, Epinephrine tân tạo đường ồ ạt → <strong>dội ngược làm TĂNG đường huyết lúc sáng.</strong> BN ngủ ác mộng, đổ mồ hôi. <br><strong>Xử trí:</strong> Đo ĐH lúc 2-3h sáng (thấy thấp) → <strong>GIẢM LIỀU</strong> insulin tối.</li>
-                        <li><strong>Hiện tượng Bình minh (Dawn):</strong> Sinh lý bình thường, tiết GH/Cortisol lúc rạng sáng (kháng insulin tự nhiên) → <strong>tăng đường huyết.</strong> Không có hạ ĐH ban đêm. <br><strong>Xử trí:</strong> Đo ĐH lúc 2-3h sáng (thấy bth/cao) → <strong>TĂNG LIỀU</strong> insulin tối hoặc dời giờ tiêm trễ hơn.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Somogyi: hạ đêm → tăng sáng → giảm liều”</strong><br><strong>“Bình minh: không hạ đêm → tăng sáng → tăng liều”</strong></p></div>
-                    <div class="mini-quiz" data-mq="ins3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN tiêm NPH tối, ĐH sáng cao, đo lúc 3h sáng ĐH 55. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_ins3" value="0"> Somogyi</label><label><input type="radio" name="mq_ins3" value="1"> Bình minh</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins3',0)">Kiểm tra</button><div class="mq-result" id="mq_ins3_result"></div></div>
-                </div>
-
-                <!-- Checklist insulin -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – INSULIN</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt Regular, NPH, analog nhanh, analog nền, premix?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nắm được dược động học: Regular (30p), NPH (đục, đỉnh), analog nhanh (5p), nền (không đỉnh)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Kỹ thuật tiêm: đợi khô, thử 2 đv, giữ 10s, luân phiên, góc tiêm?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Hiểu sai sót U40 vs U100 và hậu quả (quá liều 2.5x)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt Somogyi (giảm liều) và Bình minh (tăng liều), cách chẩn đoán (đo ĐH 2-3h sáng)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Bảo quản insulin: chưa mở (2-8°C), đã mở (<30°C, 4 tuần), cấm đông đá?</span></label>
-                    </div>
-                </div>
+                <div class="card"><h2><i class="fas fa-syringe"></i> INSULIN</h2><div class="note">Phân loại, kỹ thuật, sai sót.</div></div>
+                <div class="card"><h3>📦 Phân loại</h3><ul><li>Regular: 30p trước ăn</li><li>NPH: đục, lắc, có đỉnh 6-12h</li><li>Analog nhanh (Aspart, Lispro): 5p trước ăn</li><li>Analog nền (Glargine, Detemir, Degludec): không đỉnh, 24h</li><li>Premix: NovoMix (đục, lắc), Ryzodeg (trong suốt, không lắc)</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Regular 30p, NPH đục + đỉnh, nhanh 5p, nền không đỉnh”</strong></p></div><div class="mini-quiz" data-mq="ins1"><div class="mq-question"><i class="fas fa-check-circle"></i> Insulin nào tiêm trước ăn 30 phút?</div><div class="mq-options"><label><input type="radio" name="mq_ins1" value="0"> Aspart</label><label><input type="radio" name="mq_ins1" value="1"> Regular</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins1',1)">Kiểm tra</button><div class="mq-result" id="mq_ins1_result"></div></div></div>
+                <div class="card"><h3>⚠️ Kỹ thuật & sai sót</h3><ul><li>Đợi cồn khô</li><li>Thử 2 đơn vị bọt khí</li><li>Kim 4-5mm: 90°, kim dài: véo da nghiêng</li><li>Giữ kim 10 giây</li><li>Luân phiên vị trí (tránh loạn dưỡng mỡ)</li><li>U40 hút U100 → quá liều 2.5 lần (tử vong)</li><li>Bảo quản: chưa mở 2-8°C, đã mở <30°C 4 tuần, cấm đông đá</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Chờ khô, thử 2 đv, giữ 10s, luân phiên”</strong><br><strong>“U40 hút U100 = chết”</strong></p></div><div class="mini-quiz" data-mq="ins2"><div class="mq-question"><i class="fas fa-check-circle"></i> Sai sót nào gây tử vong do hạ ĐH?</div><div class="mq-options"><label><input type="radio" name="mq_ins2" value="0"> Không đợi khô</label><label><input type="radio" name="mq_ins2" value="1"> U40 hút U100</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins2',1)">Kiểm tra</button><div class="mq-result" id="mq_ins2_result"></div></div></div>
+                <div class="card"><h3>🌅 Somogyi vs Bình minh</h3><ul><li>Somogyi: hạ đêm → tăng sáng → giảm liều</li><li>Bình minh: không hạ đêm → tăng sáng → tăng liều</li><li>Chẩn đoán: đo ĐH 2-3h sáng</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Somogyi: giảm liều, Bình minh: tăng liều”</strong></p></div><div class="mini-quiz" data-mq="ins3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN NPH tối, ĐH sáng cao, đo 3h sáng ĐH 55. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_ins3" value="0"> Somogyi</label><label><input type="radio" name="mq_ins3" value="1"> Bình minh</label></div><button class="mq-btn" onclick="checkMiniQuiz('ins3',0)">Kiểm tra</button><div class="mq-result" id="mq_ins3_result"></div></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – INSULIN</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">Phân biệt Regular, NPH, analog nhanh, nền, premix</span></label><label><input type="checkbox"> <span class="item-text">Kỹ thuật tiêm đúng</span></label><label><input type="checkbox"> <span class="item-text">U40 vs U100</span></label><label><input type="checkbox"> <span class="item-text">Somogyi và Bình minh</span></label><label><input type="checkbox"> <span class="item-text">Bảo quản insulin</span></label></div></div>
             </div>
 
-            <!-- ===== TUYẾN THƯỢNG THẬN (mở rộng) ===== -->
+            <!-- ===== TUYẾN THƯỢNG THẬN ===== -->
             <div id="tab-adrenal" class="tab-content">
-                <div class="card"><h2><i class="fas fa-kidney"></i> BỆNH LÝ TUYẾN THƯỢNG THẬN</h2><div class="note">Gồm: Suy thượng thận (Addison), Hội chứng Cushing nội sinh, và biến chứng corticoid.</div></div>
-
-                <!-- Biến chứng corticoid -->
-                <div class="card"><h3>⚠️ Biến chứng Corticoid ngoại sinh</h3>
-                    <ul><li><strong>Xương:</strong> Loãng xương (giảm tạo cốt bào, tăng hủy cốt bào), <strong>hoại tử vô khuẩn chỏm xương đùi</strong> (đau khớp háng, cần MRI chẩn đoán sớm). Chậm tăng trưởng ở trẻ.</li>
-                        <li><strong>Nội tiết – chuyển hóa:</strong> Kiểu hình Cushing (mặt tròn đỏ, tụ mỡ sau gáy, rạn da đỏ tía, da mỏng dễ bầm). Tăng đường huyết, ĐTĐ thứ phát. Giữ Na/nước gây phù, tăng HA, giảm Kali máu.</li>
-                        <li><strong>Mắt:</strong> Đục thủy tinh thể, tăng nhãn áp (Glaucoma).</li>
-                        <li><strong>Tiêu hóa & Miễn dịch:</strong> Viêm loét dạ dày (nguy cơ cao gấp 4 lần nếu dùng kèm NSAID). Suy giảm miễn dịch (dễ nhiễm nấm, lao bùng phát). Rối loạn tâm thần kinh (hưng phấn, mất ngủ, hoang tưởng).</li>
-                        <li><strong>Cách ngưng thuốc:</strong> Bắt buộc giảm liều từ từ (tapering). Chuyển sang cách nhật. Ngưng đột ngột khi stress sẽ gây <strong>Suy thượng thận cấp (trụy tim mạch, tử vong).</strong></li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Cushing: mặt tròn, gáy mỡ, rạn đỏ, ĐH cao, K thấp”</strong><br><strong>“Ngưng corticoid: giảm từ từ, tránh suy thượng thận cấp”</strong></p></div>
-                    <div class="mini-quiz" data-mq="adr1"><div class="mq-question"><i class="fas fa-check-circle"></i> Biến chứng xương nặng của corticoid kéo dài?</div><div class="mq-options"><label><input type="radio" name="mq_adr1" value="0"> Gãy xương đùi</label><label><input type="radio" name="mq_adr1" value="1"> Hoại tử vô khuẩn chỏm xương đùi</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr1',1)">Kiểm tra</button><div class="mq-result" id="mq_adr1_result"></div></div>
-                </div>
-
-                <!-- Suy thượng thận -->
-                <div class="card"><h3>🩺 Suy thượng thận (Addison)</h3>
-                    <ul><li><strong>Nguyên phát (Bệnh Addison):</strong> Tổn thương vỏ thượng thận (tự miễn, lao) → giảm Cortisol + Aldosterone → hạ HA, mất muối nước, tăng Kali máu, toan máu. Thiếu feedback âm → ACTH tăng vọt → <strong>sạm da (vị trí tì đè, niêm mạc).</strong></li>
-                        <li><strong>Thứ phát (Do corticoid):</strong> Tổn thương tuyến yên/hạ đồi bị ức chế. ACTH thấp → <strong>không sạm da.</strong> Aldosterone bình thường (do hệ RAA điều khiển).</li>
-                        <li><strong>Chẩn đoán:</strong> <br>– Cortisol huyết tương buổi sáng: < 3 mcg/dL → khẳng định STT; > 20 mcg/dL → khẳng định bình thường.<br>– 3-20 mcg/dL → làm <strong>Nghiệm pháp Synacthen (tiêm ACTH 250mcg)</strong>. Nếu Cortisol 30/60 phút vẫn < 20 mcg/dL → xác định Suy thượng thận.</li>
-                        <li><strong>Điều trị:</strong> Hydrocortisone (15-25mg/ngày, liều sáng nhiều hơn chiều). Nếu nguyên phát bù thêm Fludrocortisone. Khi stress/nhiễm trùng tăng liều gấp 2-3 lần. Dùng Canxi + Vit D chống loãng xương.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Sạm da + tăng Kali + HA thấp = Addison nguyên phát”</strong><br><strong>“Synacthen: 250mcg, Cortisol <20 = suy”</strong></p></div>
-                    <div class="mini-quiz" data-mq="adr2"><div class="mq-question"><i class="fas fa-check-circle"></i> BN sạm da, tăng Kali, HA thấp, Cortisol sáng 2. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_adr2" value="0"> Suy thượng thận nguyên phát</label><label><input type="radio" name="mq_adr2" value="1"> Suy thượng thận thứ phát</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr2',0)">Kiểm tra</button><div class="mq-result" id="mq_adr2_result"></div></div>
-                </div>
-
-                <!-- Hội chứng Cushing nội sinh -->
-                <div class="card"><h3>📈 Hội chứng Cushing nội sinh</h3>
-                    <ul><li><strong>Phân loại nguyên nhân:</strong> <br>– <strong>Phụ thuộc ACTH:</strong> Bệnh Cushing (70-80%) do Microadenoma tuyến yên. U tiết ACTH lạc chỗ (10-15%) thường do ung thư tế bào nhỏ phổi, carcinoid lồng ngực (diễn tiến cực nhanh, hạ Kali máu nặng).<br>– <strong>Không phụ thuộc ACTH:</strong> Adenoma thượng thận (lành tính). Carcinoma thượng thận (ác tính, u lớn, di căn, tiết Androgen gây nam hóa).</li>
-                        <li><strong>Các bước chẩn đoán:</strong> <br>1. Xác định có Cushing: Cortisol tự do nước tiểu 24h (≥2 lần); NP ức chế Dexamethasone 1mg qua đêm; Cortisol nước bọt nửa đêm.<br>2. Định hướng nguyên nhân: Định lượng ACTH. Nếu ACTH thấp → do thượng thận. Nếu ACTH bình thường/cao → phụ thuộc ACTH. Tiếp tục NP ức chế Dexa liều cao.<br>3. Định vị: MRI/CT tuyến yên hoặc thượng thận. <strong>Tiêu chuẩn vàng phân biệt u tuyến yên và u lạc chỗ:</strong> Đo ACTH tĩnh mạch xoang đá dưới (tỷ lệ xoang đá/ngoại biên >2 hoặc >3 sau CRH là do u tuyến yên).</li>
-                        <li><strong>Điều trị:</strong> Phẫu thuật qua xương bướm cắt u tuyến yên. Phẫu thuật cắt u thượng thận. Cắt u lạc chỗ lồng ngực. Bù Hydrocortisone sau mổ vì tuyến thượng thận đối diện bị teo.</li>
-                    </ul>
-                    <div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo nhớ</div><p><strong>“Cushing: ACTH thấp → u thượng thận, ACTH cao → u tuyến yên/lạc chỗ”</strong><br><strong>“Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên >2 (hoặc >3 sau CRH)”</strong></p></div>
-                    <div class="mini-quiz" data-mq="adr3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN Cushing, ACTH cao, MRI tuyến yên âm tính. Nghĩ đến?</div><div class="mq-options"><label><input type="radio" name="mq_adr3" value="0"> U tuyến yên vi thể</label><label><input type="radio" name="mq_adr3" value="1"> U ACTH lạc chỗ</label><label><input type="radio" name="mq_adr3" value="2"> U thượng thận</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr3',1)">Kiểm tra</button><div class="mq-result" id="mq_adr3_result"></div></div>
-                </div>
-
-                <!-- Checklist tuyến thượng thận -->
-                <div class="card checklist-section"><h3>📋 CHECKLIST – TUYẾN THƯỢNG THẬN</h3>
-                    <div class="checklist">
-                        <label><input type="checkbox"> <span class="item-text">Nắm được biến chứng corticoid (xương, Cushing, mắt, tiêu hóa, miễn dịch)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân biệt suy thượng thận nguyên phát (Addison: sạm da, tăng Kali) và thứ phát (không sạm da, K bình thường)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Biết nghiệm pháp Synacthen (liều 250mcg, Cortisol <20 → suy)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Hiểu các bước chẩn đoán Cushing (xác định → định hướng ACTH → định vị)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Phân loại Cushing: phụ thuộc ACTH (bệnh Cushing, u lạc chỗ) và không phụ thuộc ACTH (u thượng thận)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Tiêu chuẩn vàng phân biệt u tuyến yên và u lạc chỗ (tỷ lệ xoang đá/ngoại biên)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Nguyên tắc ngưng corticoid (giảm từ từ, tránh suy thượng thận cấp)?</span></label>
-                        <label><input type="checkbox"> <span class="item-text">Điều trị Addison (Hydrocortisone, Fludrocortisone nếu nguyên phát, tăng liều khi stress)?</span></label>
-                    </div>
-                </div>
+                <div class="card"><h2><i class="fas fa-kidney"></i> TUYẾN THƯỢNG THẬN</h2><div class="note">Addison, Cushing, corticoid.</div></div>
+                <div class="card"><h3>⚠️ Corticoid</h3><ul><li>Xương: loãng xương, hoại tử vô khuẩn chỏm xương đùi</li><li>Nội tiết: Cushing (mặt tròn, gáy mỡ, rạn đỏ, ĐH cao, K thấp)</li><li>Mắt: đục thủy tinh thể, glaucoma</li><li>Tiêu hóa: loét dạ dày</li><li>Ngưng thuốc: giảm từ từ, tránh suy thượng thận cấp</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Cushing: mặt tròn, gáy mỡ, rạn đỏ, ĐH cao, K thấp”</strong></p></div><div class="mini-quiz" data-mq="adr1"><div class="mq-question"><i class="fas fa-check-circle"></i> Biến chứng xương nặng của corticoid?</div><div class="mq-options"><label><input type="radio" name="mq_adr1" value="0"> Gãy xương đùi</label><label><input type="radio" name="mq_adr1" value="1"> Hoại tử vô khuẩn chỏm xương đùi</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr1',1)">Kiểm tra</button><div class="mq-result" id="mq_adr1_result"></div></div></div>
+                <div class="card"><h3>🩺 Suy thượng thận (Addison)</h3><ul><li>Nguyên phát: sạm da, tăng Kali, HA thấp</li><li>Thứ phát: không sạm da, K bình thường</li><li>Chẩn đoán: Cortisol sáng <3, Synacthen 250mcg, Cortisol <20 → suy</li><li>Điều trị: Hydrocortisone, Fludrocortisone nếu nguyên phát, tăng liều khi stress</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“Sạm da + tăng Kali = Addison nguyên phát”</strong><br><strong>“Synacthen: 250mcg, Cortisol <20”</strong></p></div><div class="mini-quiz" data-mq="adr2"><div class="mq-question"><i class="fas fa-check-circle"></i> BN sạm da, tăng Kali, HA thấp, Cortisol sáng 2. Chẩn đoán?</div><div class="mq-options"><label><input type="radio" name="mq_adr2" value="0"> Nguyên phát</label><label><input type="radio" name="mq_adr2" value="1"> Thứ phát</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr2',0)">Kiểm tra</button><div class="mq-result" id="mq_adr2_result"></div></div></div>
+                <div class="card"><h3>📈 Cushing nội sinh</h3><ul><li>Phụ thuộc ACTH: bệnh Cushing (u tuyến yên), u lạc chỗ</li><li>Không phụ thuộc ACTH: u thượng thận</li><li>Chẩn đoán: bước 1 xác định (Cortisol NT, ức chế Dexa 1mg), bước 2 định lượng ACTH, bước 3 định vị (MRI, CT, xoang đá dưới)</li><li>Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên >2 (hoặc >3 sau CRH) → u tuyến yên</li><li>Điều trị: phẫu thuật cắt u, bù Hydrocortisone sau mổ</li></ul><div class="mnm-box"><div class="mnm-title"><i class="fas fa-lightbulb"></i> Mẹo</div><p><strong>“ACTH thấp → u thượng thận, ACTH cao → u tuyến yên/lạc chỗ”</strong><br><strong>“Tỷ lệ xoang đá/ngoại biên >2”</strong></p></div><div class="mini-quiz" data-mq="adr3"><div class="mq-question"><i class="fas fa-check-circle"></i> BN Cushing, ACTH cao, MRI tuyến yên âm tính. Nghĩ đến?</div><div class="mq-options"><label><input type="radio" name="mq_adr3" value="0"> U tuyến yên</label><label><input type="radio" name="mq_adr3" value="1"> U ACTH lạc chỗ</label><label><input type="radio" name="mq_adr3" value="2"> U thượng thận</label></div><button class="mq-btn" onclick="checkMiniQuiz('adr3',1)">Kiểm tra</button><div class="mq-result" id="mq_adr3_result"></div></div></div>
+                <div class="card checklist-section"><h3>📋 CHECKLIST – THƯỢNG THẬN</h3><div class="checklist"><label><input type="checkbox"> <span class="item-text">Biến chứng corticoid</span></label><label><input type="checkbox"> <span class="item-text">Addison nguyên phát (sạm da, tăng K) vs thứ phát</span></label><label><input type="checkbox"> <span class="item-text">Synacthen: 250mcg, Cortisol <20</span></label><label><input type="checkbox"> <span class="item-text">Các bước chẩn đoán Cushing</span></label><label><input type="checkbox"> <span class="item-text">Phân biệt u tuyến yên và u lạc chỗ (tỷ lệ xoang đá)</span></label><label><input type="checkbox"> <span class="item-text">Điều trị Cushing</span></label></div></div>
             </div>
 
             <!-- ===== FLASHCARD ===== -->
@@ -671,68 +371,25 @@
 
             <!-- ===== CASE LS ===== -->
             <div id="tab-cases" class="tab-content">
-                <div class="card"><h2><i class="fas fa-user-md"></i> Case lâm sàng tương tác</h2><div id="caseContainer"></div></div>
+                <div class="card"><h2><i class="fas fa-user-md"></i> Case lâm sàng</h2><div id="caseContainer"></div></div>
             </div>
 
             <!-- ===== MẸO NHỚ ===== -->
             <div id="tab-mnemonics" class="tab-content">
-                <div class="card"><h2><i class="fas fa-lightbulb"></i> Tổng hợp mẹo ghi nhớ</h2>
-                    <p style="color:var(--text-muted);margin-bottom:16px;">Các câu thần chú giúp ghi nhớ nhanh kiến thức trọng tâm.</p>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-dm"><span>🍬 ĐTĐ</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-dm"><ul>
-                            <li><strong>“4 nhiều”</strong> = Tiểu, uống, ăn nhiều, sụt cân</li>
-                            <li><strong>“126 – 200 – 6.5”</strong> = FPG, OGTT, HbA1c</li>
-                            <li><strong>“7 – 130 – 180 – 100”</strong> = Mục tiêu</li>
-                            <li><strong>“Vi mạch: thận – võng mạc – TK”, “Mạch lớn: vành – não – chân”</strong></li>
-                            <li><strong>“Tán huyết → giảm, Suy thận → tăng”</strong> (nhiễu HbA1c)</li>
-                            <li><strong>“Whipple 3 dấu”</strong> = Triệu chứng + ĐH thấp + Hết khi bù</li>
-                            <li><strong>“ACR >30 x 2 lần”</strong> = Bệnh thận ĐTĐ</li>
-                        </ul></div></div>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-foot"><span>🦶 Bàn chân</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-foot"><ul>
-                            <li><strong>“Thần kinh – Mạch – Trùng”</strong></li>
-                            <li><strong>Monofilament: sai 2/3 → mất</strong></li>
-                            <li><strong>Ipswich: ≥2/6 → nguy cơ</strong></li>
-                            <li><strong>ABI: >1.3 (cứng), 0.9–1.3 (tốt), 0.7–0.89 (nhẹ), 0.41–0.69 (trung), ≤0.40 (nặng)</strong></li>
-                            <li><strong>Loét mạch: đau + lạnh + hoại tử</strong> ; <strong>Loét TK: không đau + chai + ấm</strong></li>
-                            <li><strong>Wagner: 0-1-2-3-4-5</strong></li>
-                        </ul></div></div>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-thyroid"><span>🦋 Tuyến giáp</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-thyroid"><ul>
-                            <li><strong>“Nóng – gầy – nhanh – run – tiêu chảy”</strong> (Cường)</li>
-                            <li><strong>“Lạnh – phù – chậm – chán – táo bón”</strong> (Suy)</li>
-                            <li><strong>NOSPECS: “Nhớ Ôn Sở Phòng Em Chăm Sóc”</strong></li>
-                            <li><strong>Methimazole (first-line), PTU (thai + bão), LT4 (suy)</strong></li>
-                        </ul></div></div>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-drugs"><span>💊 Thuốc ĐTĐ</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-drugs"><ul>
-                            <li><strong>“Cơ – Gan – Mỡ – β – α – Ruột – Thận – Não”</strong></li>
-                            <li><strong>Metformin: đầu tay, eGFR<30 CCĐ</strong></li>
-                            <li><strong>Linagliptin: duy nhất không chỉnh liều suy thận</strong></li>
-                            <li><strong>SGLT-2i: bảo vệ tim thận, nhiễm nấm, toan ceton</strong></li>
-                            <li><strong>GLP-1 RA: giảm cân, CCĐ MEN-2</strong></li>
-                            <li><strong>Cấm SU+Glinide, DPP-4i+GLP-1</strong></li>
-                        </ul></div></div>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-insulin"><span>💉 Insulin</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-insulin"><ul>
-                            <li><strong>Regular: 30p, NPH: đục + đỉnh, analog nhanh: 5p, nền: không đỉnh</strong></li>
-                            <li><strong>Kỹ thuật: chờ khô, thử 2 đv, giữ 10s, luân phiên</strong></li>
-                            <li><strong>U40 hút U100 = quá liều 2.5x → tử vong</strong></li>
-                            <li><strong>Somogyi: giảm liều, Bình minh: tăng liều</strong></li>
-                        </ul></div></div>
-                    <div class="accordion"><div class="accordion-header" data-target="mnm-adrenal"><span>🩺 Thượng thận</span><i class="fas fa-chevron-down"></i></div>
-                        <div class="accordion-body" id="mnm-adrenal"><ul>
-                            <li><strong>Addison: sạm da + tăng Kali + HA thấp</strong></li>
-                            <li><strong>Synacthen: 250mcg, Cortisol <20 → suy</strong></li>
-                            <li><strong>Cushing: ACTH thấp → u thượng thận; ACTH cao → u tuyến yên/lạc chỗ</strong></li>
-                            <li><strong>Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên >2</strong></li>
-                        </ul></div></div>
+                <div class="card"><h2><i class="fas fa-lightbulb"></i> Tổng hợp mẹo nhớ</h2>
+                    <p style="color:var(--text-muted);margin-bottom:16px;">Các câu thần chú giúp ghi nhớ nhanh.</p>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-dm"><span>🍬 ĐTĐ</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-dm"><ul><li><strong>“4 nhiều”</strong> = tiểu, uống, ăn nhiều, sụt cân</li><li><strong>“126 – 200 – 6.5”</strong></li><li><strong>“7 – 130 – 180 – 100”</strong></li><li><strong>“Vi mạch: thận – võng mạc – TK”</strong></li><li><strong>“Mạch lớn: vành – não – chân”</strong></li><li><strong>“Tán huyết ↓, Suy thận ↑”</strong></li><li><strong>“Whipple 3 dấu”</strong></li><li><strong>“ACR >30 x 2”</strong></li></ul></div></div>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-foot"><span>🦶 Bàn chân</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-foot"><ul><li><strong>“Thần kinh – Mạch – Trùng”</strong></li><li><strong>Monofilament: sai 2/3</strong></li><li><strong>Ipswich: ≥2/6</strong></li><li><strong>ABI: >1.3 cứng, 0.9-1.3 tốt, 0.7-0.89 nhẹ, 0.41-0.69 trung, ≤0.40 nặng</strong></li><li><strong>Wagner 0-1-2-3-4-5</strong></li></ul></div></div>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-thyroid"><span>🦋 Tuyến giáp</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-thyroid"><ul><li><strong>“Nóng – gầy – nhanh – run – tiêu chảy”</strong> (Cường)</li><li><strong>“Lạnh – phù – chậm – chán – táo bón”</strong> (Suy)</li><li><strong>NOSPECS: “Nhớ Ôn Sở Phòng Em Chăm Sóc”</strong></li><li><strong>Methimazole (first-line), PTU (thai + bão), LT4 (suy)</strong></li></ul></div></div>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-drugs"><span>💊 Thuốc ĐTĐ</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-drugs"><ul><li><strong>“Cơ – Gan – Mỡ – β – α – Ruột – Thận – Não”</strong></li><li><strong>Metformin: đầu tay, eGFR<30 CCĐ</strong></li><li><strong>Linagliptin: duy nhất không chỉnh liều suy thận</strong></li><li><strong>SGLT-2i: bảo vệ tim thận</strong></li><li><strong>GLP-1 RA: giảm cân, CCĐ MEN-2</strong></li><li><strong>Cấm SU+Glinide, DPP-4i+GLP-1</strong></li></ul></div></div>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-insulin"><span>💉 Insulin</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-insulin"><ul><li><strong>Regular: 30p, NPH: đục+đỉnh, analog nhanh: 5p, nền: không đỉnh</strong></li><li><strong>Chờ khô, thử 2 đv, giữ 10s, luân phiên</strong></li><li><strong>U40 hút U100 = quá liều 2.5x</strong></li><li><strong>Somogyi: giảm liều, Bình minh: tăng liều</strong></li></ul></div></div>
+                    <div class="accordion"><div class="accordion-header" data-target="mnm-adrenal"><span>🩺 Thượng thận</span><i class="fas fa-chevron-down"></i></div><div class="accordion-body" id="mnm-adrenal"><ul><li><strong>Addison: sạm da + tăng Kali + HA thấp</strong></li><li><strong>Synacthen: 250mcg, Cortisol <20</strong></li><li><strong>Cushing: ACTH thấp → u thượng thận, ACTH cao → u tuyến yên/lạc chỗ</strong></li><li><strong>Tiêu chuẩn vàng: tỷ lệ xoang đá >2</strong></li></ul></div></div>
                 </div>
             </div>
 
             <!-- ===== MINDMAP ===== -->
             <div id="tab-mindmap" class="tab-content">
-                <div class="card"><h2><i class="fas fa-project-diagram"></i> Mindmap tổng hợp</h2>
+                <div class="card"><h2><i class="fas fa-project-diagram"></i> Mindmap</h2>
                     <div class="mindmap-tabs" id="mindmapTabs">
                         <button class="active" data-mind="all">Toàn bộ</button>
                         <button data-mind="dm">ĐTĐ</button><button data-mind="foot">Bàn chân</button>
@@ -743,14 +400,23 @@
                 </div>
             </div>
 
-            <!-- ===== GHI CHÚ ===== -->
+            <!-- ===== GHI CHÚ (với chia sẻ qua link) ===== -->
             <div id="tab-notes" class="tab-content">
-                <div class="card"><h2><i class="fas fa-sticky-note"></i> Ghi chú cá nhân</h2>
-                    <textarea id="personalNote" rows="4" style="width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;" placeholder="Viết ghi chú..."></textarea>
-                    <button onclick="saveNote()" style="margin-top:8px;padding:8px 20px;border-radius:30px;border:none;background:var(--primary);color:#fff;cursor:pointer;">Lưu</button>
+                <div class="card">
+                    <h2><i class="fas fa-sticky-note"></i> Ghi chú cá nhân</h2>
+                    <div class="note-important" style="margin-bottom:12px;">
+                        <i class="fas fa-info-circle"></i> Ghi chú được lưu trên trình duyệt của bạn. 
+                        Nhấn <strong>"Chia sẻ (Copy link)"</strong> để tạo một đường dẫn chứa toàn bộ ghi chú và sticky, gửi cho người khác.
+                    </div>
+                    <textarea id="personalNote" rows="4" style="width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:14px;" placeholder="Viết ghi chú của bạn..."></textarea>
+                    <div class="note-actions">
+                        <button onclick="saveNote()"><i class="fas fa-save"></i> Lưu ghi chú</button>
+                        <button onclick="shareNotes()" class="btn-share"><i class="fas fa-share-alt"></i> Chia sẻ (Copy link)</button>
+                    </div>
                     <div id="noteList" style="margin-top:12px;"></div>
-                    <h3 style="margin-top:18px;">📌 Sticky Notes</h3><div id="stickyList"></div>
-                    <button onclick="addSticky()" style="padding:6px 16px;border-radius:30px;border:1px solid var(--border);background:transparent;cursor:pointer;">+ Thêm</button>
+                    <h3 style="margin-top:18px;">📌 Sticky Notes</h3>
+                    <div id="stickyList"></div>
+                    <button onclick="addSticky()" style="padding:6px 16px;border-radius:30px;border:1px solid var(--border);background:transparent;cursor:pointer;">+ Thêm sticky</button>
                 </div>
             </div>
 
@@ -761,763 +427,659 @@
 <div class="popup-overlay" id="popupOverlay"><div class="popup-content"><button class="close-popup" onclick="closePopup()">&times;</button><div id="popupBody"></div></div></div>
 
 <script>
-    // =============================================================
-    // DATA – FLASHCARD, QUIZ, CASES (mở rộng)
-    // =============================================================
-    const flashcardData = [
-        // Cũ + bổ sung đầy đủ
-        { q: 'FPG chẩn đoán ĐTĐ?', a: '≥126 mg/dL' },
-        { q: 'HbA1c chẩn đoán ĐTĐ?', a: '≥6.5%' },
-        { q: 'IFG?', a: '100-125 mg/dL' },
-        { q: 'IGT?', a: '140-199 mg/dL' },
-        { q: 'TRAb dương tính trong?', a: 'Basedow' },
-        { q: 'LT4 T½?', a: '7 ngày' },
-        { q: 'Monofilament mất cảm giác khi?', a: 'Sai 2/3' },
-        { q: 'ABI bình thường?', a: '0.90-1.30' },
-        { q: 'NOSPECS độ 3?', a: 'Lồi mắt' },
-        { q: 'Cơn bão giáp điều trị?', a: 'PTU + Lugol + propranolol' },
-        { q: 'Wagner 1?', a: 'Loét nông' },
-        { q: 'Wagner 5?', a: 'Hoại tử toàn bộ' },
-        { q: 'Methimazole nhóm?', a: 'Imidazole' },
-        { q: 'PTU dùng trong?', a: 'Thai 3 tháng đầu, bão giáp' },
-        { q: 'TSH↑ + FT4↓ → ?', a: 'Suy giáp nguyên phát' },
-        { q: 'TSH↓ + FT4↑ → ?', a: 'Cường giáp nguyên phát' },
-        { q: 'TPOAb dương tính trong?', a: 'Hashimoto (97%)' },
-        { q: 'Tế bào C tiết?', a: 'Calcitonin' },
-        { q: 'TK quặt ngược chi phối?', a: 'Vận động dây thanh' },
-        { q: 'Dấu Von Graefe?', a: 'Mi rớt chậm khi nhìn xuống' },
-        { q: 'Dấu Dalrymple?', a: 'Hở khe mi, thấy củng mạc' },
-        { q: 'I-131 CCĐ tuyệt đối?', a: 'Có thai, cho con bú' },
-        { q: 'LT4 uống khi nào?', a: 'Sáng, 1h trước ăn' },
-        { q: 'Tăng LT4 khi có thai?', a: '25-30%' },
-        { q: 'Basedow xạ hình?', a: 'Tăng bắt xạ lan tỏa' },
-        { q: 'Viêm giáp bán cấp xạ hình?', a: 'Không bắt xạ (0%)' },
-        { q: 'Bướu nhân độc xạ hình?', a: 'Nhân nóng, nhu mô tối' },
-        { q: 'ACR bình thường?', a: '≤30 mg/g' },
-        { q: 'Microalbuminuria ACR?', a: '30-300' },
-        { q: 'Macroalbuminuria ACR?', a: '≥300' },
-        { q: '4 nhiều gồm?', a: 'Tiểu, uống, ăn nhiều, sụt cân' },
-        { q: 'BMI thừa cân châu Á?', a: '≥23' },
-        { q: 'Vòng bụng to nam?', a: '≥90 cm' },
-        { q: 'Vòng bụng to nữ?', a: '≥80 cm' },
-        { q: 'Dấu gai đen gợi ý?', a: 'Đề kháng insulin' },
-        { q: 'Mục tiêu HbA1c?', a: '<7%' },
-        { q: 'LDL mục tiêu khi có BC tim mạch?', a: '<70 mg/dL' },
-        { q: 'SIRS cần ≥ mấy tiêu chuẩn?', a: '2/4' },
-        { q: 'Pemberton dùng để?', a: 'Phát hiện bướu chìm sau xương ức' },
-        { q: 'Phù niêm trước xương chày gặp trong?', a: 'Basedow' },
-        { q: 'LT4 liều duy trì người lớn?', a: '100-200 µg/ngày' },
-        // Bổ sung mới
-        { q: 'Tam chứng Whipple?', a: 'Triệu chứng + ĐH thấp + Hết khi bù' },
-        { q: 'Phân độ hạ ĐH mức 2 là?', a: '<54 mg/dL' },
-        { q: 'Quy tắc 15-15 là gì?', a: '15g đường, đo lại sau 15 phút' },
-        { q: 'Bệnh thận ĐTĐ ACR bao nhiêu?', a: '>30 mg/g' },
-        { q: 'Metformin CCĐ khi eGFR?', a: '<30 ml/phút' },
-        { q: 'Linagliptin đặc biệt?', a: 'Không chỉnh liều suy thận' },
-        { q: 'SGLT-2i lợi ích ngoài hạ ĐH?', a: 'Bảo vệ tim thận' },
-        { q: 'GLP-1 RA CCĐ tuyệt đối?', a: 'MEN-2, ung thư tủy giáp' },
-        { q: 'Regular tiêm trước ăn?', a: '30 phút' },
-        { q: 'NPH cần làm gì trước tiêm?', a: 'Lắc/lăn 10 lần' },
-        { q: 'Analog nhanh tiêm trước ăn?', a: '5 phút' },
-        { q: 'U40 hút U100 gây?', a: 'Quá liều 2.5 lần' },
-        { q: 'Somogyi xử trí?', a: 'Giảm liều insulin tối' },
-        { q: 'Bình minh xử trí?', a: 'Tăng liều insulin tối' },
-        { q: 'Addison nguyên phát đặc điểm?', a: 'Sạm da, tăng Kali' },
-        { q: 'Synacthen liều?', a: '250mcg ACTH' },
-        { q: 'Cushing do u thượng thận ACTH?', a: 'Thấp' },
-        { q: 'Tiêu chuẩn vàng phân biệt u tuyến yên/lạc chỗ?', a: 'Tỷ lệ xoang đá/ngoại biên' },
-        { q: 'Hoại tử vô khuẩn xương đùi do?', a: 'Corticoid kéo dài' },
-        { q: 'Ngưng corticoid đột ngột gây?', a: 'Suy thượng thận cấp' },
-    ];
+// =============================================================
+// DATA – FLASHCARD, QUIZ, CASES
+// =============================================================
+const flashcardData = [
+    { q: 'FPG chẩn đoán ĐTĐ?', a: '≥126 mg/dL' },
+    { q: 'HbA1c chẩn đoán ĐTĐ?', a: '≥6.5%' },
+    { q: 'IFG?', a: '100-125 mg/dL' },
+    { q: 'IGT?', a: '140-199 mg/dL' },
+    { q: 'TRAb dương tính trong?', a: 'Basedow' },
+    { q: 'LT4 T½?', a: '7 ngày' },
+    { q: 'Monofilament mất cảm giác khi?', a: 'Sai 2/3' },
+    { q: 'ABI bình thường?', a: '0.90-1.30' },
+    { q: 'NOSPECS độ 3?', a: 'Lồi mắt' },
+    { q: 'Cơn bão giáp điều trị?', a: 'PTU + Lugol + propranolol' },
+    { q: 'Wagner 1?', a: 'Loét nông' },
+    { q: 'Wagner 5?', a: 'Hoại tử toàn bộ' },
+    { q: 'Methimazole nhóm?', a: 'Imidazole' },
+    { q: 'PTU dùng trong?', a: 'Thai 3 tháng đầu, bão giáp' },
+    { q: 'TSH↑ + FT4↓ → ?', a: 'Suy giáp nguyên phát' },
+    { q: 'TSH↓ + FT4↑ → ?', a: 'Cường giáp nguyên phát' },
+    { q: 'TPOAb dương tính trong?', a: 'Hashimoto (97%)' },
+    { q: 'Tế bào C tiết?', a: 'Calcitonin' },
+    { q: 'TK quặt ngược chi phối?', a: 'Vận động dây thanh' },
+    { q: 'Dấu Von Graefe?', a: 'Mi rớt chậm khi nhìn xuống' },
+    { q: 'Dấu Dalrymple?', a: 'Hở khe mi, thấy củng mạc' },
+    { q: 'I-131 CCĐ tuyệt đối?', a: 'Có thai, cho con bú' },
+    { q: 'LT4 uống khi nào?', a: 'Sáng, 1h trước ăn' },
+    { q: 'Tăng LT4 khi có thai?', a: '25-30%' },
+    { q: 'Basedow xạ hình?', a: 'Tăng bắt xạ lan tỏa' },
+    { q: 'Viêm giáp bán cấp xạ hình?', a: 'Không bắt xạ (0%)' },
+    { q: 'Bướu nhân độc xạ hình?', a: 'Nhân nóng, nhu mô tối' },
+    { q: 'ACR bình thường?', a: '≤30 mg/g' },
+    { q: 'Microalbuminuria ACR?', a: '30-300' },
+    { q: 'Macroalbuminuria ACR?', a: '≥300' },
+    { q: '4 nhiều gồm?', a: 'Tiểu, uống, ăn nhiều, sụt cân' },
+    { q: 'BMI thừa cân châu Á?', a: '≥23' },
+    { q: 'Vòng bụng to nam?', a: '≥90 cm' },
+    { q: 'Vòng bụng to nữ?', a: '≥80 cm' },
+    { q: 'Dấu gai đen gợi ý?', a: 'Đề kháng insulin' },
+    { q: 'Mục tiêu HbA1c?', a: '<7%' },
+    { q: 'LDL mục tiêu khi có BC tim mạch?', a: '<70 mg/dL' },
+    { q: 'SIRS cần ≥ mấy tiêu chuẩn?', a: '2/4' },
+    { q: 'Pemberton dùng để?', a: 'Phát hiện bướu chìm sau xương ức' },
+    { q: 'Phù niêm trước xương chày gặp trong?', a: 'Basedow' },
+    { q: 'LT4 liều duy trì người lớn?', a: '100-200 µg/ngày' },
+    // Bổ sung
+    { q: 'Tam chứng Whipple?', a: 'Triệu chứng + ĐH thấp + Hết khi bù' },
+    { q: 'Phân độ hạ ĐH mức 2?', a: '<54 mg/dL' },
+    { q: 'Quy tắc 15-15?', a: '15g đường, đo lại sau 15 phút' },
+    { q: 'Bệnh thận ĐTĐ ACR?', a: '>30 mg/g' },
+    { q: 'Metformin CCĐ eGFR?', a: '<30 ml/phút' },
+    { q: 'Linagliptin đặc biệt?', a: 'Không chỉnh liều suy thận' },
+    { q: 'SGLT-2i lợi ích?', a: 'Bảo vệ tim thận' },
+    { q: 'GLP-1 RA CCĐ?', a: 'MEN-2, ung thư tủy giáp' },
+    { q: 'Regular tiêm trước ăn?', a: '30 phút' },
+    { q: 'NPH cần lắc?', a: 'Lắc/lăn 10 lần' },
+    { q: 'Analog nhanh tiêm trước ăn?', a: '5 phút' },
+    { q: 'U40 hút U100 gây?', a: 'Quá liều 2.5 lần' },
+    { q: 'Somogyi xử trí?', a: 'Giảm liều' },
+    { q: 'Bình minh xử trí?', a: 'Tăng liều' },
+    { q: 'Addison nguyên phát?', a: 'Sạm da, tăng Kali' },
+    { q: 'Synacthen liều?', a: '250mcg ACTH' },
+    { q: 'Cushing u thượng thận ACTH?', a: 'Thấp' },
+    { q: 'Tiêu chuẩn vàng phân biệt u tuyến yên/lạc chỗ?', a: 'Tỷ lệ xoang đá/ngoại biên' },
+    { q: 'Hoại tử vô khuẩn xương đùi do?', a: 'Corticoid kéo dài' },
+    { q: 'Ngưng corticoid đột ngột gây?', a: 'Suy thượng thận cấp' },
+];
 
-    const quizData = {
-        all: [
-            // ĐTĐ (20 câu)
-            { topic: 'dm', q: 'FPG chẩn đoán ĐTĐ?', opts: ['≥100', '≥126', '≥140', '≥200'], ans: 1 },
-            { topic: 'dm', q: 'HbA1c chẩn đoán ĐTĐ?', opts: ['≥5.7%', '≥6.0%', '≥6.5%', '≥7.0%'], ans: 2 },
-            { topic: 'dm', q: 'IFG là FPG bao nhiêu?', opts: ['100-125', '126-139', '140-199', '≥200'], ans: 0 },
-            { topic: 'dm', q: 'IGT là OGTT 2h bao nhiêu?', opts: ['100-125', '126-139', '140-199', '≥200'], ans: 2 },
-            { topic: 'dm', q: 'Kháng thể đặc hiệu Basedow?', opts: ['TPOAb', 'TgAb', 'TRAb', 'Anti-TSH'], ans: 2 },
-            { topic: 'dm', q: 'PTU ưu tiên trong?', opts: ['Basedow lần đầu', 'Thai 3 tháng đầu', 'Bướu nhỏ', 'BN trẻ'],
-                ans: 1 },
-            { topic: 'dm', q: 'HbA1c tiền ĐTĐ?', opts: ['5.0-5.6%', '5.7-6.4%', '6.5-7.0%', '≥7.0%'], ans: 1 },
-            { topic: 'dm', q: 'ĐTĐ type 1 do?', opts: ['Đề kháng insulin', 'Phá hủy tế bào β', 'Thừa insulin', 'Do thuốc'],
-                ans: 1 },
-            { topic: 'dm', q: 'ĐTĐ type 2 do?', opts: ['Phá hủy β', 'Đề kháng + mất tiết', 'Do virus', 'Do chấn thương'],
-                ans: 1 },
-            { topic: 'dm', q: 'Biến chứng vi mạch NGOẠI TRỪ?', opts: ['Thận', 'Võng mạc', 'Thần kinh', 'Mạch vành'],
-                ans: 3 },
-            { topic: 'dm', q: 'ACR bình thường?', opts: ['≤30', '30-300', '≥300', '≤10'], ans: 0 },
-            { topic: 'dm', q: 'Microalbuminuria ACR?', opts: ['≤30', '30-300', '≥300', '≤10'], ans: 1 },
-            { topic: 'dm', q: 'Mục tiêu HbA1c?', opts: ['<6.0%', '<6.5%', '<7.0%', '<7.5%'], ans: 2 },
-            { topic: 'dm', q: 'Statin chỉ định khi ≥40 tuổi có ≥ mấy YTNC?', opts: ['0', '1', '2', '3'], ans: 1 },
-            { topic: 'dm', q: 'HbA1c giảm giả tạo trong?', opts: ['Suy thận', 'Tán huyết', 'HbF', 'Cường giáp'], ans: 1 },
-            { topic: 'dm', q: 'HbA1c tăng giả tạo trong?', opts: ['Mất máu', 'Suy thận (carbamoyl)', 'Thiếu máu', 'Thai kỳ'],
-                ans: 1 },
-            { topic: 'dm', q: 'OGTT cần carbohydrate trong 3 ngày?', opts: ['50-100g', '100-150g', '150-200g', '>200g'],
-                ans: 2 },
-            { topic: 'dm', q: 'ĐTĐ thai kỳ chẩn đoán lần đầu ở?', opts: ['Tam cá 1', 'Tam cá 2/3', 'Sau sinh', 'Trước mang thai'],
-                ans: 1 },
-            { topic: 'dm', q: 'Dấu gai đen gợi ý?', opts: ['Đề kháng insulin', 'Thiếu insulin', 'Basedow', 'Suy giáp'],
-                ans: 0 },
-            { topic: 'dm', q: 'HA mục tiêu ở ĐTĐ có bệnh thận?', opts: ['<140/90', '<130/80', '<120/80', '<140/85'],
-                ans: 1 },
-            { topic: 'dm', q: 'Tam chứng Whipple gồm?', opts: ['Triệu chứng + ĐH thấp + Hết khi bù', 'Sốt + ĐH cao + nhiễm trùng',
-                    'Khát + tiểu nhiều + sụt cân', 'Đau bụng + tiêu chảy + sốt'
-                ], ans: 0 },
-            { topic: 'dm', q: 'Hạ ĐH mức 2 là?', opts: ['54-70', '<54', '70-100', '>100'], ans: 1 },
-            { topic: 'dm', q: 'Bệnh thận ĐTĐ cần ACR?', opts: ['>10', '>30', '>300', '>1000'], ans: 1 },
-            // Bàn chân (15)
-            { topic: 'foot', q: 'Monofilament mất cảm giác khi sai?', opts: ['1/3', '2/3', '3/3', '0/3'], ans: 1 },
-            { topic: 'foot', q: 'Nguy cơ loét nếu mất cảm giác ≥ mấy điểm?', opts: ['0/3', '1/3', '2/3', '3/3'], ans: 1 },
-            { topic: 'foot', q: 'Ipswich nguy cơ khi mất ≥ mấy điểm?', opts: ['1/6', '2/6', '3/6', '4/6'], ans: 1 },
-            { topic: 'foot', q: 'ABI bình thường?', opts: ['0.70-0.89', '0.90-1.30', '1.30-1.50', '>1.50'], ans: 1 },
-            { topic: 'foot', q: 'ABI >1.30 gợi ý?', opts: ['Bình thường', 'Xơ cứng mạch', 'Hẹp nhẹ', 'Hẹp nặng'], ans: 1 },
-            { topic: 'foot', q: 'Loét thần kinh đặc điểm?', opts: ['Rất đau', 'Bờ đỏ', 'Không đau + chai', 'Chi lạnh'],
-                ans: 2 },
-            { topic: 'foot', q: 'Loét mạch máu đặc điểm?', opts: ['Không đau', 'Mô hạt đỏ', 'Rất đau + lạnh', 'Chi ấm'],
-                ans: 2 },
-            { topic: 'foot', q: 'IWGDF 0 khám định kỳ?', opts: ['Hằng năm', '6-12 tháng', '3-6 tháng', '1-3 tháng'],
-                ans: 0 },
-            { topic: 'foot', q: 'IWGDF 3 khám định kỳ?', opts: ['Hằng năm', '6-12 tháng', '3-6 tháng', '1-3 tháng'],
-                ans: 3 },
-            { topic: 'foot', q: 'Nhiễm trùng cần ≥ mấy tiêu chuẩn?', opts: ['1', '2', '3', '4'], ans: 1 },
-            { topic: 'foot', q: 'Wagner 0 là?', opts: ['Loét nông', 'Loét sâu', 'Nguy cơ cao', 'Hoại tử'], ans: 2 },
-            { topic: 'foot', q: 'Wagner 3 là?', opts: ['Loét nông', 'Sâu đến gân', 'Áp xe/viêm xương', 'Hoại tử toàn bộ'],
-                ans: 2 },
-            { topic: 'foot', q: 'SIRS cần ≥ mấy tiêu chuẩn?', opts: ['1', '2', '3', '4'], ans: 1 },
-            { topic: 'foot', q: 'KS kinh nghiệm MRSA?', opts: ['Augmentin', 'Oxacillin', 'Vancomycin', 'Cefoperazone'],
-                ans: 2 },
-            { topic: 'foot', q: 'Đau cách hồi khu trú ở?', opts: ['Đùi', 'Cơ bắp chân', 'Bàn chân', 'Mông'], ans: 1 },
-            { topic: 'foot', q: 'Probe-to-bone dương tính gợi ý?', opts: ['Loét nông', 'Viêm tủy xương', 'Hoại tử da',
-                    'Nhiễm trùng phần mềm'
-                ], ans: 1 },
-            { topic: 'foot', q: 'IDSA nặng có đặc điểm?', opts: ['Quầng đỏ <2cm', 'SIRS', 'Không đau', 'Không sốt'],
-                ans: 1 },
-            // Tuyến giáp (20)
-            { topic: 'thyroid', q: 'TSH↑ + FT4↓ → ?', opts: ['Cường nguyên phát', 'Suy nguyên phát', 'Suy thứ phát',
-                    'Bình giáp'
-                ], ans: 1 },
-            { topic: 'thyroid', q: 'TSH↓ + FT4↑ → ?', opts: ['Cường nguyên phát', 'Suy nguyên phát', 'Suy thứ phát',
-                    'Bình giáp'
-                ], ans: 0 },
-            { topic: 'thyroid', q: 'TSH↓ + FT4 bình thường → ?', opts: ['Cường thực sự', 'Cường dưới LS', 'Suy dưới LS',
-                    'Bình giáp'
-                ], ans: 1 },
-            { topic: 'thyroid', q: 'TSH↑ + FT4 bình thường → ?', opts: ['Cường dưới LS', 'Suy dưới LS', 'Suy nguyên phát',
-                    'Bình giáp'
-                ], ans: 1 },
-            { topic: 'thyroid', q: 'TRAb dương tính trong?', opts: ['Hashimoto', 'Basedow', 'Viêm bán cấp', 'Suy giáp'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'TPOAb dương tính trong?', opts: ['Basedow', 'Hashimoto (97%)', 'Nhân độc', 'Viêm bán cấp'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'Methimazole nhóm?', opts: ['Thiouracil', 'Imidazole', 'Beta-blocker', 'Corticoid'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'PTU ưu tiên trong 3 tháng đầu thai kỳ vì?', opts: ['Hiệu quả', 'Ít TD phụ',
-                    'Methimazole gây quái thai', 'Rẻ'
-                ], ans: 2 },
-            { topic: 'thyroid', q: 'LT4 T½?', opts: ['1.5h', '6h', '7 ngày', '14 ngày'], ans: 2 },
-            { topic: 'thyroid', q: 'Liều khởi LT4 người già bệnh tim?', opts: ['25 µg', '50 µg', '100 µg', '200 µg'],
-                ans: 0 },
-            { topic: 'thyroid', q: 'Tăng LT4 khi có thai?', opts: ['10-15%', '25-30%', '50%', '100%'], ans: 1 },
-            { topic: 'thyroid', q: 'I-131 CCĐ tuyệt đối?', opts: ['Basedow tái phát', 'Có thai', 'Tuổi >50', 'Bướu nhỏ'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'NOSPECS độ 1 (O) gồm?', opts: ['Phù mi', 'Lồi mắt', 'Dalrymple, Stellwag,...',
-                    'Liệt cơ vận nhãn'
-                ], ans: 2 },
-            { topic: 'thyroid', q: 'NOSPECS độ 3 (P) là?', opts: ['Phù mi', 'Lồi mắt', 'Liệt cơ', 'Tổn thương giác mạc'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'NOSPECS độ 6 (S) là?', opts: ['Lồi mắt', 'Liệt cơ', 'Mất thị lực', 'Viêm giác mạc'],
-                ans: 2 },
-            { topic: 'thyroid', q: 'Cơn bão giáp là chẩn đoán?', opts: ['Xét nghiệm', 'Lâm sàng', 'Siêu âm', 'Xạ hình'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'Điều trị cơn bão giáp?', opts: ['PTU+Lugol+propranolol+corticosteroid',
-                    'Methimazole đơn thuần', 'I-131', 'Phẫu thuật'
-                ], ans: 0 },
-            { topic: 'thyroid', q: 'Hôn mê suy giáp điều trị?', opts: ['PTU', 'LT4 IV + corticosteroid', 'I-131',
-                    'Methimazole'
-                ], ans: 1 },
-            { topic: 'thyroid', q: 'Tế bào C tiết?', opts: ['T3', 'T4', 'Calcitonin', 'PTH'], ans: 2 },
-            { topic: 'thyroid', q: 'TK quặt ngược là nhánh dây sọ số?', opts: ['VII', 'IX', 'X', 'XI'], ans: 2 },
-            { topic: 'thyroid', q: 'Tổn thương TK quặt ngược 2 bên gây?', opts: ['Khàn tiếng', 'Mất tiếng + ngưng thở',
-                    'Nuốt khó', 'Sụp mi'
-                ], ans: 1 },
-            { topic: 'thyroid', q: 'Xạ hình Basedow?', opts: ['Không bắt', 'Tăng lan tỏa', 'Nhân nóng', 'Nhân lạnh'],
-                ans: 1 },
-            { topic: 'thyroid', q: 'Viêm giáp bán cấp xạ hình?', opts: ['Tăng lan tỏa', 'Nhân nóng', 'Không bắt (0%)',
-                    'Tăng khu trú'
-                ], ans: 2 },
-            { topic: 'thyroid', q: 'Siêu âm Basedow?', opts: ['Nhân đặc', 'Nang', 'To lan tỏa, echo kém, thác lửa',
-                    'Teo nhỏ'
-                ], ans: 2 },
-            { topic: 'thyroid', q: 'Dấu hiệu siêu âm nghi ác?', opts: ['Nang', 'Halo', 'Vi vôi hóa, dọc > ngang',
-                    'Bọt biển'
-                ], ans: 2 },
-            // Drugs
-            { topic: 'drugs', q: 'Metformin CCĐ khi eGFR?', opts: ['<60', '<45', '<30', '<15'], ans: 2 },
-            { topic: 'drugs', q: 'Thuốc nào không chỉnh liều suy thận?', opts: ['Metformin', 'Linagliptin', 'Sitagliptin',
-                    'Empagliflozin'
-                ], ans: 1 },
-            { topic: 'drugs', q: 'SGLT-2i lợi ích tim thận?', opts: ['Có', 'Không', 'Chỉ tim', 'Chỉ thận'], ans: 0 },
-            { topic: 'drugs', q: 'GLP-1 RA CCĐ tuyệt đối?', opts: ['Suy tim', 'MEN-2', 'Suy thận', 'Béo phì'], ans: 1 },
-            { topic: 'drugs', q: 'Acarbose cấm dùng đường gì khi hạ ĐH?', opts: ['Glucose', 'Sucrose', 'Fructose',
-                    'Lactose'
-                ], ans: 1 },
-            { topic: 'drugs', q: 'Cấm phối hợp SU với?', opts: ['Metformin', 'Glinide', 'TZD', 'SGLT-2i'], ans: 1 },
-            { topic: 'drugs', q: 'TZD CCĐ tuyệt đối?', opts: ['Suy thận', 'Suy tim NYHA III-IV', 'Béo phì', 'Loãng xương'],
-                ans: 1 },
-            // Insulin
-            { topic: 'insulin', q: 'Regular tiêm trước ăn bao lâu?', opts: ['5 phút', '15 phút', '30 phút', '1 giờ'],
-                ans: 2 },
-            { topic: 'insulin', q: 'NPH cần lắc trước tiêm?', opts: ['Có', 'Không', 'Tùy loại', 'Chỉ khi mới mở'],
-                ans: 0 },
-            { topic: 'insulin', q: 'Analog nền không có đặc điểm gì?', opts: ['Không đỉnh', 'Kéo dài 24h', 'Có đỉnh',
-                    'Trong suốt'
-                ], ans: 2 },
-            { topic: 'insulin', q: 'U40 hút U100 gây?', opts: ['Thiếu liều', 'Quá liều 2.5 lần', 'Bình thường',
-                    'Không hấp thu'
-                ], ans: 1 },
-            { topic: 'insulin', q: 'Somogyi xử trí?', opts: ['Tăng liều', 'Giảm liều', 'Giữ nguyên', 'Đổi thuốc'],
-                ans: 1 },
-            { topic: 'insulin', q: 'Bình minh xử trí?', opts: ['Tăng liều', 'Giảm liều', 'Giữ nguyên', 'Đổi thuốc'],
-                ans: 0 },
-            // Adrenal
-            { topic: 'adrenal', q: 'Addison nguyên phát đặc điểm?', opts: ['Sạm da + tăng Kali', 'Không sạm da + tăng Kali',
-                    'Sạm da + giảm Kali', 'Không sạm da + giảm Kali'
-                ], ans: 0 },
-            { topic: 'adrenal', q: 'Synacthen liều?', opts: ['100mcg', '250mcg', '500mcg', '1mg'], ans: 1 },
-            { topic: 'adrenal', q: 'Cushing do u thượng thận có ACTH?', opts: ['Cao', 'Thấp', 'Bình thường', 'Không xác định'],
-                ans: 1 },
-            { topic: 'adrenal', q: 'Ngưng corticoid đột ngột gây?', opts: ['Bão giáp', 'Suy thượng thận cấp', 'ĐTĐ',
-                    'Loãng xương'
-                ], ans: 1 },
-            { topic: 'adrenal', q: 'Hoại tử vô khuẩn chỏm xương đùi do?', opts: ['Loãng xương', 'Corticoid kéo dài',
-                    'ĐTĐ type 2', 'Cường giáp'
-                ], ans: 1 },
-        ]
-    };
+const quizData = {
+    all: [
+        // ĐTĐ
+        { topic: 'dm', q: 'FPG chẩn đoán ĐTĐ?', opts: ['≥100', '≥126', '≥140', '≥200'], ans: 1 },
+        { topic: 'dm', q: 'HbA1c chẩn đoán ĐTĐ?', opts: ['≥5.7%', '≥6.0%', '≥6.5%', '≥7.0%'], ans: 2 },
+        { topic: 'dm', q: 'IFG là FPG bao nhiêu?', opts: ['100-125', '126-139', '140-199', '≥200'], ans: 0 },
+        { topic: 'dm', q: 'IGT là OGTT 2h bao nhiêu?', opts: ['100-125', '126-139', '140-199', '≥200'], ans: 2 },
+        { topic: 'dm', q: 'Kháng thể đặc hiệu Basedow?', opts: ['TPOAb', 'TgAb', 'TRAb', 'Anti-TSH'], ans: 2 },
+        { topic: 'dm', q: 'PTU ưu tiên trong?', opts: ['Basedow lần đầu', 'Thai 3 tháng đầu', 'Bướu nhỏ', 'BN trẻ'], ans: 1 },
+        { topic: 'dm', q: 'HbA1c tiền ĐTĐ?', opts: ['5.0-5.6%', '5.7-6.4%', '6.5-7.0%', '≥7.0%'], ans: 1 },
+        { topic: 'dm', q: 'ĐTĐ type 1 do?', opts: ['Đề kháng insulin', 'Phá hủy tế bào β', 'Thừa insulin', 'Do thuốc'], ans: 1 },
+        { topic: 'dm', q: 'ĐTĐ type 2 do?', opts: ['Phá hủy β', 'Đề kháng + mất tiết', 'Do virus', 'Do chấn thương'], ans: 1 },
+        { topic: 'dm', q: 'Biến chứng vi mạch NGOẠI TRỪ?', opts: ['Thận', 'Võng mạc', 'Thần kinh', 'Mạch vành'], ans: 3 },
+        { topic: 'dm', q: 'ACR bình thường?', opts: ['≤30', '30-300', '≥300', '≤10'], ans: 0 },
+        { topic: 'dm', q: 'Microalbuminuria ACR?', opts: ['≤30', '30-300', '≥300', '≤10'], ans: 1 },
+        { topic: 'dm', q: 'Mục tiêu HbA1c?', opts: ['<6.0%', '<6.5%', '<7.0%', '<7.5%'], ans: 2 },
+        { topic: 'dm', q: 'Statin chỉ định khi ≥40 tuổi có ≥ mấy YTNC?', opts: ['0', '1', '2', '3'], ans: 1 },
+        { topic: 'dm', q: 'HbA1c giảm giả tạo trong?', opts: ['Suy thận', 'Tán huyết', 'HbF', 'Cường giáp'], ans: 1 },
+        { topic: 'dm', q: 'HbA1c tăng giả tạo trong?', opts: ['Mất máu', 'Suy thận (carbamoyl)', 'Thiếu máu', 'Thai kỳ'], ans: 1 },
+        { topic: 'dm', q: 'OGTT cần carbohydrate trong 3 ngày?', opts: ['50-100g', '100-150g', '150-200g', '>200g'], ans: 2 },
+        { topic: 'dm', q: 'ĐTĐ thai kỳ chẩn đoán lần đầu ở?', opts: ['Tam cá 1', 'Tam cá 2/3', 'Sau sinh', 'Trước mang thai'], ans: 1 },
+        { topic: 'dm', q: 'Dấu gai đen gợi ý?', opts: ['Đề kháng insulin', 'Thiếu insulin', 'Basedow', 'Suy giáp'], ans: 0 },
+        { topic: 'dm', q: 'HA mục tiêu ở ĐTĐ có bệnh thận?', opts: ['<140/90', '<130/80', '<120/80', '<140/85'], ans: 1 },
+        { topic: 'dm', q: 'Tam chứng Whipple gồm?', opts: ['Triệu chứng + ĐH thấp + Hết khi bù', 'Sốt + ĐH cao + nhiễm trùng', 'Khát + tiểu nhiều + sụt cân', 'Đau bụng + tiêu chảy + sốt'], ans: 0 },
+        { topic: 'dm', q: 'Hạ ĐH mức 2 là?', opts: ['54-70', '<54', '70-100', '>100'], ans: 1 },
+        { topic: 'dm', q: 'Bệnh thận ĐTĐ cần ACR?', opts: ['>10', '>30', '>300', '>1000'], ans: 1 },
+        // Bàn chân
+        { topic: 'foot', q: 'Monofilament mất cảm giác khi sai?', opts: ['1/3', '2/3', '3/3', '0/3'], ans: 1 },
+        { topic: 'foot', q: 'Nguy cơ loét nếu mất cảm giác ≥ mấy điểm?', opts: ['0/3', '1/3', '2/3', '3/3'], ans: 1 },
+        { topic: 'foot', q: 'Ipswich nguy cơ khi mất ≥ mấy điểm?', opts: ['1/6', '2/6', '3/6', '4/6'], ans: 1 },
+        { topic: 'foot', q: 'ABI bình thường?', opts: ['0.70-0.89', '0.90-1.30', '1.30-1.50', '>1.50'], ans: 1 },
+        { topic: 'foot', q: 'ABI >1.30 gợi ý?', opts: ['Bình thường', 'Xơ cứng mạch', 'Hẹp nhẹ', 'Hẹp nặng'], ans: 1 },
+        { topic: 'foot', q: 'Loét thần kinh đặc điểm?', opts: ['Rất đau', 'Bờ đỏ', 'Không đau + chai', 'Chi lạnh'], ans: 2 },
+        { topic: 'foot', q: 'Loét mạch máu đặc điểm?', opts: ['Không đau', 'Mô hạt đỏ', 'Rất đau + lạnh', 'Chi ấm'], ans: 2 },
+        { topic: 'foot', q: 'IWGDF 0 khám định kỳ?', opts: ['Hằng năm', '6-12 tháng', '3-6 tháng', '1-3 tháng'], ans: 0 },
+        { topic: 'foot', q: 'IWGDF 3 khám định kỳ?', opts: ['Hằng năm', '6-12 tháng', '3-6 tháng', '1-3 tháng'], ans: 3 },
+        { topic: 'foot', q: 'Nhiễm trùng cần ≥ mấy tiêu chuẩn?', opts: ['1', '2', '3', '4'], ans: 1 },
+        { topic: 'foot', q: 'Wagner 0 là?', opts: ['Loét nông', 'Loét sâu', 'Nguy cơ cao', 'Hoại tử'], ans: 2 },
+        { topic: 'foot', q: 'Wagner 3 là?', opts: ['Loét nông', 'Sâu đến gân', 'Áp xe/viêm xương', 'Hoại tử toàn bộ'], ans: 2 },
+        { topic: 'foot', q: 'SIRS cần ≥ mấy tiêu chuẩn?', opts: ['1', '2', '3', '4'], ans: 1 },
+        { topic: 'foot', q: 'KS kinh nghiệm MRSA?', opts: ['Augmentin', 'Oxacillin', 'Vancomycin', 'Cefoperazone'], ans: 2 },
+        { topic: 'foot', q: 'Đau cách hồi khu trú ở?', opts: ['Đùi', 'Cơ bắp chân', 'Bàn chân', 'Mông'], ans: 1 },
+        { topic: 'foot', q: 'Probe-to-bone dương tính gợi ý?', opts: ['Loét nông', 'Viêm tủy xương', 'Hoại tử da', 'Nhiễm trùng phần mềm'], ans: 1 },
+        { topic: 'foot', q: 'IDSA nặng có đặc điểm?', opts: ['Quầng đỏ <2cm', 'SIRS', 'Không đau', 'Không sốt'], ans: 1 },
+        // Tuyến giáp
+        { topic: 'thyroid', q: 'TSH↑ + FT4↓ → ?', opts: ['Cường nguyên phát', 'Suy nguyên phát', 'Suy thứ phát', 'Bình giáp'], ans: 1 },
+        { topic: 'thyroid', q: 'TSH↓ + FT4↑ → ?', opts: ['Cường nguyên phát', 'Suy nguyên phát', 'Suy thứ phát', 'Bình giáp'], ans: 0 },
+        { topic: 'thyroid', q: 'TSH↓ + FT4 bình thường → ?', opts: ['Cường thực sự', 'Cường dưới LS', 'Suy dưới LS', 'Bình giáp'], ans: 1 },
+        { topic: 'thyroid', q: 'TSH↑ + FT4 bình thường → ?', opts: ['Cường dưới LS', 'Suy dưới LS', 'Suy nguyên phát', 'Bình giáp'], ans: 1 },
+        { topic: 'thyroid', q: 'TRAb dương tính trong?', opts: ['Hashimoto', 'Basedow', 'Viêm bán cấp', 'Suy giáp'], ans: 1 },
+        { topic: 'thyroid', q: 'TPOAb dương tính trong?', opts: ['Basedow', 'Hashimoto (97%)', 'Nhân độc', 'Viêm bán cấp'], ans: 1 },
+        { topic: 'thyroid', q: 'Methimazole nhóm?', opts: ['Thiouracil', 'Imidazole', 'Beta-blocker', 'Corticoid'], ans: 1 },
+        { topic: 'thyroid', q: 'PTU ưu tiên trong 3 tháng đầu thai kỳ vì?', opts: ['Hiệu quả', 'Ít TD phụ', 'Methimazole gây quái thai', 'Rẻ'], ans: 2 },
+        { topic: 'thyroid', q: 'LT4 T½?', opts: ['1.5h', '6h', '7 ngày', '14 ngày'], ans: 2 },
+        { topic: 'thyroid', q: 'Liều khởi LT4 người già bệnh tim?', opts: ['25 µg', '50 µg', '100 µg', '200 µg'], ans: 0 },
+        { topic: 'thyroid', q: 'Tăng LT4 khi có thai?', opts: ['10-15%', '25-30%', '50%', '100%'], ans: 1 },
+        { topic: 'thyroid', q: 'I-131 CCĐ tuyệt đối?', opts: ['Basedow tái phát', 'Có thai', 'Tuổi >50', 'Bướu nhỏ'], ans: 1 },
+        { topic: 'thyroid', q: 'NOSPECS độ 1 (O) gồm?', opts: ['Phù mi', 'Lồi mắt', 'Dalrymple, Stellwag,...', 'Liệt cơ vận nhãn'], ans: 2 },
+        { topic: 'thyroid', q: 'NOSPECS độ 3 (P) là?', opts: ['Phù mi', 'Lồi mắt', 'Liệt cơ', 'Tổn thương giác mạc'], ans: 1 },
+        { topic: 'thyroid', q: 'NOSPECS độ 6 (S) là?', opts: ['Lồi mắt', 'Liệt cơ', 'Mất thị lực', 'Viêm giác mạc'], ans: 2 },
+        { topic: 'thyroid', q: 'Cơn bão giáp là chẩn đoán?', opts: ['Xét nghiệm', 'Lâm sàng', 'Siêu âm', 'Xạ hình'], ans: 1 },
+        { topic: 'thyroid', q: 'Điều trị cơn bão giáp?', opts: ['PTU+Lugol+propranolol+corticosteroid', 'Methimazole đơn thuần', 'I-131', 'Phẫu thuật'], ans: 0 },
+        { topic: 'thyroid', q: 'Hôn mê suy giáp điều trị?', opts: ['PTU', 'LT4 IV + corticosteroid', 'I-131', 'Methimazole'], ans: 1 },
+        { topic: 'thyroid', q: 'Tế bào C tiết?', opts: ['T3', 'T4', 'Calcitonin', 'PTH'], ans: 2 },
+        { topic: 'thyroid', q: 'TK quặt ngược là nhánh dây sọ số?', opts: ['VII', 'IX', 'X', 'XI'], ans: 2 },
+        { topic: 'thyroid', q: 'Tổn thương TK quặt ngược 2 bên gây?', opts: ['Khàn tiếng', 'Mất tiếng + ngưng thở', 'Nuốt khó', 'Sụp mi'], ans: 1 },
+        { topic: 'thyroid', q: 'Xạ hình Basedow?', opts: ['Không bắt', 'Tăng lan tỏa', 'Nhân nóng', 'Nhân lạnh'], ans: 1 },
+        { topic: 'thyroid', q: 'Viêm giáp bán cấp xạ hình?', opts: ['Tăng lan tỏa', 'Nhân nóng', 'Không bắt (0%)', 'Tăng khu trú'], ans: 2 },
+        { topic: 'thyroid', q: 'Siêu âm Basedow?', opts: ['Nhân đặc', 'Nang', 'To lan tỏa, echo kém, thác lửa', 'Teo nhỏ'], ans: 2 },
+        { topic: 'thyroid', q: 'Dấu hiệu siêu âm nghi ác?', opts: ['Nang', 'Halo', 'Vi vôi hóa, dọc > ngang', 'Bọt biển'], ans: 2 },
+        // Drugs
+        { topic: 'drugs', q: 'Metformin CCĐ khi eGFR?', opts: ['<60', '<45', '<30', '<15'], ans: 2 },
+        { topic: 'drugs', q: 'Thuốc nào không chỉnh liều suy thận?', opts: ['Metformin', 'Linagliptin', 'Sitagliptin', 'Empagliflozin'], ans: 1 },
+        { topic: 'drugs', q: 'SGLT-2i lợi ích tim thận?', opts: ['Có', 'Không', 'Chỉ tim', 'Chỉ thận'], ans: 0 },
+        { topic: 'drugs', q: 'GLP-1 RA CCĐ tuyệt đối?', opts: ['Suy tim', 'MEN-2', 'Suy thận', 'Béo phì'], ans: 1 },
+        { topic: 'drugs', q: 'Acarbose cấm dùng đường gì khi hạ ĐH?', opts: ['Glucose', 'Sucrose', 'Fructose', 'Lactose'], ans: 1 },
+        { topic: 'drugs', q: 'Cấm phối hợp SU với?', opts: ['Metformin', 'Glinide', 'TZD', 'SGLT-2i'], ans: 1 },
+        { topic: 'drugs', q: 'TZD CCĐ tuyệt đối?', opts: ['Suy thận', 'Suy tim NYHA III-IV', 'Béo phì', 'Loãng xương'], ans: 1 },
+        // Insulin
+        { topic: 'insulin', q: 'Regular tiêm trước ăn bao lâu?', opts: ['5 phút', '15 phút', '30 phút', '1 giờ'], ans: 2 },
+        { topic: 'insulin', q: 'NPH cần lắc trước tiêm?', opts: ['Có', 'Không', 'Tùy loại', 'Chỉ khi mới mở'], ans: 0 },
+        { topic: 'insulin', q: 'Analog nền không có đặc điểm gì?', opts: ['Không đỉnh', 'Kéo dài 24h', 'Có đỉnh', 'Trong suốt'], ans: 2 },
+        { topic: 'insulin', q: 'U40 hút U100 gây?', opts: ['Thiếu liều', 'Quá liều 2.5 lần', 'Bình thường', 'Không hấp thu'], ans: 1 },
+        { topic: 'insulin', q: 'Somogyi xử trí?', opts: ['Tăng liều', 'Giảm liều', 'Giữ nguyên', 'Đổi thuốc'], ans: 1 },
+        { topic: 'insulin', q: 'Bình minh xử trí?', opts: ['Tăng liều', 'Giảm liều', 'Giữ nguyên', 'Đổi thuốc'], ans: 0 },
+        // Adrenal
+        { topic: 'adrenal', q: 'Addison nguyên phát đặc điểm?', opts: ['Sạm da + tăng Kali', 'Không sạm da + tăng Kali', 'Sạm da + giảm Kali', 'Không sạm da + giảm Kali'], ans: 0 },
+        { topic: 'adrenal', q: 'Synacthen liều?', opts: ['100mcg', '250mcg', '500mcg', '1mg'], ans: 1 },
+        { topic: 'adrenal', q: 'Cushing do u thượng thận có ACTH?', opts: ['Cao', 'Thấp', 'Bình thường', 'Không xác định'], ans: 1 },
+        { topic: 'adrenal', q: 'Ngưng corticoid đột ngột gây?', opts: ['Bão giáp', 'Suy thượng thận cấp', 'ĐTĐ', 'Loãng xương'], ans: 1 },
+        { topic: 'adrenal', q: 'Hoại tử vô khuẩn chỏm xương đùi do?', opts: ['Loãng xương', 'Corticoid kéo dài', 'ĐTĐ type 2', 'Cường giáp'], ans: 1 },
+    ]
+};
 
-    // Case data (7 cases)
-    const caseData = [
-        { title: 'ĐTĐ type 2 mới phát hiện', scenario: 'Nam 52t, BMI 27, vòng bụng 95cm, THA. FPG 142, HbA1c 7.2%.',
-            question: 'Chẩn đoán và xử trí đầu tiên?', options: ['ĐTĐ type 2, metformin + lối sống', 'Tiền ĐTĐ, chỉ lối sống',
-                'ĐTĐ type 2, insulin ngay', 'ĐTĐ type 1, insulin'
-            ], answer: 0, explanation: 'FPG≥126, HbA1c≥6.5% → ĐTĐ type 2. Metformin first-line.' },
-        { title: 'Basedow với lồi mắt', scenario: 'Nữ 28t, hồi hộp, run tay, sụt cân 5kg, mạch 110, bướu lan tỏa, TRAb (+).',
-            question: 'Chẩn đoán và điều trị tối ưu?', options: ['Basedow, PTU + propranolol',
-                'Basedow, Methimazole + theo dõi mắt', 'Viêm giáp bán cấp, NSAIDs', 'Bướu nhân độc, I-131'
-            ], answer: 1, explanation: 'Basedow TRAb(+), Methimazole first-line, theo dõi lồi mắt.' },
-        { title: 'Loét bàn chân ĐTĐ', scenario: 'Nam 65t, ĐTĐ 10 năm, loét gan chân không đau, bờ vết chai, mạch yếu, monofilament mất 2/3.',
-            question: 'Đánh giá và xử trí ban đầu?', options: ['Nguy cơ thấp, băng thông thường',
-                'Nguy cơ cao (TK + mạch), ABI, cắt lọc, kháng sinh', 'Chỉ loét TK, không cần KS', 'Đoạn chi ngay'
-            ], answer: 1, explanation: 'Loét TK + PAD → nguy cơ cao. Cần ABI, cắt lọc, KS.' },
-        { title: 'Suy giáp Hashimoto', scenario: 'Nữ 45t, mệt, sợ lạnh, tăng cân 10kg, da khô, TSH 12, FT4 8, TPOAb (+).',
-            question: 'Chẩn đoán và điều trị?', options: ['Suy giáp nguyên phát, LT4 50µg tăng dần',
-                'Suy giáp thứ phát, tìm nguyên nhân', 'Bình giáp, không trị', 'Suy giáp dưới LS, theo dõi'
-            ], answer: 0, explanation: 'TSH↑, FT4↓, TPOAb(+) → Hashimoto. LT4 là chuẩn.' },
-        { title: 'Cơn bão giáp', scenario: 'Nữ 30t, Basedow ngưng thuốc, sốt 39.5, mạch 150, rung nhĩ, kích thích, tiêu chảy, TSH<0.01, FT4>60.',
-            question: 'Biến chứng và xử trí?', options: ['Cơn bão giáp, PTU+Lugol+propranolol+corticosteroid',
-                'Cơn bão giáp, Methimazole đơn thuần', 'Nhiễm trùng huyết, KS', 'Suy giáp nặng, LT4 uống'
-            ], answer: 0, explanation: 'Triệu chứng cơn bão giáp. Phác đồ: PTU, Lugol, propranolol, corticosteroid.' },
-        { title: 'Hạ đường huyết do SU', scenario: 'Nam 68t, ĐTĐ type 2, dùng Gliclazide 60mg/ngày, bỏ bữa sáng. Lơ mơ, vã mồ hôi, ĐH 45.',
-            question: 'Xử trí đúng?', options: ['15g đường uống, đo lại sau 15 phút', 'Glucose 30% 50ml IV',
-                'Glucagon 1mg IM', 'Cho ăn cơm ngay'
-            ], answer: 1, explanation: 'BN lơ mơ, không nuốt được → Glucose IV 30% 50ml.' },
-        { title: 'Cushing do u thượng thận', scenario: 'Nữ 40t, mặt tròn đỏ, tụ mỡ gáy, rạn da đỏ, tăng HA, ĐH 140, Cortisol NT cao, ACTH thấp.',
-            question: 'Nguyên nhân và điều trị?', options: ['U tuyến yên, phẫu thuật qua xương bướm', 'U thượng thận, cắt u',
-                'U ACTH lạc chỗ, PT lồng ngực', 'Thuốc ức chế tổng hợp cortisol'
-            ], answer: 1, explanation: 'ACTH thấp → Cushing không phụ thuộc ACTH, nguồn thượng thận. Cắt u.' }
-    ];
+const caseData = [
+    { title: 'ĐTĐ type 2 mới phát hiện', scenario: 'Nam 52t, BMI 27, vòng bụng 95, THA. FPG 142, HbA1c 7.2%.',
+        question: 'Chẩn đoán và xử trí đầu tiên?', options: ['ĐTĐ type 2, metformin + lối sống', 'Tiền ĐTĐ, chỉ lối sống', 'ĐTĐ type 2, insulin ngay', 'ĐTĐ type 1, insulin'],
+        answer: 0, explanation: 'FPG≥126, HbA1c≥6.5% → ĐTĐ type 2. Metformin first-line.' },
+    { title: 'Basedow với lồi mắt', scenario: 'Nữ 28t, hồi hộp, run tay, sụt cân 5kg, mạch 110, bướu lan tỏa, TRAb (+).',
+        question: 'Chẩn đoán và điều trị tối ưu?', options: ['Basedow, PTU + propranolol', 'Basedow, Methimazole + theo dõi mắt', 'Viêm giáp bán cấp, NSAIDs', 'Bướu nhân độc, I-131'],
+        answer: 1, explanation: 'Basedow TRAb(+), Methimazole first-line, theo dõi lồi mắt.' },
+    { title: 'Loét bàn chân ĐTĐ', scenario: 'Nam 65t, ĐTĐ 10 năm, loét gan chân không đau, bờ vết chai, mạch yếu, monofilament mất 2/3.',
+        question: 'Đánh giá và xử trí ban đầu?', options: ['Nguy cơ thấp, băng thông thường', 'Nguy cơ cao (TK + mạch), ABI, cắt lọc, kháng sinh', 'Chỉ loét TK, không cần KS', 'Đoạn chi ngay'],
+        answer: 1, explanation: 'Loét TK + PAD → nguy cơ cao. Cần ABI, cắt lọc, KS.' },
+    { title: 'Suy giáp Hashimoto', scenario: 'Nữ 45t, mệt, sợ lạnh, tăng cân 10kg, da khô, TSH 12, FT4 8, TPOAb (+).',
+        question: 'Chẩn đoán và điều trị?', options: ['Suy giáp nguyên phát, LT4 50µg tăng dần', 'Suy giáp thứ phát, tìm nguyên nhân', 'Bình giáp, không trị', 'Suy giáp dưới LS, theo dõi'],
+        answer: 0, explanation: 'TSH↑, FT4↓, TPOAb(+) → Hashimoto. LT4 là chuẩn.' },
+    { title: 'Cơn bão giáp', scenario: 'Nữ 30t, Basedow ngưng thuốc, sốt 39.5, mạch 150, rung nhĩ, kích thích, tiêu chảy, TSH<0.01, FT4>60.',
+        question: 'Biến chứng và xử trí?', options: ['Cơn bão giáp, PTU+Lugol+propranolol+corticosteroid', 'Cơn bão giáp, Methimazole đơn thuần', 'Nhiễm trùng huyết, KS', 'Suy giáp nặng, LT4 uống'],
+        answer: 0, explanation: 'Triệu chứng cơn bão giáp. Phác đồ: PTU, Lugol, propranolol, corticosteroid.' },
+    { title: 'Hạ đường huyết do SU', scenario: 'Nam 68t, ĐTĐ type 2, dùng Gliclazide 60mg/ngày, bỏ bữa sáng. Lơ mơ, vã mồ hôi, ĐH 45.',
+        question: 'Xử trí đúng?', options: ['15g đường uống, đo lại sau 15 phút', 'Glucose 30% 50ml IV', 'Glucagon 1mg IM', 'Cho ăn cơm ngay'],
+        answer: 1, explanation: 'BN lơ mơ, không nuốt được → Glucose IV 30% 50ml.' },
+    { title: 'Cushing do u thượng thận', scenario: 'Nữ 40t, mặt tròn đỏ, tụ mỡ gáy, rạn da đỏ, tăng HA, ĐH 140, Cortisol NT cao, ACTH thấp.',
+        question: 'Nguyên nhân và điều trị?', options: ['U tuyến yên, phẫu thuật qua xương bướm', 'U thượng thận, cắt u', 'U ACTH lạc chỗ, PT lồng ngực', 'Thuốc ức chế tổng hợp cortisol'],
+        answer: 1, explanation: 'ACTH thấp → Cushing không phụ thuộc ACTH, nguồn thượng thận. Cắt u.' }
+];
 
-    // =============================================================
-    // STATE
-    // =============================================================
-    let bookmarkList = JSON.parse(localStorage.getItem('bookmarks') || '[]');
-    let chapterProgress = JSON.parse(localStorage.getItem('chapterProgress') || '{}');
-    let notes = JSON.parse(localStorage.getItem('notes') || '[]');
-    let stickies = JSON.parse(localStorage.getItem('stickies') || '[]');
-    let streak = parseInt(localStorage.getItem('streak') || '0');
-    let xp = parseInt(localStorage.getItem('xp') || '0');
-    let timerSeconds = 0, timerInterval = null, isTimerRunning = false;
-    let currentQuizData = [];
+// =============================================================
+// STATE
+// =============================================================
+let bookmarkList = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+let chapterProgress = JSON.parse(localStorage.getItem('chapterProgress') || '{}');
+let notes = JSON.parse(localStorage.getItem('notes') || '[]');
+let stickies = JSON.parse(localStorage.getItem('stickies') || '[]');
+let streak = parseInt(localStorage.getItem('streak') || '0');
+let xp = parseInt(localStorage.getItem('xp') || '0');
+let timerSeconds = 0, timerInterval = null, isTimerRunning = false;
+let currentQuizData = [];
 
-    // =============================================================
-    // DOM READY
-    // =============================================================
-    document.addEventListener('DOMContentLoaded', function() {
-        renderFlashcards();
-        renderChecklistProgress();
-        updateDashboard();
-        updateStreak();
-        loadQuiz('all');
-        loadCases();
-        loadNotes();
-        loadStickies();
-        renderBookmarks();
-        renderMindmap('all');
+// =============================================================
+// DOM READY
+// =============================================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Tải dữ liệu chia sẻ từ URL (nếu có) trước khi render
+    loadSharedNotes();
 
-        document.querySelectorAll('.tab-btn, .menu a[data-tab]').forEach(el => {
-            el.addEventListener('click', function() {
-                const tabId = this.dataset.tab;
-                document.querySelectorAll('.tab-btn, .menu a[data-tab]').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                document.getElementById(tabId)?.classList.add('active');
-                localStorage.setItem('activeTab', tabId);
-                if (tabId === 'tab-mindmap') renderMindmap(document.querySelector('#mindmapTabs .active')?.dataset.mind || 'all');
-            });
+    renderFlashcards();
+    renderChecklistProgress();
+    updateDashboard();
+    updateStreak();
+    loadQuiz('all');
+    loadCases();
+    loadNotes();
+    loadStickies();
+    renderBookmarks();
+    renderMindmap('all');
+
+    document.querySelectorAll('.tab-btn, .menu a[data-tab]').forEach(el => {
+        el.addEventListener('click', function() {
+            const tabId = this.dataset.tab;
+            document.querySelectorAll('.tab-btn, .menu a[data-tab]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            document.getElementById(tabId)?.classList.add('active');
+            localStorage.setItem('activeTab', tabId);
+            if (tabId === 'tab-mindmap') renderMindmap(document.querySelector('#mindmapTabs .active')?.dataset.mind || 'all');
         });
-        const savedTab = localStorage.getItem('activeTab');
-        if (savedTab && document.getElementById(savedTab)) {
-            document.querySelector(`[data-tab="${savedTab}"]`)?.click();
-        }
+    });
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab && document.getElementById(savedTab)) {
+        document.querySelector(`[data-tab="${savedTab}"]`)?.click();
+    }
 
-        document.getElementById('searchInput').addEventListener('input', function() {
-            const kw = this.value.trim().toLowerCase();
-            document.querySelectorAll('.card, .accordion, .note, .table-wrap').forEach(el => {
-                el.style.display = el.textContent.toLowerCase().includes(kw) ? '' : 'none';
-            });
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const kw = this.value.trim().toLowerCase();
+        document.querySelectorAll('.card, .accordion, .note, .table-wrap').forEach(el => {
+            el.style.display = el.textContent.toLowerCase().includes(kw) ? '' : 'none';
         });
-
-        document.getElementById('timerDisplay').textContent = '00:00';
-
-        document.querySelectorAll('.bookmark-btn').forEach(btn => {
-            btn.addEventListener('click', function() { toggleBookmark(this.dataset.bookmark); });
-            if (bookmarkList.includes(btn.dataset.bookmark)) btn.classList.add('active');
-        });
-
-        document.querySelectorAll('#quizFilter button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('#quizFilter button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                loadQuiz(this.dataset.qtype);
-            });
-        });
-
-        document.querySelectorAll('#mindmapTabs button').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('#mindmapTabs button').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                renderMindmap(this.dataset.mind);
-            });
-        });
-
-        document.querySelectorAll('.accordion-header').forEach(h => {
-            h.addEventListener('click', function() {
-                const target = document.getElementById(this.dataset.target);
-                if (target) { target.classList.toggle('open');
-                    this.classList.toggle('open'); }
-            });
-        });
-
-        document.getElementById('flashcardCount').textContent = flashcardData.length;
-        document.getElementById('quizCount').textContent = quizData.all.length;
-        updateStreak();
     });
 
-    // =============================================================
-    // MINI QUIZ
-    // =============================================================
-    function checkMiniQuiz(id, correctIdx) {
-        const radios = document.getElementsByName(`mq_${id}`);
-        let selected = null;
-        for (let r of radios)
-            if (r.checked) { selected = parseInt(r.value); break; }
-        const resultDiv = document.getElementById(`mq_${id}_result`);
-        if (!resultDiv) return;
-        if (selected === null) { resultDiv.innerHTML = '⚠️ Chọn một đáp án.';
-            resultDiv.classList.add('show'); return; }
-        const isCorrect = (selected === correctIdx);
-        resultDiv.innerHTML =
-            `<span class="${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> ${isCorrect ? 'Chính xác!' : `Đáp án đúng: ${document.querySelectorAll(`[name="mq_${id}"]`)[correctIdx].parentElement.textContent.trim()}`}`;
-        resultDiv.classList.add('show');
-        if (isCorrect) { xp += 2;
-            localStorage.setItem('xp', xp);
-            updateDashboard(); }
-    }
+    document.getElementById('timerDisplay').textContent = '00:00';
 
-    // =============================================================
-    // FLASHCARD
-    // =============================================================
-    function renderFlashcards() {
-        const grid = document.getElementById('flashcardGrid');
-        if (!grid) return;
-        grid.innerHTML = '';
-        flashcardData.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'flip-card';
-            card.innerHTML = `
-                <div class="flip-card-inner">
-                    <div class="flip-card-front"><i class="fas fa-question-circle" style="font-size:2rem;color:var(--primary);"></i><p>${item.q}</p></div>
-                    <div class="flip-card-back"><i class="fas fa-lightbulb" style="font-size:2rem;color:var(--primary);"></i><strong>${item.a}</strong></div>
-                </div>
-            `;
-            card.addEventListener('click', function() { this.classList.toggle('flipped'); });
-            grid.appendChild(card);
+    document.querySelectorAll('.bookmark-btn').forEach(btn => {
+        btn.addEventListener('click', function() { toggleBookmark(this.dataset.bookmark); });
+        if (bookmarkList.includes(btn.dataset.bookmark)) btn.classList.add('active');
+    });
+
+    document.querySelectorAll('#quizFilter button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('#quizFilter button').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            loadQuiz(this.dataset.qtype);
         });
-    }
+    });
 
-    // =============================================================
-    // QUIZ
-    // =============================================================
-    function loadQuiz(topic) {
-        const container = document.getElementById('quizContainer');
-        if (!container) return;
-        const all = quizData.all;
-        let filtered = topic === 'all' ? all : all.filter(q => q.topic === topic);
-        if (!filtered.length) { container.innerHTML = '<p>Không có câu hỏi.</p>'; return; }
-        currentQuizData = filtered;
-        let html =
-            `<div class="quiz-filter" style="margin-bottom:12px;"><span class="text-muted">${filtered.length} câu</span></div>`;
-        filtered.forEach((q, i) => {
-            html += `<div class="quiz-question" data-qidx="${i}"><p>${i+1}. ${q.q}</p>`;
-            q.opts.forEach((opt, oi) => { html += `<label><input type="radio" name="q_${i}" value="${oi}"> ${opt}</label>`; });
-            html += `<div class="quiz-answer" id="ans_${i}"></div></div>`;
+    document.querySelectorAll('#mindmapTabs button').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('#mindmapTabs button').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderMindmap(this.dataset.mind);
         });
-        container.innerHTML = html;
-        document.getElementById('quizResult').style.display = 'none';
-    }
+    });
 
-    function submitQuiz() {
-        if (!currentQuizData.length) return;
-        let correct = 0;
-        currentQuizData.forEach((q, i) => {
-            const radios = document.getElementsByName(`q_${i}`);
-            let val = null;
-            for (let r of radios)
-                if (r.checked) { val = parseInt(r.value); break; }
-            const isCorrect = (val === q.ans);
-            if (isCorrect) correct++;
-            const ansDiv = document.getElementById(`ans_${i}`);
-            if (ansDiv) {
-                ansDiv.innerHTML =
-                    `<span class="${isCorrect?'correct':'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> – Đáp án: <strong>${q.opts[q.ans]}</strong>`;
-                ansDiv.classList.add('show');
+    document.querySelectorAll('.accordion-header').forEach(h => {
+        h.addEventListener('click', function() {
+            const target = document.getElementById(this.dataset.target);
+            if (target) { target.classList.toggle('open'); this.classList.toggle('open'); }
+        });
+    });
+
+    document.getElementById('flashcardCount').textContent = flashcardData.length;
+    document.getElementById('quizCount').textContent = quizData.all.length;
+    updateStreak();
+});
+
+// =============================================================
+// CHIA SẺ GHI CHÚ QUA URL (PHÙ HỢP VERCEL)
+// =============================================================
+function shareNotes() {
+    const data = { notes, stickies };
+    try {
+        const json = JSON.stringify(data);
+        const encoded = btoa(unescape(encodeURIComponent(json)));
+        const url = window.location.href.split('#')[0] + '#data=' + encoded;
+        navigator.clipboard.writeText(url).then(() => {
+            alert('✅ Đã sao chép link chia sẻ!\nGửi link này cho bạn bè để họ xem ghi chú của bạn.');
+        }).catch(() => {
+            prompt('📋 Copy link dưới đây để chia sẻ:', url);
+        });
+    } catch(e) {
+        alert('❌ Lỗi mã hóa dữ liệu. Vui lòng thử lại.');
+        console.error(e);
+    }
+}
+
+function loadSharedNotes() {
+    const hash = window.location.hash;
+    if (hash.startsWith('#data=')) {
+        try {
+            const encoded = hash.substring(6);
+            const json = decodeURIComponent(escape(atob(encoded)));
+            const data = JSON.parse(json);
+            if (data.notes && Array.isArray(data.notes)) {
+                notes = data.notes;
+                localStorage.setItem('notes', JSON.stringify(notes));
             }
-        });
-        const resultDiv = document.getElementById('quizResult');
-        resultDiv.style.display = 'inline-block';
-        const pct = Math.round((correct / currentQuizData.length) * 100);
-        resultDiv.textContent = `✅ Bạn đúng ${correct}/${currentQuizData.length} (${pct}%)`;
-        xp += correct * 3;
-        localStorage.setItem('xp', xp);
-        updateDashboard();
-        let history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
-        history.push({ correct, total: currentQuizData.length, topic: document.querySelector('#quizFilter .active')
-                ?.dataset.qtype || 'all' });
-        localStorage.setItem('quizHistory', JSON.stringify(history));
+            if (data.stickies && Array.isArray(data.stickies)) {
+                stickies = data.stickies;
+                localStorage.setItem('stickies', JSON.stringify(stickies));
+            }
+            // Xóa hash để tránh tải lại mỗi lần refresh
+            window.history.replaceState(null, '', window.location.pathname);
+            // Cập nhật giao diện (sẽ được gọi sau khi DOM load)
+            setTimeout(() => { loadNotes(); loadStickies(); }, 100);
+            alert('✅ Đã tải thành công ghi chú từ link chia sẻ!');
+        } catch(e) {
+            console.warn('Không thể tải dữ liệu từ link chia sẻ:', e);
+        }
     }
+}
 
-    function resetQuiz() {
-        document.querySelectorAll('.quiz-answer').forEach(el => { el.classList.remove('show');
-            el.innerHTML = ''; });
-        document.querySelectorAll('.quiz-question input[type="radio"]').forEach(input => input.checked = false);
-        document.getElementById('quizResult').style.display = 'none';
-    }
+// =============================================================
+// MINI QUIZ
+// =============================================================
+function checkMiniQuiz(id, correctIdx) {
+    const radios = document.getElementsByName(`mq_${id}`);
+    let selected = null;
+    for (let r of radios) if (r.checked) { selected = parseInt(r.value); break; }
+    const resultDiv = document.getElementById(`mq_${id}_result`);
+    if (!resultDiv) return;
+    if (selected === null) { resultDiv.innerHTML = '⚠️ Chọn một đáp án.'; resultDiv.classList.add('show'); return; }
+    const isCorrect = (selected === correctIdx);
+    resultDiv.innerHTML = `<span class="${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> ${isCorrect ? 'Chính xác!' : `Đáp án đúng: ${document.querySelectorAll(`[name="mq_${id}"]`)[correctIdx].parentElement.textContent.trim()}`}`;
+    resultDiv.classList.add('show');
+    if (isCorrect) { xp += 2; localStorage.setItem('xp', xp); updateDashboard(); }
+}
 
-    // =============================================================
-    // CASE
-    // =============================================================
-    function loadCases() {
-        const container = document.getElementById('caseContainer');
-        if (!container) return;
-        let html = '';
-        caseData.forEach((c, idx) => {
-            html += `<div class="case-card" data-caseidx="${idx}">
-                <h3><i class="fas fa-notes-medical"></i> ${c.title}</h3>
-                <div class="case-scenario">📖 ${c.scenario}</div>
-                <div class="case-question">❓ ${c.question}</div>
-                <div class="case-options">${c.options.map((opt, oi) => `<label><input type="radio" name="case_${idx}" value="${oi}"> ${opt}</label>`).join('')}</div>
-                <button class="btn btn-primary" onclick="submitCase(${idx})" style="margin-top:8px;">Xem đáp án</button>
-                <div class="case-answer" id="caseAns_${idx}"></div>
-            </div>`;
-        });
-        container.innerHTML = html;
-    }
+// =============================================================
+// FLASHCARD
+// =============================================================
+function renderFlashcards() {
+    const grid = document.getElementById('flashcardGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    flashcardData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'flip-card';
+        card.innerHTML = `
+            <div class="flip-card-inner">
+                <div class="flip-card-front"><i class="fas fa-question-circle" style="font-size:2rem;color:var(--primary);"></i><p>${item.q}</p></div>
+                <div class="flip-card-back"><i class="fas fa-lightbulb" style="font-size:2rem;color:var(--primary);"></i><strong>${item.a}</strong></div>
+            </div>
+        `;
+        card.addEventListener('click', function() { this.classList.toggle('flipped'); });
+        grid.appendChild(card);
+    });
+}
 
-    function submitCase(idx) {
-        const c = caseData[idx];
-        const radios = document.getElementsByName(`case_${idx}`);
+// =============================================================
+// QUIZ
+// =============================================================
+function loadQuiz(topic) {
+    const container = document.getElementById('quizContainer');
+    if (!container) return;
+    const all = quizData.all;
+    let filtered = topic === 'all' ? all : all.filter(q => q.topic === topic);
+    if (!filtered.length) { container.innerHTML = '<p>Không có câu hỏi.</p>'; return; }
+    currentQuizData = filtered;
+    let html = `<div class="quiz-filter" style="margin-bottom:12px;"><span class="text-muted">${filtered.length} câu</span></div>`;
+    filtered.forEach((q, i) => {
+        html += `<div class="quiz-question" data-qidx="${i}"><p>${i+1}. ${q.q}</p>`;
+        q.opts.forEach((opt, oi) => { html += `<label><input type="radio" name="q_${i}" value="${oi}"> ${opt}</label>`; });
+        html += `<div class="quiz-answer" id="ans_${i}"></div></div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('quizResult').style.display = 'none';
+}
+
+function submitQuiz() {
+    if (!currentQuizData.length) return;
+    let correct = 0;
+    currentQuizData.forEach((q, i) => {
+        const radios = document.getElementsByName(`q_${i}`);
         let val = null;
-        for (let r of radios)
-            if (r.checked) { val = parseInt(r.value); break; }
-        const ansDiv = document.getElementById(`caseAns_${idx}`);
-        if (!ansDiv) return;
-        const isCorrect = (val === c.answer);
-        ansDiv.innerHTML =
-            `<span class="${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> – <strong>Đáp án đúng:</strong> ${c.options[c.answer]}<br><span style="color:var(--text-muted);font-size:13px;">💡 ${c.explanation}</span>`;
-        ansDiv.classList.add('show');
-        if (isCorrect) { xp += 5;
-            localStorage.setItem('xp', xp);
-            updateDashboard(); }
-    }
+        for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
+        const isCorrect = (val === q.ans);
+        if (isCorrect) correct++;
+        const ansDiv = document.getElementById(`ans_${i}`);
+        if (ansDiv) {
+            ansDiv.innerHTML = `<span class="${isCorrect?'correct':'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> – Đáp án: <strong>${q.opts[q.ans]}</strong>`;
+            ansDiv.classList.add('show');
+        }
+    });
+    const resultDiv = document.getElementById('quizResult');
+    resultDiv.style.display = 'inline-block';
+    const pct = Math.round((correct / currentQuizData.length) * 100);
+    resultDiv.textContent = `✅ Bạn đúng ${correct}/${currentQuizData.length} (${pct}%)`;
+    xp += correct * 3;
+    localStorage.setItem('xp', xp);
+    updateDashboard();
+    let history = JSON.parse(localStorage.getItem('quizHistory') || '[]');
+    history.push({ correct, total: currentQuizData.length, topic: document.querySelector('#quizFilter .active')?.dataset.qtype || 'all' });
+    localStorage.setItem('quizHistory', JSON.stringify(history));
+}
 
-    // =============================================================
-    // MINDMAP
-    // =============================================================
-    const mindmapData = {
-        all: [
-            { name: 'Đái tháo đường', subs: ['Chẩn đoán: FPG, OGTT, HbA1c', 'Phân loại: Type 1, Type 2, Thai kỳ',
-                    'Biến chứng: vi mạch, mạch lớn', 'Điều trị: SGLT-2i, GLP-1 RA, Statin', 'Hạ ĐH: Whipple, 15-15',
-                    'Bệnh thận: ACR >30'
-                ] },
-            { name: 'Bàn chân ĐTĐ', subs: ['Cơ chế: thần kinh, mạch máu, nhiễm trùng', 'Khám: Monofilament, ABI, Ipswich',
-                    'Phân độ: IWGDF, IDSA, Wagner', 'Chăm sóc: vệ sinh, giày dép, cắt móng', 'Probe-to-bone: viêm xương'
-                ] },
-            { name: 'Tuyến giáp', subs: ['Nhiễm độc: Basedow, nhân độc, viêm giáp', 'Suy giáp: Hashimoto, thứ phát',
-                    'Cận LS: TSH, FT4, TRAb, TPOAb, siêu âm, FNA', 'Điều trị: Methimazole, PTU, LT4, I-131, phẫu thuật',
-                    'Mắt: NOSPECS 0-6, lồi mắt'
-                ] },
-            { name: 'Thuốc ĐTĐ', subs: ['Ominous Octet: 8 cơ chế', '7 nhóm: Metformin, SU, Glinide, TZD, Acarbose, DPP-4i, SGLT-2i, GLP-1 RA',
-                    'CCĐ: Metformin (eGFR<30), TZD (suy tim), GLP-1 (MEN-2)'
-                ] },
-            { name: 'Insulin', subs: ['Regular (30p), NPH (đục, đỉnh), Analog nhanh (5p), Analog nền (không đỉnh)',
-                    'Kỹ thuật: đợi khô, thử 2 đv, giữ 10s, luân phiên', 'U40 hút U100 = quá liều 2.5x',
-                    'Somogyi (giảm liều), Bình minh (tăng liều)'
-                ] },
-            { name: 'Tuyến thượng thận', subs: ['Corticoid: loãng xương, hoại tử chỏm xương đùi, Cushing',
-                    'Addison: sạm da, tăng Kali, Synacthen', 'Cushing: ACTH thấp (u thượng thận), ACTH cao (u tuyến yên/lạc chỗ)',
-                    'Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên'
-                ] }
-        ],
-        dm: [{ name: 'Đái tháo đường', subs: ['Chẩn đoán: FPG≥126, OGTT≥200, HbA1c≥6.5%',
-                    'Phân loại: Type 1, Type 2, Thai kỳ, Đặc biệt',
-                    'Biến chứng: vi mạch (thận, võng mạc, TK), mạch lớn (vành, não, PAD)',
-                    'Mục tiêu: HbA1c<7%, LDL<70 (có BC), HA<130/80 (có thận)', 'Hạ ĐH: Whipple, 15-15',
-                    'Bệnh thận: ACR >30, không tiểu máu'
-                ] }],
-        foot: [{ name: 'Bàn chân ĐTĐ', subs: ['Cơ chế: TK tự chủ/vận động/cảm giác, PAD, nhiễm trùng',
-                    'Khám: Monofilament 10g, Âm thoa 128Hz, Ipswich Touch, ABI',
-                    'Phân độ: IWGDF (0-3), IDSA (1-4), Wagner (0-5)',
-                    'Chăm sóc: giữ khô, không ngâm nước nóng, cắt móng ngang, kiểm tra giày',
-                    'Probe-to-bone: viêm tủy xương, KS 6 tuần'
-                ] }],
-        thyroid: [{ name: 'Tuyến giáp', subs: ['Nhiễm độc: Basedow (TRAb+), nhân độc, viêm giáp bán cấp',
-                    'Suy giáp: Hashimoto (TPOAb+), thứ phát (Sheehan), đề kháng',
-                    'Cận LS: TSH, FT4 (4 kịch bản), TRAb, TPOAb, siêu âm, FNA, xạ hình',
-                    'Điều trị: Methimazole (first-line), PTU (thai, bão), LT4, I-131, phẫu thuật',
-                    'Mắt: NOSPECS 0-6 (O: Dalrymple, Stellwag, Von Graefe, Joffroy)'
-                ] }],
-        drugs: [{ name: 'Thuốc ĐTĐ', subs: ['Ominous Octet: Cơ-Gan-Mỡ-β-α-Ruột-Thận-Não',
-                    'Metformin: đầu tay, eGFR<30 CCĐ', 'SU: hạ ĐH mạnh, tăng cân',
-                    'Glinide: suy thận an toàn', 'TZD: CCĐ suy tim NYHA III-IV',
-                    'Acarbose: đầy bụng, cấm sucrose khi hạ ĐH', 'DPP-4i: Linagliptin không chỉnh liều suy thận',
-                    'SGLT-2i: bảo vệ tim thận', 'GLP-1 RA: giảm cân, CCĐ MEN-2'
-                ] }],
-        insulin: [{ name: 'Insulin', subs: ['Regular: 30p trước ăn', 'NPH: đục, lắc, có đỉnh',
-                    'Analog nhanh: 5p trước ăn', 'Analog nền: không đỉnh, 24h',
-                    'Ryzodeg: trong suốt, không lắc', 'Kỹ thuật: đợi khô, thử 2 đv, giữ 10s, luân phiên',
-                    'U40 hút U100 = quá liều 2.5x', 'Somogyi (giảm liều), Bình minh (tăng liều)'
-                ] }],
-        adrenal: [{ name: 'Tuyến thượng thận', subs: ['Corticoid: loãng xương, hoại tử chỏm xương đùi, Cushing',
-                    'Addison nguyên phát: sạm da + tăng Kali + HA thấp', 'Synacthen: 250mcg, Cortisol <20 → suy',
-                    'Cushing: ACTH thấp (u thượng thận), ACTH cao (u tuyến yên/lạc chỗ)',
-                    'Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên >2 (hoặc >3 sau CRH)'
-                ] }]
-    };
+function resetQuiz() {
+    document.querySelectorAll('.quiz-answer').forEach(el => { el.classList.remove('show'); el.innerHTML = ''; });
+    document.querySelectorAll('.quiz-question input[type="radio"]').forEach(input => input.checked = false);
+    document.getElementById('quizResult').style.display = 'none';
+}
 
-    function renderMindmap(topic) {
-        const container = document.getElementById('mindmapContainer');
-        if (!container) return;
-        const data = mindmapData[topic] || mindmapData.all;
-        let html = '<div class="mindmap-tree">';
-        data.forEach(branch => {
-            html += `<div class="mindmap-branch"><h4><i class="fas fa-chevron-right" style="color:var(--primary);"></i> ${branch.name}</h4><ul>`;
-            branch.subs.forEach(item => {
-                html += `<li>${item}`;
-                if (item.includes(':')) {
-                    const parts = item.split(':');
-                    if (parts.length > 1 && parts[1].includes(',')) {
-                        const subs = parts[1].split(',').map(s => s.trim());
-                        html += '<ul>';
-                        subs.forEach(sub => { html += `<li>${sub}</li>`; });
-                        html += '</ul>';
-                    }
+// =============================================================
+// CASE
+// =============================================================
+function loadCases() {
+    const container = document.getElementById('caseContainer');
+    if (!container) return;
+    let html = '';
+    caseData.forEach((c, idx) => {
+        html += `<div class="case-card" data-caseidx="${idx}">
+            <h3><i class="fas fa-notes-medical"></i> ${c.title}</h3>
+            <div class="case-scenario">📖 ${c.scenario}</div>
+            <div class="case-question">❓ ${c.question}</div>
+            <div class="case-options">${c.options.map((opt, oi) => `<label><input type="radio" name="case_${idx}" value="${oi}"> ${opt}</label>`).join('')}</div>
+            <button class="btn btn-primary" onclick="submitCase(${idx})" style="margin-top:8px;">Xem đáp án</button>
+            <div class="case-answer" id="caseAns_${idx}"></div>
+        </div>`;
+    });
+    container.innerHTML = html;
+}
+
+function submitCase(idx) {
+    const c = caseData[idx];
+    const radios = document.getElementsByName(`case_${idx}`);
+    let val = null;
+    for (let r of radios) if (r.checked) { val = parseInt(r.value); break; }
+    const ansDiv = document.getElementById(`caseAns_${idx}`);
+    if (!ansDiv) return;
+    const isCorrect = (val === c.answer);
+    ansDiv.innerHTML = `<span class="${isCorrect ? 'correct' : 'wrong'}">${isCorrect ? '✅ Đúng' : '❌ Sai'}</span> – <strong>Đáp án đúng:</strong> ${c.options[c.answer]}<br><span style="color:var(--text-muted);font-size:13px;">💡 ${c.explanation}</span>`;
+    ansDiv.classList.add('show');
+    if (isCorrect) { xp += 5; localStorage.setItem('xp', xp); updateDashboard(); }
+}
+
+// =============================================================
+// MINDMAP
+// =============================================================
+const mindmapData = {
+    all: [
+        { name: 'Đái tháo đường', subs: ['Chẩn đoán: FPG, OGTT, HbA1c', 'Phân loại: Type 1, Type 2, Thai kỳ', 'Biến chứng: vi mạch, mạch lớn', 'Điều trị: SGLT-2i, GLP-1 RA, Statin', 'Hạ ĐH: Whipple, 15-15', 'Bệnh thận: ACR >30'] },
+        { name: 'Bàn chân ĐTĐ', subs: ['Cơ chế: thần kinh, mạch máu, nhiễm trùng', 'Khám: Monofilament, ABI, Ipswich', 'Phân độ: IWGDF, IDSA, Wagner', 'Chăm sóc: vệ sinh, giày dép, cắt móng', 'Probe-to-bone: viêm xương'] },
+        { name: 'Tuyến giáp', subs: ['Nhiễm độc: Basedow, nhân độc, viêm giáp', 'Suy giáp: Hashimoto, thứ phát', 'Cận LS: TSH, FT4, TRAb, TPOAb, siêu âm, FNA', 'Điều trị: Methimazole, PTU, LT4, I-131, phẫu thuật', 'Mắt: NOSPECS 0-6, lồi mắt'] },
+        { name: 'Thuốc ĐTĐ', subs: ['Ominous Octet: 8 cơ chế', '7 nhóm: Metformin, SU, Glinide, TZD, Acarbose, DPP-4i, SGLT-2i, GLP-1 RA', 'CCĐ: Metformin (eGFR<30), TZD (suy tim), GLP-1 (MEN-2)'] },
+        { name: 'Insulin', subs: ['Regular (30p), NPH (đục, đỉnh), Analog nhanh (5p), Analog nền (không đỉnh)', 'Kỹ thuật: đợi khô, thử 2 đv, giữ 10s, luân phiên', 'U40 hút U100 = quá liều 2.5x', 'Somogyi (giảm liều), Bình minh (tăng liều)'] },
+        { name: 'Tuyến thượng thận', subs: ['Corticoid: loãng xương, hoại tử chỏm xương đùi, Cushing', 'Addison: sạm da, tăng Kali, Synacthen', 'Cushing: ACTH thấp (u thượng thận), ACTH cao (u tuyến yên/lạc chỗ)', 'Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên'] }
+    ],
+    dm: [{ name: 'Đái tháo đường', subs: ['Chẩn đoán: FPG≥126, OGTT≥200, HbA1c≥6.5%', 'Phân loại: Type 1, Type 2, Thai kỳ, Đặc biệt', 'Biến chứng: vi mạch (thận, võng mạc, TK), mạch lớn (vành, não, PAD)', 'Mục tiêu: HbA1c<7%, LDL<70 (có BC), HA<130/80 (có thận)', 'Hạ ĐH: Whipple, 15-15', 'Bệnh thận: ACR >30, không tiểu máu'] }],
+    foot: [{ name: 'Bàn chân ĐTĐ', subs: ['Cơ chế: TK tự chủ/vận động/cảm giác, PAD, nhiễm trùng', 'Khám: Monofilament 10g, Âm thoa 128Hz, Ipswich Touch, ABI', 'Phân độ: IWGDF (0-3), IDSA (1-4), Wagner (0-5)', 'Chăm sóc: giữ khô, không ngâm nước nóng, cắt móng ngang, kiểm tra giày', 'Probe-to-bone: viêm tủy xương, KS 6 tuần'] }],
+    thyroid: [{ name: 'Tuyến giáp', subs: ['Nhiễm độc: Basedow (TRAb+), nhân độc, viêm giáp bán cấp', 'Suy giáp: Hashimoto (TPOAb+), thứ phát (Sheehan), đề kháng', 'Cận LS: TSH, FT4 (4 kịch bản), TRAb, TPOAb, siêu âm, FNA, xạ hình', 'Điều trị: Methimazole (first-line), PTU (thai, bão), LT4, I-131, phẫu thuật', 'Mắt: NOSPECS 0-6 (O: Dalrymple, Stellwag, Von Graefe, Joffroy)'] }],
+    drugs: [{ name: 'Thuốc ĐTĐ', subs: ['Ominous Octet: Cơ-Gan-Mỡ-β-α-Ruột-Thận-Não', 'Metformin: đầu tay, eGFR<30 CCĐ', 'SU: hạ ĐH mạnh, tăng cân', 'Glinide: suy thận an toàn', 'TZD: CCĐ suy tim NYHA III-IV', 'Acarbose: đầy bụng, cấm sucrose khi hạ ĐH', 'DPP-4i: Linagliptin không chỉnh liều suy thận', 'SGLT-2i: bảo vệ tim thận', 'GLP-1 RA: giảm cân, CCĐ MEN-2'] }],
+    insulin: [{ name: 'Insulin', subs: ['Regular: 30p trước ăn', 'NPH: đục, lắc, có đỉnh', 'Analog nhanh: 5p trước ăn', 'Analog nền: không đỉnh, 24h', 'Ryzodeg: trong suốt, không lắc', 'Kỹ thuật: đợi khô, thử 2 đv, giữ 10s, luân phiên', 'U40 hút U100 = quá liều 2.5x', 'Somogyi (giảm liều), Bình minh (tăng liều)'] }],
+    adrenal: [{ name: 'Tuyến thượng thận', subs: ['Corticoid: loãng xương, hoại tử chỏm xương đùi, Cushing', 'Addison nguyên phát: sạm da + tăng Kali + HA thấp', 'Synacthen: 250mcg, Cortisol <20 → suy', 'Cushing: ACTH thấp (u thượng thận), ACTH cao (u tuyến yên/lạc chỗ)', 'Tiêu chuẩn vàng: tỷ lệ xoang đá/ngoại biên >2 (hoặc >3 sau CRH)'] }]
+};
+
+function renderMindmap(topic) {
+    const container = document.getElementById('mindmapContainer');
+    if (!container) return;
+    const data = mindmapData[topic] || mindmapData.all;
+    let html = '<div class="mindmap-tree">';
+    data.forEach(branch => {
+        html += `<div class="mindmap-branch"><h4><i class="fas fa-chevron-right" style="color:var(--primary);"></i> ${branch.name}</h4><ul>`;
+        branch.subs.forEach(item => {
+            html += `<li>${item}`;
+            if (item.includes(':')) {
+                const parts = item.split(':');
+                if (parts.length > 1 && parts[1].includes(',')) {
+                    const subs = parts[1].split(',').map(s => s.trim());
+                    html += '<ul>';
+                    subs.forEach(sub => { html += `<li>${sub}</li>`; });
+                    html += '</ul>';
                 }
-                html += `</li>`;
-            });
-            html += '</ul></div>';
+            }
+            html += `</li>`;
         });
-        html += '</div>';
-        container.innerHTML = html;
-    }
-
-    // =============================================================
-    // BOOKMARK, PROGRESS, DASHBOARD, STREAK, NOTES, TIMER, DARK...
-    // =============================================================
-    function toggleBookmark(id) {
-        const idx = bookmarkList.indexOf(id);
-        if (idx > -1) bookmarkList.splice(idx, 1);
-        else bookmarkList.push(id);
-        localStorage.setItem('bookmarks', JSON.stringify(bookmarkList));
-        document.querySelectorAll(`.bookmark-btn[data-bookmark="${id}"]`).forEach(b => b.classList.toggle('active'));
-    }
-
-    function renderBookmarks() {}
-
-    document.querySelectorAll('.progress-check').forEach(cb => {
-        cb.addEventListener('change', function() { updateChapterProgress(this.dataset.chapter); });
+        html += '</ul></div>';
     });
+    html += '</div>';
+    container.innerHTML = html;
+}
 
-    function updateChapterProgress(chapter) {
-        const checks = document.querySelectorAll(`.progress-check[data-chapter="${chapter}"]`);
-        const total = checks.length;
-        const done = document.querySelectorAll(`.progress-check[data-chapter="${chapter}"]:checked`).length;
-        const pct = total ? Math.round((done / total) * 100) : 0;
-        chapterProgress[chapter] = pct;
-        localStorage.setItem('chapterProgress', JSON.stringify(chapterProgress));
-        const fill = document.getElementById(`progress-${chapter}`);
-        if (fill) fill.style.width = pct + '%';
-        updateDashboard();
-    }
+// =============================================================
+// BOOKMARK, PROGRESS, DASHBOARD, STREAK, NOTES, TIMER, DARK...
+// =============================================================
+function toggleBookmark(id) {
+    const idx = bookmarkList.indexOf(id);
+    if (idx > -1) bookmarkList.splice(idx, 1);
+    else bookmarkList.push(id);
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarkList));
+    document.querySelectorAll(`.bookmark-btn[data-bookmark="${id}"]`).forEach(b => b.classList.toggle('active'));
+}
 
-    function renderChecklistProgress() {
-        Object.keys(chapterProgress).forEach(ch => {
-            const fill = document.getElementById(`progress-${ch}`);
-            if (fill) fill.style.width = chapterProgress[ch] + '%';
-        });
-    }
+function renderBookmarks() {}
 
-    function updateDashboard() {
-        const chapters = ['dm', 'foot', 'thyroid', 'drugs', 'insulin', 'adrenal'];
-        let total = 0,
-            done = 0;
-        chapters.forEach(ch => {
+document.querySelectorAll('.progress-check').forEach(cb => {
+    cb.addEventListener('change', function() { updateChapterProgress(this.dataset.chapter); });
+});
+
+function updateChapterProgress(chapter) {
+    const checks = document.querySelectorAll(`.progress-check[data-chapter="${chapter}"]`);
+    const total = checks.length;
+    const done = document.querySelectorAll(`.progress-check[data-chapter="${chapter}"]:checked`).length;
+    const pct = total ? Math.round((done / total) * 100) : 0;
+    chapterProgress[chapter] = pct;
+    localStorage.setItem('chapterProgress', JSON.stringify(chapterProgress));
+    const fill = document.getElementById(`progress-${chapter}`);
+    if (fill) fill.style.width = pct + '%';
+    updateDashboard();
+}
+
+function renderChecklistProgress() {
+    Object.keys(chapterProgress).forEach(ch => {
+        const fill = document.getElementById(`progress-${ch}`);
+        if (fill) fill.style.width = chapterProgress[ch] + '%';
+    });
+}
+
+function updateDashboard() {
+    const chapters = ['dm', 'foot', 'thyroid', 'drugs', 'insulin', 'adrenal'];
+    let total = 0, done = 0;
+    chapters.forEach(ch => {
+        const pct = chapterProgress[ch] || 0;
+        total += 100;
+        done += pct;
+    });
+    document.getElementById('dashChapters').textContent = `${chapters.filter(ch => (chapterProgress[ch]||0)>=100).length}/${chapters.length}`;
+    document.getElementById('dashChecklist').textContent = document.querySelectorAll('.progress-check:checked').length;
+    document.getElementById('dashXP').textContent = xp;
+    document.getElementById('dashXpBar').style.width = (xp % 100) + '%';
+    const list = document.getElementById('chapterProgressList');
+    if (list) {
+        const names = { dm: 'ĐTĐ', foot: 'Bàn chân', thyroid: 'Tuyến giáp', drugs: 'Thuốc ĐTĐ', insulin: 'Insulin', adrenal: 'Tuyến thượng thận' };
+        list.innerHTML = chapters.map(ch => {
             const pct = chapterProgress[ch] || 0;
-            total += 100;
-            done += pct;
-        });
-        document.getElementById('dashChapters').textContent =
-            `${chapters.filter(ch => (chapterProgress[ch]||0)>=100).length}/${chapters.length}`;
-        document.getElementById('dashChecklist').textContent = document.querySelectorAll('.progress-check:checked').length;
-        document.getElementById('dashXP').textContent = xp;
-        document.getElementById('dashXpBar').style.width = (xp % 100) + '%';
-        const list = document.getElementById('chapterProgressList');
-        if (list) {
-            const names = { dm: 'ĐTĐ', foot: 'Bàn chân', thyroid: 'Tuyến giáp', drugs: 'Thuốc ĐTĐ', insulin: 'Insulin',
-                adrenal: 'Tuyến thượng thận' };
-            list.innerHTML = chapters.map(ch => {
-                const pct = chapterProgress[ch] || 0;
-                return `<div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0;">
-                            <span>${names[ch]}</span>
-                            <div style="flex:1;margin:0 12px;"><div class="progress-bar"><div class="fill" style="width:${pct}%;background:${pct>=80?'#10b981':'#f59e0b'};"></div></div></div>
-                            <span>${pct}%</span>
-                        </div>`;
-            }).join('');
-        }
+            return `<div style="display:flex;justify-content:space-between;align-items:center;margin:4px 0;">
+                        <span>${names[ch]}</span>
+                        <div style="flex:1;margin:0 12px;"><div class="progress-bar"><div class="fill" style="width:${pct}%;background:${pct>=80?'#10b981':'#f59e0b'};"></div></div></div>
+                        <span>${pct}%</span>
+                    </div>`;
+        }).join('');
     }
+}
 
-    function updateStreak() {
-        const today = new Date().toDateString();
-        const last = localStorage.getItem('lastStudyDate');
-        if (last !== today) {
-            if (last) {
-                const diff = (new Date(today) - new Date(last)) / (1000 * 60 * 60 * 24);
-                if (diff === 1) streak++;
-                else if (diff > 1) streak = 0;
-            } else streak = 1;
-            localStorage.setItem('streak', streak);
-            localStorage.setItem('lastStudyDate', today);
-        }
-        const el = document.getElementById('streakDisplay');
-        if (el) el.innerHTML = `<i class="fas fa-fire"></i> ${streak} ngày`;
+function updateStreak() {
+    const today = new Date().toDateString();
+    const last = localStorage.getItem('lastStudyDate');
+    if (last !== today) {
+        if (last) {
+            const diff = (new Date(today) - new Date(last)) / (1000 * 60 * 60 * 24);
+            if (diff === 1) streak++;
+            else if (diff > 1) streak = 0;
+        } else streak = 1;
+        localStorage.setItem('streak', streak);
+        localStorage.setItem('lastStudyDate', today);
     }
+    const el = document.getElementById('streakDisplay');
+    if (el) el.innerHTML = `<i class="fas fa-fire"></i> ${streak} ngày`;
+}
 
-    function saveNote() {
-        const text = document.getElementById('personalNote').value.trim();
-        if (!text) return;
-        notes.push({ text, date: new Date().toLocaleString() });
-        localStorage.setItem('notes', JSON.stringify(notes));
-        loadNotes();
-        document.getElementById('personalNote').value = '';
+function saveNote() {
+    const text = document.getElementById('personalNote').value.trim();
+    if (!text) return;
+    notes.push({ text, date: new Date().toLocaleString() });
+    localStorage.setItem('notes', JSON.stringify(notes));
+    loadNotes();
+    document.getElementById('personalNote').value = '';
+}
+
+function loadNotes() {
+    const list = document.getElementById('noteList');
+    if (!list) return;
+    list.innerHTML = notes.map((n, i) =>
+        `<div style="padding:8px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+            <span>${n.text}</span>
+            <span style="color:var(--text-muted);font-size:12px;">${n.date}</span>
+            <button onclick="deleteNote(${i})" style="background:transparent;border:none;color:#dc2626;cursor:pointer;">🗑️</button>
+        </div>`
+    ).join('');
+}
+
+function deleteNote(i) { notes.splice(i, 1); localStorage.setItem('notes', JSON.stringify(notes)); loadNotes(); }
+
+function addSticky() {
+    const text = prompt('Nhập nội dung sticky:');
+    if (text) { stickies.push({ text, color: '#fef9c3' }); localStorage.setItem('stickies', JSON.stringify(stickies)); loadStickies(); }
+}
+
+function loadStickies() {
+    const list = document.getElementById('stickyList');
+    if (!list) return;
+    list.innerHTML = stickies.map((s, i) =>
+        `<div class="sticky-note" style="background:${s.color};">
+            ${s.text}
+            <button class="delete-note" onclick="deleteSticky(${i})">×</button>
+        </div>`
+    ).join('');
+}
+
+function deleteSticky(i) { stickies.splice(i, 1); localStorage.setItem('stickies', JSON.stringify(stickies)); loadStickies(); }
+
+function startTimer() {
+    if (isTimerRunning) { clearInterval(timerInterval); isTimerRunning = false; return; }
+    isTimerRunning = true;
+    timerInterval = setInterval(() => {
+        timerSeconds++;
+        const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const s = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerDisplay').textContent = `${m}:${s}`;
+    }, 1000);
+}
+
+function toggleDark() {
+    document.body.classList.toggle('dark');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark') ? 'true' : 'false');
+}
+if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
+
+function toggleFocusMode() { document.body.classList.toggle('focus-mode'); }
+
+function changeFontSize(delta) {
+    const current = parseFloat(getComputedStyle(document.body).fontSize);
+    const newSize = Math.min(24, Math.max(12, current + delta));
+    document.body.style.fontSize = newSize + 'px';
+}
+
+function openPopup(html) {
+    document.getElementById('popupBody').innerHTML = html;
+    document.getElementById('popupOverlay').classList.add('active');
+}
+
+function closePopup() { document.getElementById('popupOverlay').classList.remove('active'); }
+
+document.addEventListener('dblclick', function(e) {
+    const sel = window.getSelection().toString().trim();
+    if (sel.length > 1) {
+        openPopup(`<h3>Giải thích</h3><p>Từ khóa: <strong>${sel}</strong></p><p>Đây là popup giải thích thuật ngữ.</p>`);
     }
+});
 
-    function loadNotes() {
-        const list = document.getElementById('noteList');
-        if (!list) return;
-        list.innerHTML = notes.map((n, i) =>
-            `<div style="padding:8px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-                <span>${n.text}</span>
-                <span style="color:var(--text-muted);font-size:12px;">${n.date}</span>
-                <button onclick="deleteNote(${i})" style="background:transparent;border:none;color:#dc2626;cursor:pointer;">🗑️</button>
-            </div>`
-        ).join('');
-    }
+document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey && e.key === 'f') { e.preventDefault(); document.getElementById('searchInput').focus(); }
+    if (e.key === 'Escape') { closePopup(); document.getElementById('searchInput').value = ''; }
+});
 
-    function deleteNote(i) { notes.splice(i, 1);
-        localStorage.setItem('notes', JSON.stringify(notes));
-        loadNotes(); }
-
-    function addSticky() {
-        const text = prompt('Nhập nội dung sticky:');
-        if (text) { stickies.push({ text, color: '#fef9c3' });
-            localStorage.setItem('stickies', JSON.stringify(stickies));
-            loadStickies(); }
-    }
-
-    function loadStickies() {
-        const list = document.getElementById('stickyList');
-        if (!list) return;
-        list.innerHTML = stickies.map((s, i) =>
-            `<div class="sticky-note" style="background:${s.color};">
-                ${s.text}
-                <button class="delete-note" onclick="deleteSticky(${i})">×</button>
-            </div>`
-        ).join('');
-    }
-
-    function deleteSticky(i) { stickies.splice(i, 1);
-        localStorage.setItem('stickies', JSON.stringify(stickies));
-        loadStickies(); }
-
-    function startTimer() {
-        if (isTimerRunning) { clearInterval(timerInterval);
-            isTimerRunning = false; return; }
-        isTimerRunning = true;
-        timerInterval = setInterval(() => {
-            timerSeconds++;
-            const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
-            const s = String(timerSeconds % 60).padStart(2, '0');
-            document.getElementById('timerDisplay').textContent = `${m}:${s}`;
-        }, 1000);
-    }
-
-    function toggleDark() {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('darkMode', document.body.classList.contains('dark') ? 'true' : 'false');
-    }
-    if (localStorage.getItem('darkMode') === 'true') document.body.classList.add('dark');
-
-    function toggleFocusMode() { document.body.classList.toggle('focus-mode'); }
-
-    function changeFontSize(delta) {
-        const current = parseFloat(getComputedStyle(document.body).fontSize);
-        const newSize = Math.min(24, Math.max(12, current + delta));
-        document.body.style.fontSize = newSize + 'px';
-    }
-
-    function openPopup(html) {
-        document.getElementById('popupBody').innerHTML = html;
-        document.getElementById('popupOverlay').classList.add('active');
-    }
-
-    function closePopup() { document.getElementById('popupOverlay').classList.remove('active'); }
-
-    document.addEventListener('dblclick', function(e) {
-        const sel = window.getSelection().toString().trim();
-        if (sel.length > 1) {
-            openPopup(`<h3>Giải thích</h3><p>Từ khóa: <strong>${sel}</strong></p><p>Đây là popup giải thích thuật ngữ.</p>`);
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 'f') { e.preventDefault();
-            document.getElementById('searchInput').focus(); }
-        if (e.key === 'Escape') { closePopup();
-            document.getElementById('searchInput').value = ''; }
-    });
-
-    console.log('EndoMaster Pro - Đã cập nhật đầy đủ nội dung, văn phong chi tiết, nhiều mini quiz và checklist.');
+console.log('EndoMaster Pro - Đồng bộ ghi chú qua link (URL hash)');
 </script>
 </body>
 </html>
